@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../includes/connection_file.php';
+require_once __DIR__ . '/../../config/app.php';
 
 $tables = [
     'observations', 'promo_banner', 'campaign', 'cr_list', 

@@ -1,6 +1,6 @@
 <?php
 // Database setup script for observations table
-require_once __DIR__ . '/../../includes/connection_file.php';
+require_once __DIR__ . '/../../config/app.php';
 
 // Create observations table
 $create_table = "CREATE TABLE IF NOT EXISTS observations (

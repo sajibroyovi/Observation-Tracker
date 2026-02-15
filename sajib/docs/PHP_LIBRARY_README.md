@@ -6,7 +6,7 @@ All PHP functions have been consolidated into a single, centralized library file
 ## File Structure
 
 ### **functions.php** (NEW - 30+ Functions)
-**Location**: `c:\xampp\htdocs\ShiftHandOver\sajib\functions.php`
+**Location**: `includes/functions.php`
 
 A comprehensive, well-documented library containing all reusable PHP functions:
 

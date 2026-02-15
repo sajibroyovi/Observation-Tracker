@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../includes/connection_file.php';
+require_once __DIR__ . '/../../config/app.php';
 
 echo "<h2>Adding Audit Columns to Users Table</h2>";
 

@@ -455,7 +455,7 @@
                                         <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-camera me-1"></i> Visual Evidence (Max 2 images)</label>
                                         <div class="input-group">
                                             <span class="input-group-text bg-light border-0"><i class="fa-solid fa-cloud-arrow-up text-muted"></i></span>
-                                            <input type="file" class="form-control border-0 bg-light h-auto p-3" name="l1_images[]" multiple onchange="validateImageCount(this)">
+                                            <input type="file" class="form-control border-0 bg-light h-auto p-3" name="l1_images[]" multiple onchange="validateImageCount(this)" accept="image/*">
                                         </div>
                                         <div class="d-flex justify-content-between mt-2">
                                             <small class="text-muted"><i class="fa-solid fa-info-circle me-1"></i> Supported: JPG, PNG, GIF</small>

@@ -7,8 +7,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 </button>
 
 <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo-top">
+        <img src="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png" alt="bKash Logo">
+    </div>
     <div class="sidebar-header">
-        <div class="profile-img shadow-sm">
+        <div class="profile-img shadow-sm mx-auto mb-2">
             <?php echo e(strtoupper(substr($user_name, 0, 1))); ?>
         </div>
         <div class="user-name fw-bold"><?php echo htmlspecialchars($user_name); ?></div>
@@ -129,7 +132,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </div>
         </div>
         <a href="javascript:void(0)" onclick="confirmProfessionalLogout('<?php echo BASE_URL; ?>/logout.php')" class="logout-link">
-            <i class="fa-solid fa-door-open"></i> <span>LOGOUT</span>
+            <i class="fa-solid fa-power-off"></i> <span>LOGOUT</span>
         </a>
     </div>
 </div>
@@ -137,9 +140,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <!-- Professional Exit Transition Overlay -->
 <div id="professionalLogoutOverlay">
     <div class="exit-brand-logo">
-        <i class="fa-solid fa-shield-halved mb-3" style="font-size: 3rem; color: #ff3b30;"></i>
-        <h4 class="fw-bold mb-1" style="font-size: 2rem; color: #b40755ff">SIGNING OUT</h4>
-        <p class="small opacity-75" style="font-size: 1rem; color: #c67229ff">Thank you for your session. Have a great day!</p>
+        <div class="mb-4" style="width: 120px; height: 120px; background: white; border-radius: 20px; overflow: hidden; padding: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 0 auto 24px;">
+             <img src="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png" alt="bKash Logo" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <h4 class="fw-bold mb-1" style="font-size: 2.5rem; color: var(--bkash-pink); letter-spacing: -1px;">SHIFT FLOW</h4>
+        <p class="small opacity-75" style="font-size: 1.1rem; color: #64748b">Signing you out safely...</p>
     </div>
 </div>
  

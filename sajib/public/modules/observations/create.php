@@ -54,18 +54,36 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
 
             for ($i = 0; $i < min($total_files, 2); $i++) {
                 if ($_FILES['l1_images']['error'][$i] == 0) {
-                    $file_extension = pathinfo($_FILES["l1_images"]["name"][$i], PATHINFO_EXTENSION);
-                    $file_name = uniqid() . "_" . ($i + 1) . "." . $file_extension;
-                    $target_file = $target_dir . $file_name;
+                    $tmp_file = $_FILES["l1_images"]["tmp_name"][$i];
+                    $check = getimagesize($tmp_file);
+                    
+                    if ($check !== false) {
+                        $max_size = 5 * 1024 * 1024; // 5MB
+                        if ($_FILES["l1_images"]["size"][$i] > $max_size) {
+                            log_error("File size exceeds limit", ['file' => $_FILES["l1_images"]["name"][$i], 'size' => $_FILES["l1_images"]["size"][$i]]);
+                            header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode("Error: File " . $_FILES["l1_images"]["name"][$i] . " exceeds the 5MB limit."));
+                            exit;
+                        }
+                        $allowed_mimes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'];
+                        if (in_array($check['mime'], $allowed_mimes)) {
+                            $file_extension = pathinfo($_FILES["l1_images"]["name"][$i], PATHINFO_EXTENSION);
+                            $file_name = uniqid() . "_" . ($i + 1) . "." . $file_extension;
+                            $target_file = $target_dir . $file_name;
 
-                    if (move_uploaded_file($_FILES["l1_images"]["tmp_name"][$i], $target_file)) {
-                        if ($i == 0) {
-                            $l1_image_path = "uploads/" . $file_name;
+                            if (move_uploaded_file($tmp_file, $target_file)) {
+                                if ($i == 0) {
+                                    $l1_image_path = "uploads/" . $file_name;
+                                } else {
+                                    $l1_image_2_path = "uploads/" . $file_name;
+                                }
+                            } else {
+                                log_error("Failed to move uploaded file to: " . $target_file);
+                            }
                         } else {
-                            $l1_image_2_path = "uploads/" . $file_name;
+                            log_error("Invalid file type uploaded", ['mime' => $check['mime']]);
                         }
                     } else {
-                        log_error("Failed to move uploaded file to: " . $target_file);
+                        log_error("File is not an image", ['file' => $_FILES["l1_images"]["name"][$i]]);
                     }
                 } else {
                     log_error("File upload error", ['code' => $_FILES['l1_images']['error'][$i]]);

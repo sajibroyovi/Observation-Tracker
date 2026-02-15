@@ -16,6 +16,42 @@
   --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
   --border-radius: 12px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* bKash Brand Tokens */
+  --bkash-pink: #df146e;
+  --bkash-dark-pink: #d12053;
+  --bkash-light-pink: #f48fb1;
+  --bkash-shadow: 0 10px 25px -5px rgba(223, 20, 110, 0.3);
+
+  /* Adjustable Sidebar Logo Size */
+  --sidebar-logo-size: 40px;
+}
+
+.text-bkash {
+  color: var(--bkash-pink) !important;
+}
+
+.bg-bkash {
+  background-color: var(--bkash-pink) !important;
+}
+
+.border-bkash {
+  border-color: var(--bkash-pink) !important;
+}
+
+.btn-bkash {
+  background: linear-gradient(135deg, var(--bkash-pink) 0%, var(--bkash-dark-pink) 100%);
+  color: white;
+  border: none;
+  box-shadow: var(--bkash-shadow);
+  transition: var(--transition);
+}
+
+.btn-bkash:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -10px rgba(209, 32, 83, 0.5);
+  color: white;
+  filter: brightness(1.1);
 }
 
 /* Badge & Utility Backports for Bootstrap 5.0.2 */
@@ -721,6 +757,33 @@ body.night-mode .btn-secondary {
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 20px;
+}
+
+.brand-logo-sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-logo-top {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-logo-top img {
+  width: var(--sidebar-logo-size);
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .profile-img {

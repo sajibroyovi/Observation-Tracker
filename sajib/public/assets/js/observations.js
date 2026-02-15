@@ -130,7 +130,23 @@ function validateImageCount(input) {
         badge.classList.remove('bg-primary', 'text-white', 'bg-info');
         badge.classList.add('bg-light', 'text-muted');
     } else {
-        badge.textContent = count + " / 2 selected";
+        let totalSize = 0;
+        for (let i = 0; i < count; i++) {
+            totalSize += input.files[i].size;
+            // Enforce 5MB size limit per file
+            if (input.files[i].size > 5 * 1024 * 1024) {
+                alert("File " + input.files[i].name + " exceeds the 5MB limit.");
+                input.value = "";
+                badge.textContent = "0 / 2 selected";
+                badge.classList.remove('bg-info', 'text-white');
+                badge.classList.add('bg-light', 'text-muted');
+                return;
+            }
+        }
+
+        const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
+        badge.textContent = count + " / 2 selected (" + sizeInMB + " MB)";
+
         if (count > 0) {
             badge.classList.remove('bg-light', 'text-muted');
             badge.classList.add('bg-info', 'text-white');

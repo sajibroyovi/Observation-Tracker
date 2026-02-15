@@ -99,16 +99,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $target_dir = ASSETS_PATH . '/uploads/';
             for ($i = 0; $i < $total_files; $i++) {
                 if ($_FILES['l1_images']['error'][$i] == 0) {
-                    $slot = 0;
-                    if (empty($l1_image)) $slot = 1;
-                    elseif (empty($l1_image_2)) $slot = 2;
-                    if ($slot > 0) {
-                        $ext = pathinfo($_FILES["l1_images"]["name"][$i], PATHINFO_EXTENSION);
-                        $fname = uniqid() . "_" . $slot . "." . $ext;
-                        if (move_uploaded_file($_FILES["l1_images"]["tmp_name"][$i], $target_dir . $fname)) {
-                            if ($slot == 1) $l1_image = "uploads/" . $fname;
-                            else $l1_image_2 = "uploads/" . $fname;
+                    $tmp_file = $_FILES["l1_images"]["tmp_name"][$i];
+                    $check = getimagesize($tmp_file);
+                    if ($check !== false) {
+                        $max_size = 5 * 1024 * 1024; // 5MB
+                        if ($_FILES["l1_images"]["size"][$i] > $max_size) {
+                            log_error("File size exceeds limit", ['file' => $_FILES["l1_images"]["name"][$i], 'size' => $_FILES["l1_images"]["size"][$i]]);
+                            echo "<script>alert('Error: File " . addslashes($_FILES["l1_images"]["name"][$i]) . " exceeds the 5MB limit.'); window.history.back();</script>";
+                            exit;
                         }
+                        $allowed_mimes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'];
+                        if (in_array($check['mime'], $allowed_mimes)) {
+                            $slot = 0;
+                            if (empty($l1_image)) $slot = 1;
+                            elseif (empty($l1_image_2)) $slot = 2;
+                            if ($slot > 0) {
+                                $ext = pathinfo($_FILES["l1_images"]["name"][$i], PATHINFO_EXTENSION);
+                                $fname = uniqid() . "_" . $slot . "." . $ext;
+                                if (move_uploaded_file($tmp_file, $target_dir . $fname)) {
+                                    if ($slot == 1) $l1_image = "uploads/" . $fname;
+                                    else $l1_image_2 = "uploads/" . $fname;
+                                }
+                            }
+                        } else {
+                            log_error("Invalid file type uploaded", ['mime' => $check['mime']]);
+                        }
+                    } else {
+                        log_error("File is not an image", ['file' => $_FILES["l1_images"]["name"][$i]]);
                     }
                 }
             }
@@ -361,9 +378,13 @@ mysqli_close($conn);
                                             <?php if (canEditL1()): ?>
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light border-0"><i class="fa-solid fa-camera"></i></span>
-                                                    <input type="file" class="form-control bg-light border-0" name="l1_images[]" multiple onchange="validateImageCount(this)">
+                                                    <input type="file" class="form-control bg-light border-0" name="l1_images[]" multiple onchange="validateImageCount(this)" accept="image/*">
                                                 </div>
-                                                <small class="text-muted d-block mt-2">Uploading new images will fill empty slots or replace removed ones. Max 2 total.</small>
+                                                <div class="d-flex justify-content-between mt-2">
+                                                    <small class="text-muted"><i class="fa-solid fa-circle-info me-1"></i> Max 2 images. Total limit 5MB per file.</small>
+                                                    <small id="imageCountBadge" class="badge bg-light text-muted border px-2 py-1">0 / 2 selected</small>
+                                                </div>
+                                                <small class="text-muted d-block mt-1">Uploading new images will fill empty slots or replace removed ones.</small>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -451,7 +472,21 @@ mysqli_close($conn);
             if (input.files.length + totalExisting > 2) {
                 alert("Maximum 2 images allowed across existing and new uploads.");
                 input.value = "";
+                return;
             }
+
+            let currentBatchSize = 0;
+            for (let i = 0; i < input.files.length; i++) {
+                currentBatchSize += input.files[i].size;
+                if (input.files[i].size > 5 * 1024 * 1024) {
+                    alert("File " + input.files[i].name + " exceeds the 5MB limit.");
+                    input.value = "";
+                    return;
+                }
+            }
+            
+            // Log or show total size if needed, but the alert handles the primary feedback.
+            console.log("Total selected size: " + (currentBatchSize / 1024 / 1024).toFixed(2) + " MB");
         }
     </script>
     <script src="<?= ASSETS_URL ?>/js/observations.js"></script>

@@ -1,7 +1,5 @@
 <?php
 require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-// include 'auth_check.php';
-// include 'connection_file.php';
 
 // This file handles high-performance CSV exports for all operational modules
 $module = isset($_GET['module']) ? $_GET['module'] : '';

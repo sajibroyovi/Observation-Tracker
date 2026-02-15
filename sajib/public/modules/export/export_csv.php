@@ -1,13 +1,4 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-include 'auth_check.php';
-include 'connection_file.php';
-
-$module = isset($_GET['module']) ? $_GET['module'] : '';
-if (empty($module)) {
-    die("No module specified.");
-}
-
 // Define table and columns mapping
 $module_config = [
     'observations' => [

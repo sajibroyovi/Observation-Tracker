@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../includes/connection_file.php';
+require_once __DIR__ . '/../../config/app.php';
 
 $sql = "SELECT DISTINCT role FROM users";
 $result = mysqli_query($conn, $sql);

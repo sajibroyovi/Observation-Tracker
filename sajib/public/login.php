@@ -56,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Shift Handover Management</title>
+    <title>Login - Shift Flow Portal</title>
+    <link rel="icon" type="image/png" href="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
@@ -92,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 50px 40px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            border-top: 4px solid var(--bkash-pink);
         }
 
         @keyframes fadeIn {
@@ -100,20 +102,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .brand-logo {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            border-radius: 18px;
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--bkash-pink) 0%, var(--bkash-dark-pink) 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: var(--bkash-shadow);
+            padding: 12px;
         }
 
-        .brand-logo i {
-            font-size: 32px;
-            color: white;
+        .brand-logo svg {
+            width: 100%;
+            height: 100%;
+            fill: white;
         }
 
         .login-card h2 {
@@ -169,17 +173,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .input-group-modern .form-control:focus {
             background: rgba(255, 255, 255, 0.08);
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            border-color: var(--bkash-pink);
+            box-shadow: 0 0 0 4px rgba(209, 32, 83, 0.15);
             outline: none;
         }
 
         .input-group-modern .form-control:focus + i {
-            color: #3b82f6;
+            color: var(--bkash-pink);
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            background: linear-gradient(135deg, var(--bkash-pink) 0%, var(--bkash-dark-pink) 100%);
             border: none;
             border-radius: 14px;
             padding: 14px;
@@ -189,12 +193,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%;
             margin-top: 12px;
             transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--bkash-shadow);
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 10px 15px -3px rgba(209, 32, 83, 0.4);
             filter: brightness(1.1);
         }
 
@@ -237,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .demo-credit span:last-child {
-            color: #3b82f6;
+            color: var(--bkash-pink);
             font-weight: 600;
         }
 
@@ -246,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+            background: radial-gradient(circle, rgba(209, 32, 83, 0.1) 0%, rgba(209, 32, 83, 0) 70%);
             border-radius: 50%;
             z-index: 1;
         }
@@ -262,11 +266,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="login-container">
         <div class="login-card">
-            <div class="brand-logo">
-                <i class="fa-solid fa-bolt-lightning"></i>
+            <div class="brand-logo" style="background: white; border: 2px solid var(--bkash-pink); overflow: hidden; padding: 0;">
+                <img src="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png" alt="bKash Logo" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Shift Handover Management System</p>
+            <h2>Shift Flow</h2>
+            <p class="subtitle">Operational Management Portal</p>
 
             <?php if ($error): ?>
                 <div class="error-toast">
@@ -293,22 +297,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-login">
+                <button type="submit" class="btn btn-bkash btn-login">
                     Sign In to Portal
                 </button>
             </form>
 
-            <!-- <div class="demo-box">
-                <p>Developer Access</p>
-                <div class="demo-credit">
-                    <span>Super Admin</span>
-                    <span>superadmin / admin123</span>
-                </div>
-                <div class="demo-credit">
-                    <span>Regular Admin</span>
-                    <span>admin / admin123</span>
-                </div>
-            </div> -->
         </div>
         
         <div class="text-center mt-4">

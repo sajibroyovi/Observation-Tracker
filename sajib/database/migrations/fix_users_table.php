@@ -1,6 +1,6 @@
 <?php
 // Database migration to fix users table
-require_once __DIR__ . '/../../includes/connection_file.php';
+require_once __DIR__ . '/../../config/app.php';
 
 echo "<h2>Fixing Users Table</h2>";
 
