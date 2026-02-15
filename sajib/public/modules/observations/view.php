@@ -46,7 +46,8 @@ if (!empty($_GET['search'])) {
 $count_sql = "SELECT COUNT(*) as total FROM observations" . $where;
 $stmt_count = mysqli_prepare($conn, $count_sql);
 if ($stmt_count === false) {
-    die("Error preparing count query: " . mysqli_error($conn));
+    log_error("Failed to prepare count query for observations", ["error" => mysqli_error($conn)]);
+    die("Service Temporarily Unavailable.");
 }
 if (!empty($filter_params)) {
     mysqli_stmt_bind_param($stmt_count, $filter_types, ...$filter_params);
@@ -54,7 +55,8 @@ if (!empty($filter_params)) {
 mysqli_stmt_execute($stmt_count);
 $count_result = mysqli_stmt_get_result($stmt_count);
 if ($count_result === false) {
-    die("Error getting count result: " . mysqli_error($conn));
+    log_error("Failed to get count result for observations", ["error" => mysqli_error($conn)]);
+    die("Service Temporarily Unavailable.");
 }
 $total_records = $count_result->fetch_assoc()['total'];
 $total_pages = ceil($total_records / $limit);
@@ -63,7 +65,8 @@ $total_pages = ceil($total_records / $limit);
 $sql = "SELECT * FROM observations " . $where . " ORDER BY serial_no DESC LIMIT $limit OFFSET $offset";
 $stmt = mysqli_prepare($conn, $sql);
 if ($stmt === false) {
-    die("Error preparing observations query: " . mysqli_error($conn));
+    log_error("Failed to prepare observations query", ["error" => mysqli_error($conn)]);
+    die("Service Temporarily Unavailable.");
 }
 if (!empty($filter_params)) {
     mysqli_stmt_bind_param($stmt, $filter_types, ...$filter_params);
@@ -71,7 +74,8 @@ if (!empty($filter_params)) {
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 if ($result === false) {
-    die("Error getting observations result: " . mysqli_error($conn));
+    log_error("Failed to get observations result", ["error" => mysqli_error($conn)]);
+    die("Service Temporarily Unavailable.");
 }
 
 // Truncate words function
