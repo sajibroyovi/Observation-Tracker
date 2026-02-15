@@ -1,14 +1,13 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-include 'auth_check.php';
-include 'connection_file.php';
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 header('Content-Type: application/json');
 
-$query = isset($_GET['q']) ? mysqli_real_escape_string($conn, trim($_GET['q'])) : '';
+$query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
 if (strlen($query) < 2) {
-    echo json_encode(['results' => [], 'message' => 'Please enter at least 2 characters']);
+    echo json_encode(['results' => [], 'total' => 0, 'query' => $query, 'message' => 'Please enter at least 2 characters']);
     exit;
 }
 
@@ -101,16 +100,16 @@ $modules = [
 ];
 
 foreach ($modules as $module) {
+    if (!canViewModule($module['name'])) continue;
+
     $sql = "SELECT serial_no, {$module['title_field']} as title, {$module['date_field']} as date_field, created_by 
             FROM {$module['table']} 
             WHERE {$module['title_field']} LIKE ? 
             ORDER BY {$module['date_field']} DESC 
             LIMIT 5";
     
-    $stmt = mysqli_prepare($conn, $sql);
+    $stmt = executePreparedStatement($conn, $sql, 's', [$searchPattern]);
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, 's', $searchPattern);
-        mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
         while ($row = mysqli_fetch_assoc($result)) {
@@ -145,7 +144,3 @@ echo json_encode([
 
 mysqli_close($conn);
 ?>
-
-
-
-

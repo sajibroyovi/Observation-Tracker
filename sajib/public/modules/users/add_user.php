@@ -13,10 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         log_error("CSRF token validation failed for add user attempt", ['username' => $_POST['username'] ?? 'unknown']);
         die("Security Validation Failed: CSRF Token Mismatch.");
     }
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = $_POST['password'];
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $role = $_POST['role'] ?? '';
     $allowed_modules = isset($_POST['modules']) ? implode(',', $_POST['modules']) : '';
+    // The following line was redundant and has been removed as per instruction to cleanup.
+    // $password = $_POST['password'] ?? ''; 
 
     // Validations
     if (empty($username) || empty($password)) {

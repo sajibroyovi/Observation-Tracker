@@ -8,8 +8,10 @@ if (!isSuperAdmin()) {
 }
 
 // Fetch all users
+// Fetch all users using secure utility
 $sql = "SELECT * FROM users ORDER BY created_at DESC";
-$result = mysqli_query($conn, $sql);
+$stmt = executePreparedStatement($conn, $sql);
+$result = $stmt ? mysqli_stmt_get_result($stmt) : false;
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +74,7 @@ $result = mysqli_query($conn, $sql);
                                             $role_badge = '<span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill px-3 py-2">L1 Operator</span>';
                                             break;
                                         default:
-                                            $role_badge = '<span class="badge bg-secondary bg-opacity-10 text-secondary border rounded-pill px-3 py-2">' . strtoupper($row['role']) . '</span>';
+                                            $role_badge = '<span class="badge bg-secondary bg-opacity-10 text-secondary border rounded-pill px-3 py-2">' . strtoupper(e($row['role'])) . '</span>';
                                     }
 
                                     $created_by = !empty($row['created_by']) ? e($row['created_by']) : '<span class="text-muted italic small">System-Init</span>';
@@ -97,12 +99,12 @@ $result = mysqli_query($conn, $sql);
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class='small text-dark'>" . date('d M, Y', strtotime($row['created_at'])) . "</div>
-                                                <div class='text-muted' style='font-size: 11px;'><i class='fa-regular fa-clock me-1'></i>" . date('H:i', strtotime($row['created_at'])) . "</div>
+                                                <div class='small text-dark'>" . e(date('d M, Y', strtotime($row['created_at']))) . "</div>
+                                                <div class='text-muted' style='font-size: 11px;'><i class='fa-regular fa-clock me-1'></i>" . e(date('H:i', strtotime($row['created_at']))) . "</div>
                                             </td>
                                             <td>
                                                 <div class='text-dark small'>{$updated_by}</div>
-                                                <div class='text-muted small' style='font-size: 10px;'>" . (!empty($row['edited_at']) ? date('d M, H:i', strtotime($row['edited_at'])) : '-') . "</div>
+                                                <div class='text-muted small' style='font-size: 10px;'>" . (!empty($row['edited_at']) ? e(date('d M, H:i', strtotime($row['edited_at']))) : '-') . "</div>
                                             </td>
                                             <td class='text-end pe-4'>
                                                 <div class='btn-group shadow-sm rounded-pill overflow-hidden'>
@@ -116,6 +118,7 @@ $result = mysqli_query($conn, $sql);
                                             </td>
                                           </tr>";
                                 }
+                                if ($stmt) mysqli_stmt_close($stmt);
                                 ?>
                             </tbody>
                         </table>

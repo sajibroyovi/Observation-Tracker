@@ -29,21 +29,22 @@
  * @throws Exception if connection fails
  */
 function getConnection() {
-    $config = require_once __DIR__ . '/../config/database.php';
-    
-    $servername = "localhost";
-    $username   = "root";
-    $password   = "";
-    $dbname     = "shift_hand_over";
-    
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+    static $conn = null;
+    if ($conn === null) {
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "shift_hand_over";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        
+        // Check connection
+        if (!$conn) {
+            log_error("Critical Security Failure: Database connection failed.", ["context" => "Internal"]);
+            die("Service Temporarily Unavailable.");
+        }
     }
-    
     return $conn;
 }
 
@@ -74,13 +75,14 @@ function cleanInput($data) {
 }
 
 /**
- * Sanitize user input - Kept for backward compatibility
+ * Sanitize user input - DEPRECATED: Use prepared statements instead
  * 
  * @param mysqli $conn Database connection
  * @param string $data Data to sanitize
  * @return string Sanitized data
  */
 function sanitizeInput($conn, $data) {
+    if ($data === null) return '';
     $data = cleanInput($data);
     return mysqli_real_escape_string($conn, $data);
 }
@@ -114,7 +116,8 @@ function log_error($message, $context = []) {
 }
 
 /**
- * Execute a safe query with robust error handling and logging
+ * Execute a safe query (For internal/static use only)
+ * WARNING: Do NOT use this with dynamic parameters. Use executePreparedStatement instead.
  * 
  * @param mysqli $conn Database connection
  * @param string $query SQL query to execute
@@ -122,16 +125,50 @@ function log_error($message, $context = []) {
  */
 function executeQuery($conn, $query) {
     if (!$conn) {
-        log_error("Database connection missing for query: $query");
+        log_error("Database connection missing for query.");
         return false;
     }
     
     $result = mysqli_query($conn, $query);
     if (!$result) {
-        log_error("Query Error: " . mysqli_error($conn), ['query' => $query]);
+        log_error("Database Query Error", ["query_summary" => substr($query, 0, 50)]);
         return false;
     }
     return $result;
+}
+
+/**
+ * Execute a prepared statement safely
+ * 
+ * @param mysqli $conn Database connection
+ * @param string $sql SQL query with placeholders (?)
+ * @param string $types String representing parameter types (e.g., "ssi")
+ * @param array $params Array of parameters to bind
+ * @return mysqli_stmt|bool Prepared statement object or false on failure
+ */
+function executePreparedStatement($conn, $sql, $types = "", $params = []) {
+    if (!$conn) {
+        log_error("Database connection missing for prepared statement.");
+        return false;
+    }
+
+    $stmt = mysqli_prepare($conn, $sql);
+    if (!$stmt) {
+        log_error("Failed to prepare statement", ["sql" => substr($sql, 0, 50), "error" => mysqli_error($conn)]);
+        return false;
+    }
+
+    if (!empty($params)) {
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+
+    if (!mysqli_stmt_execute($stmt)) {
+        log_error("Failed to execute prepared statement", ["sql" => substr($sql, 0, 50), "error" => mysqli_stmt_error($stmt)]);
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+
+    return $stmt;
 }
 
 // ============================================================================

@@ -103,25 +103,28 @@ include INCLUDES_PATH . '/auth_check.php';
             <!-- Dashboard Overview Stats Bar -->
             <?php
             // Helper function to safely get table count
-            function getTableCount($conn, $table) {
-                $result = mysqli_query($conn, "SELECT COUNT(*) as c FROM $table");
-                if (!$result) return 0;
+            function getTableCount($conn, $table, $where = "") {
+                $sql = "SELECT COUNT(*) as c FROM $table" . ($where ? " WHERE $where" : "");
+                $stmt = executePreparedStatement($conn, $sql);
+                if (!$stmt) return 0;
+                $result = mysqli_stmt_get_result($stmt);
                 $row = mysqli_fetch_assoc($result);
+                mysqli_stmt_close($stmt);
                 return $row ? (int)$row['c'] : 0;
             }
             
             $counts = [
                 'enable_disable' => getTableCount($conn, 'enable_disable'),
-                'pending_mails' => getTableCount($conn, "pending_mail WHERE status IN ('pending', 'follow_up')"),
-                'security_mails' => getTableCount($conn, "security_mail WHERE status IN ('pending', 'follow_up')"),
+                'pending_mails' => getTableCount($conn, "pending_mail", "status IN ('pending', 'follow_up')"),
+                'security_mails' => getTableCount($conn, "security_mail", "status IN ('pending', 'follow_up')"),
                 'change_requests' => getTableCount($conn, 'cr_list'),
                 'promo_banners' => getTableCount($conn, 'promo_banner'),
                 'service_outages' => getTableCount($conn, 'service_outage'),
                 'ssl_certificates' => getTableCount($conn, 'ssl_certificate'),
                 'campaigns' => getTableCount($conn, 'campaign'),
-                'observations' => getTableCount($conn, "observations WHERE l2_observation IS NULL OR l2_observation = ''"),
+                'observations' => getTableCount($conn, "observations", "l2_observation IS NULL OR l2_observation = ''"),
                 'total_obs' => getTableCount($conn, 'observations'),
-                'l2_done' => getTableCount($conn, "observations WHERE l2_observation IS NOT NULL AND l2_observation != ''")
+                'l2_done' => getTableCount($conn, "observations", "l2_observation IS NOT NULL AND l2_observation != ''")
             ];
 
             $stat_info = [

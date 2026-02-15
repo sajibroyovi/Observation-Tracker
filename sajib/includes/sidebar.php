@@ -9,7 +9,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="profile-img shadow-sm">
-            <?php echo strtoupper(substr($user_name, 0, 1)); ?>
+            <?php echo e(strtoupper(substr($user_name, 0, 1))); ?>
         </div>
         <div class="user-name fw-bold"><?php echo htmlspecialchars($user_name); ?></div>
         <div class="user-role small opacity-75 text-uppercase letter-spacing-1">

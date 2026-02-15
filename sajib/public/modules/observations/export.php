@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 // Set headers for Excel download
 header("Content-Type: application/vnd.ms-excel; charset=utf-8");
@@ -8,16 +8,16 @@ header("Content-Disposition: attachment; filename=Observations_Report_" . date('
 header("Pragma: no-cache");
 header("Expires: 0");
 
-// Fetch data
+// Fetch data securely
 $sql = "SELECT * FROM observations ORDER BY serial_no DESC";
-$result = mysqli_query($conn, $sql);
+$stmt = executePreparedStatement($conn, $sql);
+$result = $stmt ? mysqli_stmt_get_result($stmt) : false;
 
 // Construct base URL for images
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 $host = $_SERVER['HTTP_HOST'];
-// Get the directory path and replace spaces for URL
 $currentPath = str_replace('\\', '/', dirname($_SERVER['PHP_SELF']));
-$baseDir = dirname($currentPath); // Go up one level from exportdata
+$baseDir = dirname($currentPath); 
 $baseUrl = $protocol . "://" . $host . $baseDir . "/";
 
 echo '<html>
@@ -46,24 +46,46 @@ echo '<thead>
             <th width="210">Image 1</th>
             <th width="210">Image 2</th>
         </tr>
-    } else {
-        echo 'No Image';
+      </thead>';
+
+echo '<tbody>';
+$count = 1;
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . (int)$count . '</td>';
+        echo '<td class="text-left">' . e($row['observation_names']) . '</td>';
+        echo '<td>' . e(date('d M, Y', strtotime($row['start_date']))) . '</td>';
+        echo '<td class="text-left">' . e($row['l1_observation']) . '</td>';
+        echo '<td>' . e($row['l1_observations_by']) . '</td>';
+        echo '<td class="text-left">' . e($row['l2_observation'] ?? '-') . '</td>';
+        echo '<td>' . e($row['l2_observations_by'] ?? '-') . '</td>';
+        
+        // Image 1
+        echo '<td width="210" height="210" align="center" valign="middle">';
+        if (!empty($row['l1_image_1'])) {
+            $imageUrl1 = $baseUrl . str_replace(' ', '%20', $row['l1_image_1']);
+            echo '<img src="' . $imageUrl1 . '" width="150" height="150">';
+        } else {
+            echo 'No Image';
+        }
+        echo '</td>';
+        
+        // Image 2
+        echo '<td width="210" height="210" align="center" valign="middle">';
+        if (!empty($row['l1_image_2'])) {
+            $imageUrl2 = $baseUrl . str_replace(' ', '%20', $row['l1_image_2']);
+            echo '<img src="' . $imageUrl2 . '" width="150" height="150">';
+        } else {
+            echo 'No Image';
+        }
+        echo '</td>';
+        
+        echo '</tr>';
+        $count++;
     }
-    echo '</td>';
-    
-    // Image 2
-    echo '<td width="210" height="210" align="center" valign="middle">';
-    if (!empty($row['l1_image_2'])) {
-        $imageUrl2 = $baseUrl . str_replace(' ', '%20', $row['l1_image_2']);
-        echo '<img src="' . $imageUrl2 . '" width="150" height="150">';
-    } else {
-        echo 'No Image';
-    }
-    echo '</td>';
-    
-    echo '</tr>';
-    $count++;
 }
+if ($stmt) mysqli_stmt_close($stmt);
 
 echo '</tbody>';
 echo '</table>';
@@ -71,7 +93,3 @@ echo '</body></html>';
 
 mysqli_close($conn);
 ?>
-
-
-
-
