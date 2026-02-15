@@ -1,0 +1,165 @@
+<?php
+// sidebar.php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+<button class="btn d-md-none position-fixed top-0 start-0 m-3 z-index-2000 text-white shadow" id="mobileSidebarToggle" style="background: var(--primary-blue); border-radius: 10px;">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="profile-img shadow-sm">
+            <?php echo strtoupper(substr($user_name, 0, 1)); ?>
+        </div>
+        <div class="user-name fw-bold"><?php echo htmlspecialchars($user_name); ?></div>
+        <div class="user-role small opacity-75 text-uppercase letter-spacing-1">
+            <?php
+            if ($user_role === 'super_admin') echo 'Super Admin';
+            elseif ($user_role === 'l1') echo 'L1 Operational';
+            elseif ($user_role === 'admin') echo 'Administrator';
+            elseif ($user_role === 'l2') echo 'L2 Analytical';
+            else echo 'Unknown Role';
+            ?>
+        </div>
+    </div>
+
+    <!-- Global Search -->
+    <div class="px-3 py-3">
+        <div class="position-relative">
+            <input type="text" id="globalSearch" class="form-control form-control-sm" 
+                   placeholder="Search across modules..." 
+                   autocomplete="off"
+                   style="padding-left: 35px; border-radius: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+            <i class="fa-solid fa-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.6;"></i>
+        </div>
+        <div id="searchResults" class="position-absolute bg-white rounded shadow-lg mt-2" 
+             style="width: calc(100% - 2rem); max-height: 400px; overflow-y: auto; display: none; z-index: 1050; left: 1rem;">
+        </div>
+    </div>
+
+    <ul class="nav-links">
+        <li>
+            <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">
+                <i class="fa-solid fa-gauge"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        
+        <li class="nav-section-title mt-3 mb-2 px-3 small text-uppercase opacity-50">Operational Modules</li>
+        
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/banners/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/banners/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-image"></i> <span>Promo Banner</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/campaigns/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/campaigns/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-bullhorn"></i> <span>Campaign</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/change_requests/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/change_requests/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-file-invoice"></i> <span>CR List</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/ed/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ed/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-toggle-on"></i> <span>Enable/Disable</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/outages/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/outages/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-triangle-exclamation"></i> <span>Service Outage</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/pm/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/pm/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-envelope"></i> <span>Pending Mail</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/sc/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/sc/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-shield-halved"></i> <span>Security Mail</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/ssl/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ssl/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-lock"></i> <span>SSL Certificate</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/observations/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/observations/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-clipboard-check"></i> <span>Observations</span>
+            </a>
+        </li>
+
+        <?php if (isSuperAdmin()): ?>
+            <li class="nav-section-title mt-3 mb-2 px-3 small text-uppercase opacity-50">Administration</li>
+            <li>
+                <a href="<?php echo BASE_URL; ?>/modules/users/manage.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/manage.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/add_user.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/edit_user.php') !== false) ? 'active' : ''; ?>">
+                    <i class="fa-solid fa-users-cog"></i> <span>Manage Users</span>
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+
+    <div class="sidebar-footer">
+        <div class="night-mode-wrapper px-3 mb-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <span><i class="fa-solid fa-moon me-2"></i> Night Mode</span>
+                <label class="switch mb-0">
+                    <input type="checkbox" id="night-mode-toggle-sidebar">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <a href="javascript:void(0)" onclick="confirmProfessionalLogout('<?php echo BASE_URL; ?>/logout.php')" class="logout-link">
+            <i class="fa-solid fa-door-open"></i> <span>LOGOUT</span>
+        </a>
+    </div>
+</div>
+
+<!-- Professional Exit Transition Overlay -->
+<div id="professionalLogoutOverlay">
+    <div class="exit-brand-logo">
+        <i class="fa-solid fa-shield-halved mb-3" style="font-size: 3rem; color: #ff3b30;"></i>
+        <h4 class="fw-bold mb-1" style="font-size: 2rem; color: #b40755ff">SIGNING OUT</h4>
+        <p class="small opacity-75" style="font-size: 1rem; color: #c67229ff">Thank you for your session. Have a great day!</p>
+    </div>
+</div>
+ 
+<script>
+function confirmProfessionalLogout(url) {
+    const overlay = document.getElementById('professionalLogoutOverlay');
+    document.body.classList.add('fade-out-app');
+    
+    overlay.style.display = 'flex';
+    
+    // Trigger transition
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 10);
+    
+    // Smooth redirect
+    setTimeout(() => {
+        window.location.href = url;
+    }, 1600);
+}
+</script>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="<?php echo ASSETS_URL; ?>/js/search.js"></script>
