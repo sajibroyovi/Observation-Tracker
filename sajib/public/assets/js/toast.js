@@ -27,10 +27,14 @@ const toast = {
             info: 'fa-circle-info'
         };
 
-        toastEl.innerHTML = `
-            <i class="fa-solid ${icons[type] || icons.info}"></i>
-            <span>${message}</span>
-        `;
+        const iconEl = document.createElement('i');
+        iconEl.className = `fa-solid ${icons[type] || icons.info}`;
+
+        const messageEl = document.createElement('span');
+        messageEl.textContent = message;
+
+        toastEl.appendChild(iconEl);
+        toastEl.appendChild(messageEl);
 
         this.container.appendChild(toastEl);
 

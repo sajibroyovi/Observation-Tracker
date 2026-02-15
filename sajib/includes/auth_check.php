@@ -18,10 +18,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT
         // Log CSRF failure
         error_log("CSRF validation failed for user_id: " . ($_SESSION['user_id'] ?? 'unknown') . " on page: " . $_SERVER['REQUEST_URI']);
         
-        // Show error and redirect back if possible, or to dashboard
+        // Show error and redirect safely
         showError("Invalid security token. Please try again.");
-        $referer = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/index.php');
-        header('Location: ' . $referer);
+        $referer = $_SERVER['HTTP_REFERER'] ?? '';
+        
+        // Validate referer to prevent open redirect
+        $safe_url = BASE_URL . '/index.php';
+        if (!empty($referer)) {
+            $referer_host = parse_url($referer, PHP_URL_HOST);
+            $app_host = parse_url(BASE_URL, PHP_URL_HOST);
+            
+            // Only redirect if referer matches app host or is relative
+            if ($referer_host === $app_host || $referer_host === null) {
+                $safe_url = $referer;
+            }
+        }
+        
+        header('Location: ' . $safe_url);
         exit();
     }
 }

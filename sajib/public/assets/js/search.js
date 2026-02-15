@@ -79,7 +79,7 @@
             searchResults.innerHTML = `
                 <div class="p-3 text-muted text-center">
                     <i class="fa-solid fa-magnifying-glass fa-2x mb-2 opacity-25"></i>
-                    <div>No results found for "${data.query}"</div>
+                    <div>No results found for "${escapeHtml(data.query)}"</div>
                 </div>
             `;
             searchResults.style.display = 'block';
@@ -109,7 +109,7 @@
                     <div class="flex-grow-1" style="min-width: 0;">
                         <div class="fw-bold text-truncate">${escapeHtml(result.title)}</div>
                         <div class="small text-muted">
-                            <span class="badge" style="background-color: ${result.color}20; color: ${result.color}; font-weight: 600;">${result.module}</span>
+                            <span class="badge" style="background-color: ${result.color}20; color: ${result.color}; font-weight: 600;">${escapeHtml(result.module)}</span>
                             <span class="ms-2"><i class="fa-solid fa-calendar me-1"></i>${formattedDate}</span>
                             ${result.created_by && result.created_by !== 'N/A' ? `<span class="ms-2"><i class="fa-solid fa-user me-1"></i>${escapeHtml(result.created_by)}</span>` : ''}
                         </div>

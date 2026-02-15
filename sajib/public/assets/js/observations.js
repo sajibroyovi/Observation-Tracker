@@ -49,7 +49,14 @@ function initializeTeamSelection() {
                 const badge = document.createElement('span');
                 badge.className = 'badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-2 rounded-pill transition-all hover-scale shadow-sm';
                 badge.style.fontSize = '0.75rem';
-                badge.innerHTML = `<i class="fa-solid fa-users me-1"></i> ${checkbox.value}`;
+
+                const iconEl = document.createElement('i');
+                iconEl.className = 'fa-solid fa-users me-1';
+
+                const textEl = document.createTextNode(` ${checkbox.value}`);
+
+                badge.appendChild(iconEl);
+                badge.appendChild(textEl);
                 container.appendChild(badge);
             } else {
                 item.classList.remove('bg-primary-soft', 'text-primary');

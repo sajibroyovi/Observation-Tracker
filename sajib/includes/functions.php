@@ -453,6 +453,16 @@ function getTimestamp() {
  * @return void
  */
 function redirectTo($url) {
+    // Basic Open Redirect prevention: ensure URL is relative or matches app domain
+    if (strpos($url, 'http') === 0) {
+        $url_host = parse_url($url, PHP_URL_HOST);
+        $app_host = parse_url(BASE_URL, PHP_URL_HOST);
+        
+        if ($url_host !== $app_host) {
+            log_error("Open Redirect Attempt Blocked", ["target" => $url]);
+            $url = BASE_URL . '/index.php';
+        }
+    }
     header('Location: ' . $url);
     exit();
 }
