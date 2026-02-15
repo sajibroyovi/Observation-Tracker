@@ -16,7 +16,8 @@ $create_table = "CREATE TABLE IF NOT EXISTS users (
 if (mysqli_query($conn, $create_table)) {
     echo "Users table created successfully.<br>";
 } else {
-    echo "Error creating table: " . mysqli_error($conn) . "<br>";
+    log_error("Error creating users table", ["error" => mysqli_error($conn)]);
+    echo "Error creating table. Check logs.<br>";
 }
 
 // Hash passwords
@@ -35,7 +36,8 @@ if (mysqli_query($conn, $insert_users)) {
     echo "Super Admin - Username: superadmin, Password: admin123<br>";
     echo "Admin - Username: admin, Password: admin123<br>";
 } else {
-    echo "Error inserting users: " . mysqli_error($conn) . "<br>";
+    log_error("Error inserting sample users", ["error" => mysqli_error($conn)]);
+    echo "Error inserting users. Check logs.<br>";
 }
 
 mysqli_close($conn);

@@ -29,7 +29,8 @@ foreach ($tables as $table) {
         if (strpos($error, 'Duplicate column') !== false) {
             echo "- 'edited_by' column already exists in $table<br>";
         } else {
-            echo "✗ Error adding 'edited_by' to $table: $error<br>";
+            log_error("Error adding 'edited_by' to $table", ["error" => $error]);
+            echo "✗ Operation failed for $table. Check logs.<br>";
         }
     }
 
@@ -42,7 +43,8 @@ foreach ($tables as $table) {
         if (strpos($error, 'Duplicate column') !== false) {
             echo "- 'edited_at' column already exists in $table<br>";
         } else {
-            echo "✗ Error adding 'edited_at' to $table: $error<br>";
+            log_error("Error adding 'edited_at' to $table", ["error" => $error]);
+            echo "✗ Operation failed for $table. Check logs.<br>";
         }
     }
 

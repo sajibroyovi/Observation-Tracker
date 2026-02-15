@@ -47,7 +47,7 @@ $count_sql = "SELECT COUNT(*) as total FROM observations" . $where;
 $stmt_count = mysqli_prepare($conn, $count_sql);
 if ($stmt_count === false) {
     log_error("Failed to prepare count query for observations", ["error" => mysqli_error($conn)]);
-    die("Service Temporarily Unavailable.");
+    die("Critical Error: Internal Server Error. Please contact support.");
 }
 if (!empty($filter_params)) {
     mysqli_stmt_bind_param($stmt_count, $filter_types, ...$filter_params);
@@ -56,7 +56,7 @@ mysqli_stmt_execute($stmt_count);
 $count_result = mysqli_stmt_get_result($stmt_count);
 if ($count_result === false) {
     log_error("Failed to get count result for observations", ["error" => mysqli_error($conn)]);
-    die("Service Temporarily Unavailable.");
+    die("Critical Error: Internal Server Error.");
 }
 $total_records = $count_result->fetch_assoc()['total'];
 $total_pages = ceil($total_records / $limit);
@@ -66,7 +66,7 @@ $sql = "SELECT * FROM observations " . $where . " ORDER BY serial_no DESC LIMIT 
 $stmt = mysqli_prepare($conn, $sql);
 if ($stmt === false) {
     log_error("Failed to prepare observations query", ["error" => mysqli_error($conn)]);
-    die("Service Temporarily Unavailable.");
+    die("Critical Error: Internal Server Error.");
 }
 if (!empty($filter_params)) {
     mysqli_stmt_bind_param($stmt, $filter_types, ...$filter_params);
@@ -75,7 +75,7 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 if ($result === false) {
     log_error("Failed to get observations result", ["error" => mysqli_error($conn)]);
-    die("Service Temporarily Unavailable.");
+    die("Critical Error: Internal Server Error.");
 }
 
 // Truncate words function

@@ -1,11 +1,12 @@
+<?php
+// Define the root path of the project
+define('ROOT_PATH', dirname(__DIR__));
+
 // Configure global error handling for security
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', ROOT_PATH . '/logs/php_error.log');
-
-// Define the root path of the project
-define('ROOT_PATH', dirname(__DIR__));
 
 // Define major directory paths
 define('CONFIG_PATH', ROOT_PATH . '/config');

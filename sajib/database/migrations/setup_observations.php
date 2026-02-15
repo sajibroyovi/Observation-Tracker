@@ -23,7 +23,8 @@ $create_table = "CREATE TABLE IF NOT EXISTS observations (
 if (mysqli_query($conn, $create_table)) {
     echo "Observations table created or already exists successfully.<br>";
 } else {
-    echo "Error creating table: " . mysqli_error($conn) . "<br>";
+    log_error("Error creating observations table", ["error" => mysqli_error($conn)]);
+    echo "Error creating table. Check logs.<br>";
 }
 
 mysqli_close($conn);

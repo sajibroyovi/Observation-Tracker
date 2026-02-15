@@ -9,7 +9,8 @@ $sql = "ALTER TABLE users MODIFY COLUMN role ENUM('super_admin', 'admin', 'l1', 
 if (mysqli_query($conn, $sql)) {
     echo "✓ Successfully updated role ENUM to include 'l1' and 'l2'.<br>";
 } else {
-    echo "✗ Error updating role ENUM: " . mysqli_error($conn) . "<br>";
+    log_error("Error updating role ENUM", ["error" => mysqli_error($conn)]);
+    echo "✗ Error updating role ENUM. Check logs.<br>";
 }
 
 // 2. Data repair - based on user feedback/context
@@ -21,7 +22,8 @@ if (mysqli_query($conn, $repair_sql)) {
     $affected = mysqli_affected_rows($conn);
     echo "✓ Successfully repaired $affected user records.<br>";
 } else {
-    echo "✗ Error repairing users: " . mysqli_error($conn) . "<br>";
+    log_error("Error repairing users", ["error" => mysqli_error($conn)]);
+    echo "✗ Error repairing users. Check logs.<br>";
 }
 
 mysqli_close($conn);

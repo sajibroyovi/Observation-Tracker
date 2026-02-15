@@ -241,12 +241,18 @@ include INCLUDES_PATH . '/auth_check.php';
                         <div class="card-body p-3">
                             <?php
                             $prev_sql = "SELECT * FROM handover ORDER BY created_at DESC LIMIT 1";
-                            $prev_result = mysqli_query($conn, $prev_sql);
-                            if ($prev_result && mysqli_num_rows($prev_result) > 0) {
-                                $prev_row = mysqli_fetch_assoc($prev_result);
-                                echo "<div class='mb-1 small text-muted text-uppercase' style='font-size: 0.65rem;'>Shift Info</div>";
-                                echo "<h6 class='fw-bold mb-0'>" . $prev_row['shift'] . "</h6>";
-                                echo "<p class='mb-0 text-primary small'><i class='fa-solid fa-calendar-day me-1'></i> " . date('d M, Y', strtotime($prev_row['handover_date'])) . "</p>";
+                            $stmt_prev = executePreparedStatement($conn, $prev_sql);
+                            if ($stmt_prev) {
+                                $prev_result = mysqli_stmt_get_result($stmt_prev);
+                                if ($prev_result && mysqli_num_rows($prev_result) > 0) {
+                                    $prev_row = mysqli_fetch_assoc($prev_result);
+                                    echo "<div class='mb-1 small text-muted text-uppercase' style='font-size: 0.65rem;'>Shift Info</div>";
+                                    echo "<h6 class='fw-bold mb-0'>" . e($prev_row['shift']) . "</h6>";
+                                    echo "<p class='mb-0 text-primary small'><i class='fa-solid fa-calendar-day me-1'></i> " . e(date('d M, Y', strtotime($prev_row['handover_date']))) . "</p>";
+                                } else {
+                                    echo "<p class='text-muted italic small mb-0'>No previous handover.</p>";
+                                }
+                                mysqli_stmt_close($stmt_prev);
                             } else {
                                 echo "<p class='text-muted italic small mb-0'>No previous handover.</p>";
                             }

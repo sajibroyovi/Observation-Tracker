@@ -12,10 +12,9 @@ if (mysqli_query($conn, $sql1)) {
     echo "✓ Added 'allowed_modules' column to $table<br>";
 } else {
     $error = mysqli_error($conn);
-    if (strpos($error, 'Duplicate column') !== false) {
-        echo "- 'allowed_modules' column already exists in $table<br>";
     } else {
-        echo "✗ Error adding 'allowed_modules' to $table: $error<br>";
+        log_error("Error adding 'allowed_modules' to $table", ["error" => $error]);
+        echo "✗ Operation failed. Check logs.<br>";
     }
 }
 
@@ -25,10 +24,9 @@ if (mysqli_query($conn, $sql2)) {
     echo "✓ Added 'created_by' column to $table<br>";
 } else {
     $error = mysqli_error($conn);
-    if (strpos($error, 'Duplicate column') !== false) {
-        echo "- 'created_by' column already exists in $table<br>";
     } else {
-        echo "✗ Error adding 'created_by' to $table: $error<br>";
+        log_error("Error adding 'created_by' to $table", ["error" => $error]);
+        echo "✗ Operation failed. Check logs.<br>";
     }
 }
 

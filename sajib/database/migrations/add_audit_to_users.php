@@ -11,10 +11,9 @@ if (mysqli_query($conn, $sql1)) {
     echo "✓ Added 'edited_by' column to $table<br>";
 } else {
     $error = mysqli_error($conn);
-    if (strpos($error, 'Duplicate column') !== false) {
-        echo "- 'edited_by' column already exists in $table<br>";
     } else {
-        echo "✗ Error adding 'edited_by' to $table: $error<br>";
+        log_error("Error adding 'edited_by' to $table", ["error" => $error]);
+        echo "✗ Operation failed. Check logs.<br>";
     }
 }
 
@@ -24,10 +23,9 @@ if (mysqli_query($conn, $sql2)) {
     echo "✓ Added 'edited_at' column to $table<br>";
 } else {
     $error = mysqli_error($conn);
-    if (strpos($error, 'Duplicate column') !== false) {
-        echo "- 'edited_at' column already exists in $table<br>";
     } else {
-        echo "✗ Error adding 'edited_at' to $table: $error<br>";
+        log_error("Error adding 'edited_at' to $table", ["error" => $error]);
+        echo "✗ Operation failed. Check logs.<br>";
     }
 }
 

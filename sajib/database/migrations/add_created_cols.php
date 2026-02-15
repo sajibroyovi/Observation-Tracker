@@ -25,7 +25,8 @@ foreach ($tables as $table) {
     if (mysqli_query($conn, $sql)) {
         echo "Updated $table successfully.<br>";
     } else {
-        echo "Error updating $table: " . mysqli_error($conn) . "<br>";
+        log_error("Error updating $table in migration", ["error" => mysqli_error($conn)]);
+        echo "Error updating $table. Check logs.<br>";
     }
 }
 ?>

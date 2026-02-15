@@ -1,6 +1,4 @@
-<?php
 require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-include 'connection_file.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -49,17 +47,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($tables as $table => $info) { 
         $message .= "<h2>" . e(ucfirst(str_replace('_', ' ', $table))) . "</h2>";
         
-        // Use prepared statement for table queries if date_field is present (though currently all null)
-        $query = "SELECT * FROM " . mysqli_real_escape_string($conn, $table);
+        // Use prepared statements for all table queries
+        $query = "SELECT * FROM " . preg_replace('/[^a-zA-Z0-9_]/', '', $table); // Basic hygiene
         if ($info['date_field']) {
             $query .= " WHERE DATE(" . $info['date_field'] . ") = ?";
-            $stmt_table = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt_table, "s", $date);
-            mysqli_stmt_execute($stmt_table);
-            $result = mysqli_stmt_get_result($stmt_table);
+            $stmt_table = executePreparedStatement($conn, $query, "s", [$date]);
         } else {
-            $result = mysqli_query($conn, $query);
+            $stmt_table = executePreparedStatement($conn, $query);
         }
+
+        if ($stmt_table) {
+            $result = mysqli_stmt_get_result($stmt_table);
 
         if ($result && mysqli_num_rows($result) > 0) {
             $message .= "<table><thead><tr>";
@@ -87,14 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $message .= "</body></html>";
 
-    // Insert into handover table using prepared statement
-    $stmt_handover = mysqli_prepare($conn, "INSERT INTO handover (shift, handover_date) VALUES (?, ?)");
+    // Insert into handover table using utility
+    $stmt_handover = executePreparedStatement($conn, "INSERT INTO handover (shift, handover_date) VALUES (?, ?)", "ss", [$shift, $date]);
     if ($stmt_handover) {
-        mysqli_stmt_bind_param($stmt_handover, "ss", $shift, $date);
-        mysqli_stmt_execute($stmt_handover);
         mysqli_stmt_close($stmt_handover);
     } else {
-        log_error("Failed to log handover in database", ['shift' => $shift, 'date' => $date, 'error' => mysqli_error($conn)]);
+        log_error("Failed to log handover in database", ['shift' => $shift, 'date' => $date]);
     }
 
     // Send email using PHPMailer
@@ -121,10 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->AltBody = strip_tags($message); // Plain text version
 
         $mail->send();
-        echo "<script>alert('Mail sent successfully'); window.location.href='index.php';</script>";
+        echo "<script>alert('Mail sent successfully'); window.location.href='../../index.php';</script>";
     } catch (Exception $e) {
         log_error("PHPMailer Error", ['error' => $mail->ErrorInfo]);
-        echo "<script>alert('Failed to send mail: " . e($mail->ErrorInfo) . "'); window.location.href='index.php';</script>";
+        echo "<script>alert('Critical Error: Failed to dispatch shift report.'); window.location.href='../../index.php';</script>";
     }
 }
 
