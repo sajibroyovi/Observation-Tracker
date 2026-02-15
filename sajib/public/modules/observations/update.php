@@ -105,7 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $max_size = 5 * 1024 * 1024; // 5MB
                         if ($_FILES["l1_images"]["size"][$i] > $max_size) {
                             log_error("File size exceeds limit", ['file' => $_FILES["l1_images"]["name"][$i], 'size' => $_FILES["l1_images"]["size"][$i]]);
-                            echo "<script>alert('Error: File " . addslashes($_FILES["l1_images"]["name"][$i]) . " exceeds the 5MB limit.'); window.history.back();</script>";
+                            $msg = "Error: File " . $_FILES["l1_images"]["name"][$i] . " exceeds the 5MB limit.";
+                            echo "<script>alert(" . json_encode($msg) . "); window.history.back();</script>";
                             exit;
                         }
                         $allowed_mimes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'];

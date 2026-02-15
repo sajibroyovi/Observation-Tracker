@@ -27,6 +27,23 @@
   --sidebar-logo-size: 40px;
 }
 
+/* Custom bKash Font Icon */
+.bkash-icon {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  background-color: currentColor;
+  -webkit-mask-image: url('../uploads/bkash_logo.png');
+  mask-image: url('../uploads/bkash_logo.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  vertical-align: middle;
+  margin-top: -3px;
+  /* Optical alignment */
+}
+
 .text-bkash {
   color: var(--bkash-pink) !important;
 }
