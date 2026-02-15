@@ -14,9 +14,12 @@ $stmt = executePreparedStatement($conn, $sql);
 $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
 
 // Construct base URL for images
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-$host = $_SERVER['HTTP_HOST'];
-$currentPath = str_replace('\\', '/', dirname($_SERVER['PHP_SELF']));
+// Construct base URL for images securely
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
+// Sanitize host and path components to prevent header-based XSS
+$host = htmlspecialchars($_SERVER['HTTP_HOST'] ?? '', ENT_QUOTES, 'UTF-8');
+$script_name = $_SERVER['PHP_SELF'] ?? '';
+$currentPath = str_replace('\\', '/', dirname($script_name));
 $baseDir = dirname($currentPath); 
 $baseUrl = $protocol . "://" . $host . $baseDir . "/";
 
@@ -65,7 +68,7 @@ if ($result) {
         echo '<td width="210" height="210" align="center" valign="middle">';
         if (!empty($row['l1_image_1'])) {
             $imageUrl1 = $baseUrl . str_replace(' ', '%20', $row['l1_image_1']);
-            echo '<img src="' . $imageUrl1 . '" width="150" height="150">';
+            echo '<img src="' . e($imageUrl1) . '" width="150" height="150">';
         } else {
             echo 'No Image';
         }
@@ -75,7 +78,7 @@ if ($result) {
         echo '<td width="210" height="210" align="center" valign="middle">';
         if (!empty($row['l1_image_2'])) {
             $imageUrl2 = $baseUrl . str_replace(' ', '%20', $row['l1_image_2']);
-            echo '<img src="' . $imageUrl2 . '" width="150" height="150">';
+            echo '<img src="' . e($imageUrl2) . '" width="150" height="150">';
         } else {
             echo 'No Image';
         }

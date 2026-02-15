@@ -130,7 +130,7 @@ $result = mysqli_stmt_get_result($stmt);
                         </div>
                         <div class="col-md-2">
                             <label class="small text-muted fw-bold">SEARCH</label>
-                            <input type="text" name="search" class="form-control form-control-sm border-0 bg-light" placeholder="Subject..." value="<?php echo $_GET['search'] ?? ''; ?>">
+                            <input type="text" name="search" class="form-control form-control-sm border-0 bg-light" placeholder="Subject..." value="<?php echo e($_GET['search'] ?? ''); ?>">
                         </div>
                         <div class="col-md-2 d-flex gap-2">
                             <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 flex-grow-1"><i class="fa-solid fa-filter me-1"></i> Filter</button>
