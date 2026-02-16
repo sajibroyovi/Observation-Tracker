@@ -12,14 +12,14 @@ ini_set('error_log', ROOT_PATH . '/logs/php_error.log');
 define('CONFIG_PATH', ROOT_PATH . '/config');
 define('INCLUDES_PATH', ROOT_PATH . '/includes');
 define('VENDOR_PATH', ROOT_PATH . '/vendor');
-define('PUBLIC_PATH', ROOT_PATH . '/public');
-define('MODULES_PATH', PUBLIC_PATH . '/modules');
-define('ASSETS_PATH', PUBLIC_PATH . '/assets');
+define('MAIN_PATH', ROOT_PATH . '/main');
+define('MODULES_PATH', MAIN_PATH . '/modules');
+define('ASSETS_PATH', MAIN_PATH . '/assets');
 
 // Define URLs (dynamic detection)
 $script_name = $_SERVER['SCRIPT_NAME'];
-$public_pos = strpos($script_name, '/public');
-$base_dir = substr($script_name, 0, $public_pos + 7); // Include '/public'
+$main_pos = strpos($script_name, '/main');
+$base_dir = substr($script_name, 0, $main_pos + 5); // Include '/main'
 define('BASE_URL', $base_dir);
 define('ASSETS_URL', BASE_URL . '/assets');
 

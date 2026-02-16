@@ -47,7 +47,7 @@
         const path = window.location.pathname;
 
         if (path.includes('/modules/')) {
-            // We are inside a module folder (2 levels deep from public root)
+            // We are inside a module folder (2 levels deep from main root)
             prefix = '../../';
         }
 
