@@ -9,6 +9,7 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Observations</title>
+    <link rel="icon" type="image/png" href="<?= ASSETS_URL ?>/uploads/bkash_logo.png">
     <!-- ... styles ... -->
 </head>
 
