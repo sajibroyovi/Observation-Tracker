@@ -21,7 +21,7 @@ $modules = [
         'table' => 'enable_disable',
         'title_field' => 'service_name',
         'date_field' => 'action_date',
-        'view_url' => 'viewdata/view_ed.php',
+        'view_url' => 'modules/ed/view.php',
         'icon' => 'fa-toggle-on',
         'color' => '#4361ee'
     ],
@@ -30,7 +30,7 @@ $modules = [
         'table' => 'pending_mail',
         'title_field' => 'subject_line',
         'date_field' => 'created_at',
-        'view_url' => 'viewdata/view_pd.php',
+        'view_url' => 'modules/pm/view.php',
         'icon' => 'fa-envelope',
         'color' => '#f72585'
     ],
@@ -39,7 +39,7 @@ $modules = [
         'table' => 'security_mail',
         'title_field' => 'subject_line',
         'date_field' => 'created_at',
-        'view_url' => 'viewdata/view_sc.php',
+        'view_url' => 'modules/sc/view.php',
         'icon' => 'fa-shield-halved',
         'color' => '#ff9f1c'
     ],
@@ -48,7 +48,7 @@ $modules = [
         'table' => 'cr_list',
         'title_field' => 'cr_subject',
         'date_field' => 'cr_start_time',
-        'view_url' => 'viewdata/view_cr.php',
+        'view_url' => 'modules/change_requests/view.php',
         'icon' => 'fa-file-invoice',
         'color' => '#4cc9f0'
     ],
@@ -57,7 +57,7 @@ $modules = [
         'table' => 'promo_banner',
         'title_field' => 'subject_line',
         'date_field' => 'start_time',
-        'view_url' => 'viewdata/view_banner.php',
+        'view_url' => 'modules/banners/view.php',
         'icon' => 'fa-image',
         'color' => '#7209b7'
     ],
@@ -66,7 +66,7 @@ $modules = [
         'table' => 'service_outage',
         'title_field' => 'details',
         'date_field' => 'created_at',
-        'view_url' => 'viewdata/view_outage.php',
+        'view_url' => 'modules/outages/view.php',
         'icon' => 'fa-triangle-exclamation',
         'color' => '#ef233c'
     ],
@@ -75,7 +75,7 @@ $modules = [
         'table' => 'ssl_certificate',
         'title_field' => 'certificate_name',
         'date_field' => 'expiration_date',
-        'view_url' => 'viewdata/view_ssl.php',
+        'view_url' => 'modules/ssl/view.php',
         'icon' => 'fa-lock',
         'color' => '#560bad'
     ],
@@ -84,7 +84,7 @@ $modules = [
         'table' => 'campaign',
         'title_field' => 'campaign_name',
         'date_field' => 'start_date',
-        'view_url' => 'viewdata/view_campaign.php',
+        'view_url' => 'modules/campaigns/view.php',
         'icon' => 'fa-bullhorn',
         'color' => '#3a0ca3'
     ],
@@ -93,7 +93,7 @@ $modules = [
         'table' => 'observations',
         'title_field' => 'observation_names',
         'date_field' => 'start_date',
-        'view_url' => 'viewdata/view_observations.php',
+        'view_url' => 'modules/observations/view.php',
         'icon' => 'fa-clipboard-check',
         'color' => '#2a9d8f'
     ]
@@ -119,7 +119,7 @@ foreach ($modules as $module) {
                 'module' => $module['name'],
                 'date' => $row['date_field'],
                 'created_by' => $row['created_by'] ?? 'N/A',
-                'url' => $module['view_url'],
+                'url' => $module['view_url'] . '?search=' . urlencode($row['title']),
                 'icon' => $module['icon'],
                 'color' => $module['color']
             ];
