@@ -3,8 +3,8 @@
  * Database Configuration
  */
 return [
-    'servername' => 'localhost',
-    'username'   => 'root',
-    'password'   => '',
-    'dbname'     => 'shift_hand_over'
+    'servername' => getenv('DB_HOST') ?: 'localhost',
+    'username'   => getenv('DB_USER') ?: 'root',
+    'password'   => getenv('DB_PASS') !== false ? getenv('DB_PASS') : '',
+    'dbname'     => getenv('DB_NAME') ?: 'shift_hand_over'
 ];

@@ -1,0 +1,35 @@
+[18-Feb-2026 09:37:31 Asia/Dhaka] PHP Warning:  require(C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:32 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sajib\sajib\includes\functions.php:34
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\auth_check.php(43): getConnection()
+#1 C:\xampp\htdocs\sajib\sajib\main\modules\observations\view.php(2): include_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:37 Asia/Dhaka] PHP Warning:  require(C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:37 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sajib\sajib\includes\functions.php:34
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\auth_check.php(43): getConnection()
+#1 C:\xampp\htdocs\sajib\sajib\main\modules\observations\view.php(2): include_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:38 Asia/Dhaka] PHP Warning:  require(C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:38 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sajib\sajib\includes\functions.php:34
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\auth_check.php(43): getConnection()
+#1 C:\xampp\htdocs\sajib\sajib\main\modules\observations\view.php(2): include_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:49 Asia/Dhaka] PHP Warning:  require(C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:37:49 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sajib\sajib\includes\functions.php:34
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\auth_check.php(43): getConnection()
+#1 C:\xampp\htdocs\sajib\sajib\main\index.php(4): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:38:14 Asia/Dhaka] PHP Warning:  require(C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[18-Feb-2026 09:38:14 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\sajib\sajib\includes/../../config/database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sajib\sajib\includes\functions.php:34
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\auth_check.php(43): getConnection()
+#1 C:\xampp\htdocs\sajib\sajib\main\index.php(4): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34

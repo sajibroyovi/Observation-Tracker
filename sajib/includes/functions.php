@@ -31,17 +31,19 @@
 function getConnection() {
     static $conn = null;
     if ($conn === null) {
-        $servername = "localhost";
-        $username   = "root";
-        $password   = "";
-        $dbname     = "shift_hand_over";
+        $config = require __DIR__ . '/../config/database.php';
+        
+        $servername = $config['servername'];
+        $username   = $config['username'];
+        $password   = $config['password'];
+        $dbname     = $config['dbname'];
         
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         
         // Check connection
         if (!$conn) {
-            log_error("Critical Security Failure: Database connection failed.", ["context" => "Internal"]);
+            log_error("Critical Security Failure: Database connection failed.", ["context" => "Internal", "error" => mysqli_connect_error()]);
             die("Service Temporarily Unavailable.");
         }
     }
@@ -193,8 +195,13 @@ function initSession() {
  * @param string $redirect_url URL to redirect to if not authenticated
  * @return void
  */
-function requireAuth($redirect_url = 'login.php') {
+function requireAuth($redirect_url = null) {
     initSession();
+    
+    // Default to absolute login path if no URL provided
+    if ($redirect_url === null) {
+        $redirect_url = BASE_URL . '/login.php';
+    }
     
     if (!isset($_SESSION['user_id'])) {
         header('Location: ' . $redirect_url);
@@ -230,9 +237,15 @@ function isLoggedIn() {
  * @param string $redirect_url URL to redirect after logout
  * @return void
  */
-function logout($redirect_url = 'login.php') {
+function logout($redirect_url = null) {
     initSession();
     session_destroy();
+    
+    // Default to absolute login path if no URL provided
+    if ($redirect_url === null) {
+        $redirect_url = BASE_URL . '/login.php';
+    }
+    
     header('Location: ' . $redirect_url);
     exit();
 }
