@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^/sajib/main/
+    RewriteRule ^(.*)$ /sajib/main/$1 [L]
+</IfModule>
