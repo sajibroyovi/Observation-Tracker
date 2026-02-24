@@ -1,52 +1,10 @@
 RewriteEngine On
 
-# Hide .php extension for update scripts
-RewriteRule ^updatedata/update_pm/id/([0-9]+)$ updatedata/update_pm.php?id=$1 [L]
-RewriteRule ^updatedata/update_campaign/id/([0-9]+)$ updatedata/update_campaign.php?id=$1 [L]
-RewriteRule ^updatedata/update_outage/id/([0-9]+)$ updatedata/update_outage.php?id=$1 [L]
-RewriteRule ^updatedata/update_ssl/id/([0-9]+)$ updatedata/update_ssl.php?id=$1 [L]
-RewriteRule ^updatedata/update_cr/id/([0-9]+)$ updatedata/update_cr.php?id=$1 [L]
-RewriteRule ^updatedata/update_sc/id/([0-9]+)$ updatedata/update_sc.php?id=$1 [L]
-RewriteRule ^updatedata/update_ed/id/([0-9]+)$ updatedata/update_ed.php?id=$1 [L]
-RewriteRule ^updatedata/update_banner/id/([0-9]+)$ updatedata/update_banner.php?id=$1 [L]
-RewriteRule ^updatedata/update_observations/id/([0-9]+)$ updatedata/update_observations.php?id=$1 [L]
-
-# Hide .php extension for delete scripts
-RewriteRule ^deletedata/delete_pm/id/([0-9]+)$ deletedata/delete_pm.php?id=$1 [L]
-RewriteRule ^deletedata/delete_campaign/id/([0-9]+)$ deletedata/delete_campaign.php?id=$1 [L]
-RewriteRule ^deletedata/delete_outage/id/([0-9]+)$ deletedata/delete_outage.php?id=$1 [L]
-RewriteRule ^deletedata/delete_ssl/id/([0-9]+)$ deletedata/delete_ssl.php?id=$1 [L]
-RewriteRule ^deletedata/delete_cr/id/([0-9]+)$ deletedata/delete_cr.php?id=$1 [L]
-RewriteRule ^deletedata/delete_sc/id/([0-9]+)$ deletedata/delete_sc.php?id=$1 [L]
-RewriteRule ^deletedata/delete_ed/id/([0-9]+)$ deletedata/delete_ed.php?id=$1 [L]
-RewriteRule ^deletedata/delete_banner/id/([0-9]+)$ deletedata/delete_banner.php?id=$1 [L]
-RewriteRule ^deletedata/delete_observations/id/([0-9]+)$ deletedata/delete_observations.php?id=$1 [L]
-
-
-# Hide .php extension for view scripts
-RewriteRule ^viewdata/view_pd$ viewdata/view_pd.php [L]
-RewriteRule ^viewdata/view_campaign$ viewdata/view_campaign.php [L]
-RewriteRule ^viewdata/view_outage$ viewdata/view_outage.php [L]
-RewriteRule ^viewdata/view_ssl$ viewdata/view_ssl.php [L]
-RewriteRule ^viewdata/view_cr$ viewdata/view_cr.php [L]
-RewriteRule ^viewdata/view_sc$ viewdata/view_sc.php [L]
-RewriteRule ^viewdata/view_ed$ viewdata/view_ed.php [L]
-RewriteRule ^viewdata/view_banner$ viewdata/view_banner.php [L]
-RewriteRule ^viewdata/view_observations$ viewdata/view_observations.php [L]
-
-# Hide .php extension for insert scripts
-RewriteRule ^insertdata/insert$ insertdata/insert.php [L]
-RewriteRule ^insertdata/insert_pm$ insertdata/insert_pm.php [L]
-RewriteRule ^insertdata/insert_sm$ insertdata/insert_sm.php [L]
-RewriteRule ^insertdata/insert_cr$ insertdata/insert_cr.php [L]
-RewriteRule ^insertdata/promo_banner$ insertdata/promo_banner.php [L]
-RewriteRule ^insertdata/service_outage$ insertdata/service_outage.php [L]
-RewriteRule ^insertdata/ssl_certificate$ insertdata/ssl_certificate.php [L]
-RewriteRule ^insertdata/insert_campaign$ insertdata/insert_campaign.php [L]
-RewriteRule ^insertdata/insert_observations$ insertdata/insert_observations.php [L]
-
-# Hide .php extension for main index file
-RewriteRule ^index$ index.php [L]
+# General Catch-all for Extensionless PHP
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]
 
 # Default index file handling
 DirectoryIndex index.php

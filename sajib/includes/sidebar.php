@@ -42,12 +42,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <ul class="nav-links">
         <li>
-            <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/" class="<?php echo ($current_page == 'index.php' || $current_page == 'main') ? 'active' : ''; ?>">
                 <i class="fa-solid fa-gauge"></i> <span>Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/users/profile.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/profile.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/users/profile" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/profile.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-user-circle"></i> <span>My Profile</span>
             </a>
         </li>
@@ -56,62 +56,62 @@ $current_page = basename($_SERVER['PHP_SELF']);
         
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/banners/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/banners/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/banners/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/banners/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-image"></i> <span>Promo Banner</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/campaigns/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/campaigns/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/campaigns/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/campaigns/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-bullhorn"></i> <span>Campaign</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/change_requests/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/change_requests/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/change_requests/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/change_requests/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-file-invoice"></i> <span>CR List</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/ed/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ed/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/ed/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ed/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-toggle-on"></i> <span>Enable/Disable</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/outages/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/outages/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/outages/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/outages/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-triangle-exclamation"></i> <span>Service Outage</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/pm/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/pm/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/pm/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/pm/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-envelope"></i> <span>Pending Mail</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/sc/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/sc/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/sc/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/sc/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-shield-halved"></i> <span>Security Mail</span>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/ssl/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ssl/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/ssl/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ssl/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-lock"></i> <span>SSL Certificate</span>
             </a>
         </li>
         <?php endif; ?>
         <li>
-            <a href="<?php echo BASE_URL; ?>/modules/observations/view.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/observations/view.php') !== false) ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/modules/observations/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/observations/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-clipboard-check"></i> <span>Observations</span>
             </a>
         </li>
@@ -119,7 +119,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <?php if (isSuperAdmin()): ?>
             <li class="nav-section-title mt-3 mb-2 px-3 small text-uppercase opacity-50">Administration</li>
             <li>
-                <a href="<?php echo BASE_URL; ?>/modules/users/manage.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/manage.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/add_user.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/edit_user.php') !== false) ? 'active' : ''; ?>">
+                <a href="<?php echo BASE_URL; ?>/modules/users/manage" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/manage.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/add_user.php') !== false || strpos($_SERVER['PHP_SELF'], '/users/edit_user.php') !== false) ? 'active' : ''; ?>">
                     <i class="fa-solid fa-users-cog"></i> <span>Manage Users</span>
                 </a>
             </li>
@@ -136,7 +136,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </label>
             </div>
         </div>
-        <a href="<?php echo BASE_URL; ?>/logout.php" class="logout-link">
+        <a href="<?php echo BASE_URL; ?>/logout" class="logout-link">
             <i class="fa-solid fa-power-off"></i> <span>LOGOUT</span>
         </a>
     </div>

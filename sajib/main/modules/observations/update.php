@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
 
 
 if (!canEditL1() && !canEditL2()) {
-    header('Location: ' . BASE_URL . '/index.php');
+    header('Location: ' . BASE_URL . '/');
     exit;
 }
 
@@ -173,18 +173,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, $types, ...$params);
             if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Record updated successfully'); window.location.href='" . BASE_URL . "/modules/observations/view.php';</script>";
+                echo "<script>alert('Record updated successfully'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
             } else {
                 log_error("Update Error for observations", ['id' => $id, 'error' => mysqli_stmt_error($stmt)]);
-                echo "<script>alert('Critical Error: Failed to update record.'); window.location.href='" . BASE_URL . "/modules/observations/view.php';</script>";
+                echo "<script>alert('Critical Error: Failed to update record.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
             }
             mysqli_stmt_close($stmt);
         } else {
             log_error("Prepare Error for observations update", ['error' => mysqli_error($conn)]);
-            echo "<script>alert('Critical Error: Internal server error.'); window.location.href='" . BASE_URL . "/modules/observations/view.php';</script>";
+            echo "<script>alert('Critical Error: Internal server error.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
         }
     } else {
-        echo "<script>alert('No changes to save.'); window.location.href='" . BASE_URL . "/modules/observations/view.php';</script>";
+        echo "<script>alert('No changes to save.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
     }
     mysqli_close($conn);
     exit;
@@ -253,7 +253,7 @@ mysqli_close($conn);
                         <h1 class="view-header fw-bold mb-1"><i class="fa-solid fa-clipboard-list text-teal me-2"></i> Update Operational Observation</h1>
                         <p class="text-muted small mb-0">Refine investigation findings, L1 evidence, and L2 analyst feedback.</p>
                     </div>
-                    <a href="<?= BASE_URL ?>/modules/observations/view.php" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
+                    <a href="<?= BASE_URL ?>/modules/observations/view" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back to List
                     </a>
                 </div>

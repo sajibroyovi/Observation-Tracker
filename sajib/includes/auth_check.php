@@ -20,21 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT
         
         // Show error and redirect safely
         showError("Invalid security token. Please try again.");
-        $referer = $_SERVER['HTTP_REFERER'] ?? '';
-        
-        // Validate referer to prevent open redirect
-        $safe_url = BASE_URL . '/index.php';
+        // Open Redirect remediation: strictly validate redirect target
+        $target = BASE_URL . '/';
         if (!empty($referer)) {
-            $referer_host = parse_url($referer, PHP_URL_HOST);
-            $app_host = parse_url(BASE_URL, PHP_URL_HOST);
+            $parsed_referer = parse_url($referer);
+            $parsed_base = parse_url(BASE_URL);
             
-            // Only redirect if referer matches app host or is relative
-            if ($referer_host === $app_host || $referer_host === null) {
-                $safe_url = $referer;
+            // Only allow redirect if host matches or it's a relative path on same host
+            if (isset($parsed_referer['host']) && $parsed_referer['host'] === $parsed_base['host']) {
+                $target = $referer;
             }
         }
         
-        header('Location: ' . $safe_url);
+        header('Location: ' . $target);
         exit();
     }
 }

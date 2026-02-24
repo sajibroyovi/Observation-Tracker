@@ -117,10 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->AltBody = strip_tags($message); // Plain text version
 
         $mail->send();
-        echo "<script>alert('Mail sent successfully'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Mail sent successfully'); window.location.href='../../';</script>";
     } catch (Exception $e) {
         log_error("PHPMailer Error", ['error' => $mail->ErrorInfo]);
-        echo "<script>alert('Critical Error: Failed to dispatch shift report.'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Critical Error: Failed to dispatch shift report.'); window.location.href='../../';</script>";
     }
 }
 

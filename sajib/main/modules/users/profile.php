@@ -18,7 +18,7 @@ include_once INCLUDES_PATH . '/auth_check.php';
 
 $user_id = $_SESSION['user_id'] ?? 0;
 if (!$user_id) {
-    header("Location: " . BASE_URL . "/login.php");
+    header("Location: " . BASE_URL . "/login");
     exit();
 }
 

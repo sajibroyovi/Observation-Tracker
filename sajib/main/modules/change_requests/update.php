@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt_update, "sssssssi", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            header("Location: view.php?msg=updated");
+            header("Location: view?msg=updated");
             exit;
         } else {
             log_error("Update Error for cr_list", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
@@ -97,7 +97,7 @@ mysqli_close($conn);
                         <h1 class="view-header fw-bold mb-1"><i class="fa-solid fa-file-pen text-info me-2"></i> Update Change Request</h1>
                         <p class="text-muted small mb-0">Modify CR details, impact analysis, and implementation timeline.</p>
                     </div>
-                    <a href="view.php" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
+                    <a href="view" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back to List
                     </a>
                 </div>

@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt_update, "ssssssi", $service_name, $action_date, $action_taken, $action_taken_by, $reference, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            header("Location: view.php?msg=updated");
+            header("Location: view?msg=updated");
             exit;
         } else {
             log_error("Update Error for enable_disable", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
@@ -95,7 +95,7 @@ mysqli_close($conn);
                         <h1 class="view-header fw-bold mb-1"><i class="fa-solid fa-toggle-on text-primary me-2"></i> Update Service Status</h1>
                         <p class="text-muted small mb-0">Modify service reachability toggles and update reference documentation.</p>
                     </div>
-                    <a href="view.php" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
+                    <a href="view" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back to List
                     </a>
                 </div>

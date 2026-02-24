@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../config/app.php';
 include_once INCLUDES_PATH . '/auth_check.php';
 
 if (!isSuperAdmin()) {
-    header("Location: " . BASE_URL . "/index.php");
+    header("Location: " . BASE_URL . "/");
     exit();
 }
 
@@ -38,7 +38,7 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                         <p class="text-muted small mb-0">Control system access, define specialized roles, and audit account activities.</p>
                     </div>
                     <div class="d-flex gap-2">
-                        <a href="add_user.php" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
+                        <a href="add_user" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
                             <i class="fa-solid fa-user-plus me-2"></i> Provision New User
                         </a>
                     </div>
@@ -109,10 +109,10 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                                             </td>
                                             <td class='text-end pe-4'>
                                                 <div class='btn-group shadow-sm rounded-pill overflow-hidden'>
-                                                    <a href='edit_user.php?id=" . (int)$row['id'] . "' class='btn btn-light btn-sm border-end' title='Edit User Profile'>
+                                                    <a href='edit_user?id=" . (int)$row['id'] . "' class='btn btn-light btn-sm border-end' title='Edit User Profile'>
                                                         <i class='fa-solid fa-user-pen text-info'></i>
                                                     </a>
-                                                    <a href='delete_user.php?id=" . (int)$row['id'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-light btn-sm' onclick='return confirm(\"Security Alert: Proceed with account termination?\")' title='Revoke Access'>
+                                                    <a href='delete_user?id=" . (int)$row['id'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-light btn-sm' onclick='return confirm(\"Security Alert: Proceed with account termination?\")' title='Revoke Access'>
                                                         <i class='fa-solid fa-user-slash text-danger'></i>
                                                     </a>
                                                 </div>

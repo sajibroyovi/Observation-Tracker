@@ -4,7 +4,7 @@
     <div class="modal fade" id="staticBackdrop_ed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/ed/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/ed/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-primary">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-toggle-on me-2"></i> Service Enable/Disable</h5>
@@ -51,7 +51,7 @@
     <div class="modal fade" id="staticBackdrop_pdmail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/pm/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/pm/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-accent-pink">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-envelope me-2"></i> Pending Mail Entry</h5>
@@ -93,7 +93,7 @@
     <div class="modal fade" id="staticBackdrop_scmail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/sc/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/sc/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-warning">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-shield-halved me-2"></i> Security Mail Entry</h5>
@@ -134,7 +134,7 @@
     <div class="modal fade" id="staticBackdrop_crlist" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/change_requests/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/change_requests/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-info">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-file-invoice me-2"></i> Change Request (CR) Entry</h5>
@@ -185,7 +185,7 @@
     <div class="modal fade" id="staticBackdrop_herobanner" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/banners/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/banners/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-primary" style="background-color: #7209b7 !important;">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-image me-2"></i> Promo Banner Entry</h5>
@@ -224,7 +224,7 @@
     <div class="modal fade" id="staticBackdrop_soutage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/outages/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/outages/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 bg-danger">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-triangle-exclamation me-2"></i> Service Outage Entry</h5>
@@ -270,7 +270,7 @@
     <div class="modal fade" id="staticBackdrop_SSLcertificate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/ssl/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/ssl/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0" style="background: #560bad;">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-lock me-2"></i> SSL Certificate Entry</h5>
@@ -312,7 +312,7 @@
     <div class="modal fade" id="staticBackdrop_campaign" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark">
-                <form action="<?php echo BASE_URL; ?>/modules/campaigns/create.php" method="POST">
+                <form action="<?php echo BASE_URL; ?>/modules/campaigns/create" method="POST">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 px-4" style="background: #3a0ca3;">
                         <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-bullhorn me-2"></i> Campaign Entry</h5>
@@ -354,7 +354,7 @@
     <div class="modal fade" id="staticBackdrop_observations" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-2xl rounded-4 overflow-hidden">
-                <form action="<?php echo BASE_URL; ?>/modules/observations/create.php" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo BASE_URL; ?>/modules/observations/create" method="POST" enctype="multipart/form-data">
                     <?php echo getCsrfField(); ?>
                     <div class="modal-header border-0 py-4 px-4 d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);">
                         <div>

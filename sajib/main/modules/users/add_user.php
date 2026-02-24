@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../config/app.php';
 include_once INCLUDES_PATH . '/auth_check.php';
 
 if (!isSuperAdmin()) {
-    header('Location: ' . BASE_URL . '/index.php');
+    header('Location: ' . BASE_URL . '/');
     exit();
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt_insert)) {
                 mysqli_stmt_close($stmt_insert);
-                echo "<script>alert('User created successfully'); window.location.href='manage.php';</script>";
+                echo "<script>alert('User created successfully'); window.location.href='manage';</script>";
                 exit();
             } else {
                 log_error("Failed to insert new user", ['username' => $username, 'error' => mysqli_stmt_error($stmt_insert)]);
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h1 class="view-header fw-bold mb-1"><i class="fa-solid fa-user-shield text-primary me-2"></i> Account Provisioning</h1>
                         <p class="text-muted small mb-0">Create new system identities and assign security clearance roles.</p>
                     </div>
-                    <a href="manage.php" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
+                    <a href="manage" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back to Users
                     </a>
                 </div>

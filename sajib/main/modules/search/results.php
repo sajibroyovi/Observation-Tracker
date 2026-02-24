@@ -15,7 +15,7 @@ if (strlen($query) >= 2) {
             'table' => 'enable_disable',
             'title_field' => 'service_name',
             'date_field' => 'action_date',
-            'view_url' => 'viewdata/view_ed.php',
+            'view_url' => 'ed/view',
             'icon' => 'fa-toggle-on',
             'color' => '#4361ee'
         ],
@@ -24,7 +24,7 @@ if (strlen($query) >= 2) {
             'table' => 'pending_mail',
             'title_field' => 'subject_line',
             'date_field' => 'created_at',
-            'view_url' => 'viewdata/view_pd.php',
+            'view_url' => 'pm/view',
             'icon' => 'fa-envelope',
             'color' => '#f72585'
         ],
@@ -33,7 +33,7 @@ if (strlen($query) >= 2) {
             'table' => 'security_mail',
             'title_field' => 'subject_line',
             'date_field' => 'created_at',
-            'view_url' => 'viewdata/view_sc.php',
+            'view_url' => 'sc/view',
             'icon' => 'fa-shield-halved',
             'color' => '#ff9f1c'
         ],
@@ -42,7 +42,7 @@ if (strlen($query) >= 2) {
             'table' => 'cr_list',
             'title_field' => 'cr_subject',
             'date_field' => 'cr_start_time',
-            'view_url' => 'viewdata/view_cr.php',
+            'view_url' => 'change_requests/view',
             'icon' => 'fa-file-invoice',
             'color' => '#4cc9f0'
         ],
@@ -51,7 +51,7 @@ if (strlen($query) >= 2) {
             'table' => 'promo_banner',
             'title_field' => 'subject_line',
             'date_field' => 'start_time',
-            'view_url' => 'viewdata/view_banner.php',
+            'view_url' => 'banners/view',
             'icon' => 'fa-image',
             'color' => '#7209b7'
         ],
@@ -60,7 +60,7 @@ if (strlen($query) >= 2) {
             'table' => 'service_outage',
             'title_field' => 'details',
             'date_field' => 'created_at',
-            'view_url' => 'viewdata/view_outage.php',
+            'view_url' => 'outages/view',
             'icon' => 'fa-triangle-exclamation',
             'color' => '#ef233c'
         ],
@@ -69,7 +69,7 @@ if (strlen($query) >= 2) {
             'table' => 'ssl_certificate',
             'title_field' => 'certificate_name',
             'date_field' => 'expiration_date',
-            'view_url' => 'viewdata/view_ssl.php',
+            'view_url' => 'ssl/view',
             'icon' => 'fa-lock',
             'color' => '#560bad'
         ],
@@ -78,7 +78,7 @@ if (strlen($query) >= 2) {
             'table' => 'campaign',
             'title_field' => 'campaign_name',
             'date_field' => 'start_date',
-            'view_url' => 'viewdata/view_campaign.php',
+            'view_url' => 'campaigns/view',
             'icon' => 'fa-bullhorn',
             'color' => '#3a0ca3'
         ],
@@ -87,7 +87,7 @@ if (strlen($query) >= 2) {
             'table' => 'observations',
             'title_field' => 'observation_names',
             'date_field' => 'start_date',
-            'view_url' => 'viewdata/view_observations.php',
+            'view_url' => 'observations/view',
             'icon' => 'fa-clipboard-check',
             'color' => '#2a9d8f'
         ]
@@ -112,7 +112,7 @@ if (strlen($query) >= 2) {
                     'module' => $module['name'],
                     'date' => $row['date_field'],
                     'created_by' => $row['created_by'] ?? 'N/A',
-                    'url' => $module['view_url'],
+                    'url' => $module['view_url'] . '?search=' . urlencode($row['title']),
                     'icon' => $module['icon'],
                     'color' => $module['color']
                 ];
@@ -156,7 +156,7 @@ if (strlen($query) >= 2) {
                             <i class="fa-solid fa-search fa-4x mb-3 opacity-25"></i>
                             <h3>No results found</h3>
                             <p class="text-muted">Try searching for something else or check your spelling.</p>
-                            <a href="<?php echo BASE_URL; ?>/index.php" class="btn btn-primary px-4 rounded-pill mt-3">Back to Dashboard</a>
+                            <a href="<?php echo BASE_URL; ?>/" class="btn btn-primary px-4 rounded-pill mt-3">Back to Dashboard</a>
                         </div>
                     <?php else: ?>
                         <div class="mb-3 text-muted">

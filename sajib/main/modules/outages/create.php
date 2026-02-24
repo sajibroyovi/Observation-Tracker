@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
     if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
         log_error("CSRF token validation failed for service outage create attempt");
-        header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
+        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
         exit;
     }
 
@@ -25,15 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ssssss", $details, $incident_id, $problem_ticket, $status, $technician, $created_by);
         if (mysqli_stmt_execute($stmt)) {
-            header('Location: ' . BASE_URL . '/index.php?status=success&msg=' . urlencode('Service Outage record inserted successfully'));
+            header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('Service Outage record inserted successfully'));
         } else {
             log_error("Failed to insert service outage record", ['error' => mysqli_stmt_error($stmt)]);
-            header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+            header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
         }
         mysqli_stmt_close($stmt);
     } else {
         log_error("Failed to prepare statement for service outage", ['error' => mysqli_error($conn)]);
-        header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode("Critical Error: Internal Server Error."));
+        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Internal Server Error."));
     }
 
     mysqli_close($conn);

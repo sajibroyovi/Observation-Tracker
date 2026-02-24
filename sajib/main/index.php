@@ -209,7 +209,7 @@ include INCLUDES_PATH . '/auth_check.php';
                 <div class="col-lg-8">
                     <div class="glass-card p-3">
                         <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-paper-plane me-2 text-primary"></i> Dispatch Shift Handover</h6>
-                        <form id="add-shift-handover-form" method="POST" action="<?php echo BASE_URL; ?>/modules/email/send.php">
+                        <form id="add-shift-handover-form" method="POST" action="<?php echo BASE_URL; ?>/modules/email/send">
                             <?php echo getCsrfField(); ?>
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -273,15 +273,15 @@ include INCLUDES_PATH . '/auth_check.php';
             <div class="row g-4 mt-2">
                 <?php
                 $modules = [
-                    ['icon' => 'fa-toggle-on', 'color' => '#4361ee', 'bg' => 'rgba(67, 97, 238, 0.1)', 'title' => 'Enable/Disable', 'desc' => 'Control and track service reachability status for this shift.', 'modal' => 'staticBackdrop_ed', 'view' => BASE_URL . '/modules/ed/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-envelope', 'color' => '#f72585', 'bg' => 'rgba(247, 37, 133, 0.1)', 'title' => 'Pending Mail', 'desc' => 'Manage and track unanswered or follow-up communications.', 'modal' => 'staticBackdrop_pdmail', 'view' => BASE_URL . '/modules/pm/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-shield-halved', 'color' => '#ff9f1c', 'bg' => 'rgba(255, 159, 28, 0.1)', 'title' => 'Security Mail', 'desc' => 'Monitor high-priority alerts, security warnings, and escalations.', 'modal' => 'staticBackdrop_scmail', 'view' => BASE_URL . '/modules/sc/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-file-invoice', 'color' => '#4cc9f0', 'bg' => 'rgba(76, 201, 240, 0.1)', 'title' => 'CR List', 'desc' => 'Track ongoing and upcoming change request lifecycle.', 'modal' => 'staticBackdrop_crlist', 'view' => BASE_URL . '/modules/change_requests/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-image', 'color' => '#7209b7', 'bg' => 'rgba(114, 9, 183, 0.1)', 'title' => 'Promo Banner', 'desc' => 'Manage live and scheduled banners along with approval notes.', 'modal' => 'staticBackdrop_herobanner', 'view' => BASE_URL . '/modules/banners/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-triangle-exclamation', 'color' => '#ef233c', 'bg' => 'rgba(239, 35, 60, 0.1)', 'title' => 'Service Outage', 'desc' => 'Track downtime issues, incidents, and their resolutions.', 'modal' => 'staticBackdrop_soutage', 'view' => BASE_URL . '/modules/outages/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-lock', 'color' => '#560bad', 'bg' => 'rgba(86, 11, 173, 0.1)', 'title' => 'SSL Certificate', 'desc' => 'Monitor expiration dates and renewal status of certificates.', 'modal' => 'staticBackdrop_SSLcertificate', 'view' => BASE_URL . '/modules/ssl/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-bullhorn', 'color' => '#3a0ca3', 'bg' => 'rgba(58, 12, 163, 0.1)', 'title' => 'Campaign', 'desc' => 'Planning and tracking of upcoming or ongoing campaigns.', 'modal' => 'staticBackdrop_campaign', 'view' => BASE_URL . '/modules/campaigns/view.php', 'can_add' => canEditGlobal()],
-                    ['icon' => 'fa-clipboard-check', 'color' => '#2a9d8f', 'bg' => 'rgba(42, 157, 143, 0.1)', 'title' => 'Observations', 'desc' => 'Detailed L1 and L2 operational observations and insights.', 'modal' => 'staticBackdrop_observations', 'view' => BASE_URL . '/modules/observations/view.php', 'can_add' => canAddObservation()]
+                    ['icon' => 'fa-toggle-on', 'color' => '#4361ee', 'bg' => 'rgba(67, 97, 238, 0.1)', 'title' => 'Enable/Disable', 'desc' => 'Control and track service reachability status for this shift.', 'modal' => 'staticBackdrop_ed', 'view' => BASE_URL . '/modules/ed/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-envelope', 'color' => '#f72585', 'bg' => 'rgba(247, 37, 133, 0.1)', 'title' => 'Pending Mail', 'desc' => 'Manage and track unanswered or follow-up communications.', 'modal' => 'staticBackdrop_pdmail', 'view' => BASE_URL . '/modules/pm/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-shield-halved', 'color' => '#ff9f1c', 'bg' => 'rgba(255, 159, 28, 0.1)', 'title' => 'Security Mail', 'desc' => 'Monitor high-priority alerts, security warnings, and escalations.', 'modal' => 'staticBackdrop_scmail', 'view' => BASE_URL . '/modules/sc/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-file-invoice', 'color' => '#4cc9f0', 'bg' => 'rgba(76, 201, 240, 0.1)', 'title' => 'CR List', 'desc' => 'Track ongoing and upcoming change request lifecycle.', 'modal' => 'staticBackdrop_crlist', 'view' => BASE_URL . '/modules/change_requests/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-image', 'color' => '#7209b7', 'bg' => 'rgba(114, 9, 183, 0.1)', 'title' => 'Promo Banner', 'desc' => 'Manage live and scheduled banners along with approval notes.', 'modal' => 'staticBackdrop_herobanner', 'view' => BASE_URL . '/modules/banners/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-triangle-exclamation', 'color' => '#ef233c', 'bg' => 'rgba(239, 35, 60, 0.1)', 'title' => 'Service Outage', 'desc' => 'Track downtime issues, incidents, and their resolutions.', 'modal' => 'staticBackdrop_soutage', 'view' => BASE_URL . '/modules/outages/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-lock', 'color' => '#560bad', 'bg' => 'rgba(86, 11, 173, 0.1)', 'title' => 'SSL Certificate', 'desc' => 'Monitor expiration dates and renewal status of certificates.', 'modal' => 'staticBackdrop_SSLcertificate', 'view' => BASE_URL . '/modules/ssl/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-bullhorn', 'color' => '#3a0ca3', 'bg' => 'rgba(58, 12, 163, 0.1)', 'title' => 'Campaign', 'desc' => 'Planning and tracking of upcoming or ongoing campaigns.', 'modal' => 'staticBackdrop_campaign', 'view' => BASE_URL . '/modules/campaigns/view', 'can_add' => canEditGlobal()],
+                    ['icon' => 'fa-clipboard-check', 'color' => '#2a9d8f', 'bg' => 'rgba(42, 157, 143, 0.1)', 'title' => 'Observations', 'desc' => 'Detailed L1 and L2 operational observations and insights.', 'modal' => 'staticBackdrop_observations', 'view' => BASE_URL . '/modules/observations/view', 'can_add' => canAddObservation()]
                 ];
 
                 // Granular module visibility for grid

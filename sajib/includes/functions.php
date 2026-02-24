@@ -200,7 +200,7 @@ function requireAuth($redirect_url = null) {
     
     // Default to absolute login path if no URL provided
     if ($redirect_url === null) {
-        $redirect_url = BASE_URL . '/login.php';
+        $redirect_url = BASE_URL . '/login';
     }
     
     if (!isset($_SESSION['user_id'])) {
@@ -243,7 +243,7 @@ function logout($redirect_url = null) {
     
     // Default to absolute login path if no URL provided
     if ($redirect_url === null) {
-        $redirect_url = BASE_URL . '/login.php';
+        $redirect_url = BASE_URL . '/login';
     }
     
     header('Location: ' . $redirect_url);
@@ -473,7 +473,7 @@ function redirectTo($url) {
         
         if ($url_host !== $app_host) {
             log_error("Open Redirect Attempt Blocked", ["target" => $url]);
-            $url = BASE_URL . '/index.php';
+            $url = BASE_URL . '/';
         }
     }
     header('Location: ' . $url);

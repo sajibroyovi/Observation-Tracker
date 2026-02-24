@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
     if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
         log_error("CSRF token validation failed for pending mail create attempt");
-        header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
+        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
         exit;
     }
 
@@ -44,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($inserted_count > 0) {
-        header('Location: ' . BASE_URL . '/index.php?status=success&msg=' . urlencode('Pending Mail record(s) inserted successfully'));
+        header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('Pending Mail record(s) inserted successfully'));
     } else {
-        header('Location: ' . BASE_URL . '/index.php?status=error&msg=' . urlencode('Failed to insert any records.'));
+        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode('Failed to insert any records.'));
     }
 
     mysqli_close($conn);

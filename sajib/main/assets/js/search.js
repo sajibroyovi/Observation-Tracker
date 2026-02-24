@@ -27,7 +27,7 @@
         if (e.key === 'Enter') {
             const query = this.value.trim();
             if (query.length >= MIN_SEARCH_LENGTH) {
-                window.location.href = `search_results.php?q=${encodeURIComponent(query)}`;
+                window.location.href = `search_results?q=${encodeURIComponent(query)}`;
             }
         }
         if (e.key === 'Escape') {
@@ -123,7 +123,7 @@
             prefix = '../../';
         }
         html += `
-                <a href="${prefix}modules/search/results.php?q=${encodeURIComponent(data.query)}" 
+                <a href="${prefix}modules/search/results?q=${encodeURIComponent(data.query)}" 
                    class="d-block p-3 text-center text-primary text-decoration-none border-top bg-light">
                     <i class="fa-solid fa-arrow-right me-2"></i>View all ${data.total} results
                 </a>

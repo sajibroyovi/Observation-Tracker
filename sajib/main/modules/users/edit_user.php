@@ -3,12 +3,12 @@ require_once __DIR__ . '/../../../config/app.php';
 include_once INCLUDES_PATH . '/auth_check.php';
 
 if (!isSuperAdmin()) {
-    header('Location: ' . BASE_URL . '/index.php');
+    header('Location: ' . BASE_URL . '/');
     exit();
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: manage.php");
+    header("Location: manage");
     exit();
 }
 
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt_update, $types, ...$params);
             if (mysqli_stmt_execute($stmt_update)) {
                 mysqli_stmt_close($stmt_update);
-                echo "<script>alert('User updated successfully'); window.location.href='manage.php';</script>";
+                echo "<script>alert('User updated successfully'); window.location.href='manage';</script>";
                 exit();
             } else {
                 log_error("Update Error for user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h1 class="view-header fw-bold mb-1"><i class="fa-solid fa-user-pen text-success me-2"></i> Authority Adjustment</h1>
                         <p class="text-muted small mb-0">Modify security roles and refresh authentication credentials for <b><?php echo htmlspecialchars($user['username']); ?></b>.</p>
                     </div>
-                    <a href="manage.php" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
+                    <a href="manage" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm fw-bold">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back to Users
                     </a>
                 </div>

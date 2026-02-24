@@ -130,8 +130,8 @@ function truncate_chars($text, $limit = 50, $default = "") {
                             <i class="fa-solid fa-plus me-1"></i> Add New
                         </button>
                         <?php endif; ?>
-                        <a href="<?= BASE_URL ?>/modules/export/export.php?module=observations&<?php echo http_build_query($_GET); ?>" class="btn btn-outline-success btn-sm rounded-pill shadow-sm px-3 bg-white border-0 btn-export-view"><i class="fa-solid fa-file-export me-1"></i> Export</a>
-                        <a href="<?= BASE_URL ?>/index.php" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-3 border-0 bg-white btn-dashboard-view"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
+                        <a href="<?= BASE_URL ?>/modules/export/export?module=observations&<?= e(http_build_query($_GET)) ?>" class="btn btn-outline-success btn-sm rounded-pill shadow-sm px-3 bg-white border-0 btn-export-view"><i class="fa-solid fa-file-export me-1"></i> Export</a>
+                        <a href="<?= BASE_URL ?>/" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-3 border-0 bg-white btn-dashboard-view"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
                     </div>
                 </div>
 
@@ -140,15 +140,15 @@ function truncate_chars($text, $limit = 50, $default = "") {
                     <form method="GET" class="row g-2 align-items-end">
                         <div class="col-md-3">
                             <label class="small text-muted fw-bold">START DATE</label>
-                            <input type="date" name="start_date" class="form-control form-control-sm border-0 bg-light" value="<?php echo e($_GET['start_date'] ?? ''); ?>">
+                            <input type="date" name="start_date" class="form-control form-control-sm border-0 bg-light" value="<?php echo htmlspecialchars($_GET['start_date'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         <div class="col-md-3">
                             <label class="small text-muted fw-bold">END DATE</label>
-                            <input type="date" name="end_date" class="form-control form-control-sm border-0 bg-light" value="<?php echo e($_GET['end_date'] ?? ''); ?>">
+                            <input type="date" name="end_date" class="form-control form-control-sm border-0 bg-light" value="<?php echo htmlspecialchars($_GET['end_date'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         <div class="col-md-2">
                             <label class="small text-muted fw-bold">SEARCH</label>
-                            <input type="text" name="search" class="form-control form-control-sm border-0 bg-light" placeholder="Notes..." value="<?php echo e($_GET['search'] ?? ''); ?>">
+                            <input type="text" name="search" class="form-control form-control-sm border-0 bg-light" placeholder="Notes..." value="<?php echo htmlspecialchars($_GET['search'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         <div class="col-md-2">
                             <label class="small text-muted fw-bold">STATUS</label>
@@ -160,7 +160,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                         </div>
                         <div class="col-md-3 d-flex gap-2">
                             <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 flex-grow-1"><i class="fa-solid fa-filter me-1"></i> Filter</button>
-                            <a href="view.php" class="btn btn-outline-secondary btn-sm rounded-pill px-3"><i class="fa-solid fa-rotate me-1"></i> Reset</a>
+                            <a href="view" class="btn btn-outline-secondary btn-sm rounded-pill px-3"><i class="fa-solid fa-rotate me-1"></i> Reset</a>
                         </div>
                     </form>
                 </div>
@@ -262,11 +262,10 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                                     <button class='btn btn-white btn-sm border-end text-success' title='View Full Details' data-bs-toggle='modal' data-bs-target='#viewModal_" . (int)$row['serial_no'] . "'><i class='fa-solid fa-eye'></i></button>";
                                         
                                         if (canEditL1() || canEditL2()) {
-                                            echo "<a href='update.php?id=" . (int)$row['serial_no'] . "' class='btn btn-white btn-sm border-end text-primary' title='Edit Record'><i class='fa-solid fa-pen-to-square'></i></a>";
+                                            echo "<a href='update?id=" . (int)$row['serial_no'] . "' class='btn btn-white btn-sm border-end text-primary' title='Edit Record'><i class='fa-solid fa-pen-to-square'></i></a>";
                                         }
-                                        
                                         if (isSuperAdmin()) {
-                                            echo "<a href='delete.php?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-white btn-sm text-danger border-0' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this observation?\")'>
+                                            echo "<a href='delete?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-white btn-sm text-danger border-0' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this observation?\")'>
 <i class='fa-solid fa-trash-can'></i></a>";
                                         }
                                         echo "</div>

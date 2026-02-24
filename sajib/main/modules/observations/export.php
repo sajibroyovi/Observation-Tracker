@@ -13,12 +13,11 @@ $sql = "SELECT * FROM observations ORDER BY serial_no DESC";
 $stmt = executePreparedStatement($conn, $sql);
 $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
 
-// Construct base URL for images
 // Construct base URL for images securely
 $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
-// Sanitize host and path components to prevent header-based XSS
+// Sanitize host and use it cautiously to prevent host-based XSS
 $host = htmlspecialchars($_SERVER['HTTP_HOST'] ?? '', ENT_QUOTES, 'UTF-8');
-$script_name = $_SERVER['PHP_SELF'] ?? '';
+$script_name = htmlspecialchars($_SERVER['PHP_SELF'] ?? '', ENT_QUOTES, 'UTF-8');
 $currentPath = str_replace('\\', '/', dirname($script_name));
 $baseDir = dirname($currentPath); 
 $baseUrl = $protocol . "://" . $host . $baseDir . "/";
