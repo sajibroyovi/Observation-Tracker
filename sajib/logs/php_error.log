@@ -33,3 +33,13 @@ Stack trace:
 #1 C:\xampp\htdocs\sajib\sajib\main\index.php(4): include('C:\\xampp\\htdocs...')
 #2 {main}
   thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 34
+[24-Feb-2026 10:57:57 Asia/Dhaka] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php:69
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php(69): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssi', 'sajib', 'l1', 'Observations', 'superadmin', 10)
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php on line 69
+[24-Feb-2026 10:58:25 Asia/Dhaka] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php:69
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php(69): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssi', 'sajib', 'l1', 'Observations', 'superadmin', 10)
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\main\modules\users\edit_user.php on line 69

@@ -65,7 +65,6 @@
 }
 
 .btn-bkash:hover {
-  transform: translateY(-2px);
   box-shadow: 0 15px 30px -10px rgba(209, 32, 83, 0.5);
   color: white;
   filter: brightness(1.1);
@@ -189,7 +188,6 @@ body {
 
 .glass-card:hover {
   box-shadow: var(--card-shadow-hover);
-  transform: translateY(-2px);
 }
 
 .container {
@@ -247,7 +245,6 @@ form textarea:focus {
 
 .team-item:hover {
   background-color: rgba(30, 60, 114, 0.05);
-  transform: translateX(4px);
 }
 
 .team-item.bg-primary-soft {
@@ -317,7 +314,7 @@ form textarea:focus {
 }
 
 .hover-scale:hover {
-  transform: scale(1.02);
+  /* Animation removed */
 }
 
 .modal-content {
@@ -354,7 +351,7 @@ body.night-mode .btn-white {
 }
 
 .team-item:hover .section-icon {
-  transform: rotate(15deg);
+  /* Animation removed */
 }
 
 body.night-mode .form-check-label {
@@ -420,7 +417,6 @@ body.night-mode .form-check-label {
 }
 
 .serviceOne:hover {
-  transform: translateY(-5px);
   box-shadow: var(--card-shadow-hover);
 }
 
@@ -445,7 +441,6 @@ body.night-mode .form-check-label {
 }
 
 .serviceTwo:hover {
-  transform: translateY(-5px);
   box-shadow: var(--card-shadow-hover);
 }
 
@@ -515,7 +510,6 @@ body.night-mode .form-check-label {
 .serviceSeven:hover,
 .serviceEight:hover,
 .serviceNine:hover {
-  transform: translateY(-5px);
   box-shadow: var(--card-shadow-hover);
 }
 
@@ -571,7 +565,6 @@ body.night-mode .form-check-label {
 
 .btn-primary:hover {
   background-color: var(--secondary-blue);
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(30, 60, 114, 0.2);
 }
 
@@ -656,7 +649,7 @@ input:checked+.slider:before {
 
 /* Night Mode Styles */
 body.night-mode {
-  background-color: rgba(18, 18, 18, 0.85) !important;
+  background-color: #121212 !important;
   color: #ffffff;
 }
 
@@ -857,7 +850,6 @@ body.night-mode .btn-secondary {
 .nav-links a.active {
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  transform: translateX(8px);
   border-left: 4px solid var(--text-light);
 }
 
@@ -1126,11 +1118,10 @@ h1.view-header {
   background: rgba(255, 59, 48, 0.2);
   border-color: rgba(255, 59, 48, 0.4);
   color: #ff3b30 !important;
-  transform: translateY(-2px);
 }
 
 .logout-link:hover i {
-  transform: translateX(3px);
+  /* Animation removed */
 }
 
 /* Exit Transition Overlay */
@@ -1254,14 +1245,12 @@ body.fade-out-app {
 .btn-export-view:hover {
   background-color: #28a745 !important;
   color: white !important;
-  transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 20px rgba(40, 167, 69, 0.2) !important;
 }
 
 .btn-dashboard-view:hover {
   background-color: #4361ee !important;
   color: white !important;
-  transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2) !important;
 }
 

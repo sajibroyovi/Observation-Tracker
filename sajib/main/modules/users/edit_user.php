@@ -32,14 +32,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Security Validation Failed: CSRF Token Mismatch.");
     }
 
+    $username = cleanInput($_POST['username']);
     $role = cleanInput($_POST['role']);
     $allowed_modules = isset($_POST['modules']) ? implode(',', $_POST['modules']) : '';
     $password = $_POST['password'];
     $edited_by = $_SESSION['username'];
 
-    $fields = ["role = ?", "allowed_modules = ?", "edited_by = ?", "edited_at = NOW()"];
-    $params = [$role, $allowed_modules, $edited_by];
-    $types = "sss";
+    // Check if username already exists for another user
+    $stmt_check = mysqli_prepare($conn, "SELECT id FROM users WHERE username = ? AND id != ?");
+    mysqli_stmt_bind_param($stmt_check, "si", $username, $id);
+    mysqli_stmt_execute($stmt_check);
+    $result_check = mysqli_stmt_get_result($stmt_check);
+    
+    if (mysqli_num_rows($result_check) > 0) {
+        $error = "Username already exists. Please choose another one.";
+        mysqli_stmt_close($stmt_check);
+    } else {
+        mysqli_stmt_close($stmt_check);
+        $fields = ["username = ?", "role = ?", "allowed_modules = ?", "edited_by = ?", "edited_at = NOW()"];
+        $params = [$username, $role, $allowed_modules, $edited_by];
+        $types = "ssss";
 
     if (!empty($password)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -52,21 +64,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $params[] = $id;
     $types .= "i";
 
-    $stmt_update = mysqli_prepare($conn, $sql);
-    if ($stmt_update) {
-        mysqli_stmt_bind_param($stmt_update, $types, ...$params);
-        if (mysqli_stmt_execute($stmt_update)) {
+        $stmt_update = mysqli_prepare($conn, $sql);
+        if ($stmt_update) {
+            mysqli_stmt_bind_param($stmt_update, $types, ...$params);
+            if (mysqli_stmt_execute($stmt_update)) {
+                mysqli_stmt_close($stmt_update);
+                echo "<script>alert('User updated successfully'); window.location.href='manage.php';</script>";
+                exit();
+            } else {
+                log_error("Update Error for user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
+                $error = "Error updating user. Please check logs.";
+            }
             mysqli_stmt_close($stmt_update);
-            echo "<script>alert('User updated successfully'); window.location.href='manage.php';</script>";
-            exit();
         } else {
-            log_error("Update Error for user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
-            $error = "Error updating user. Please check logs.";
+            log_error("Prepare Error for user update", ['error' => mysqli_error($conn)]);
+            $error = "Critical Error: Internal server error.";
         }
-        mysqli_stmt_close($stmt_update);
-    } else {
-        log_error("Prepare Error for user update", ['error' => mysqli_error($conn)]);
-        $error = "Critical Error: Internal server error.";
     }
 }
 ?>
@@ -110,6 +123,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <form method="POST">
                                 <?php echo getCsrfField(); ?>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted text-uppercase">System Username</label>
+                                    <div class="input-group-modern">
+                                        <input type="text" name="username" class="form-control bg-light border-0 shadow-sm p-3" 
+                                            value="<?php echo htmlspecialchars($user['username']); ?>" required>
+                                    </div>
+                                </div>
                                 <div class="mb-4">
                                     <label class="form-label small fw-bold text-muted text-uppercase">Assigned Access Level</label>
                                     <select name="role" class="form-select bg-light border-0 shadow-sm p-3">

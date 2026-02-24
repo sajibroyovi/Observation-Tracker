@@ -46,6 +46,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <i class="fa-solid fa-gauge"></i> <span>Dashboard</span>
             </a>
         </li>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/users/profile.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/users/profile.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-user-circle"></i> <span>My Profile</span>
+            </a>
+        </li>
         
         <li class="nav-section-title mt-3 mb-2 px-3 small text-uppercase opacity-50">Operational Modules</li>
         
@@ -131,40 +136,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </label>
             </div>
         </div>
-        <a href="javascript:void(0)" onclick="confirmProfessionalLogout('<?php echo BASE_URL; ?>/logout.php')" class="logout-link">
+        <a href="<?php echo BASE_URL; ?>/logout.php" class="logout-link">
             <i class="fa-solid fa-power-off"></i> <span>LOGOUT</span>
         </a>
     </div>
 </div>
 
-<!-- Professional Exit Transition Overlay -->
-<div id="professionalLogoutOverlay">
-    <div class="exit-brand-logo">
-        <div class="mb-4" style="width: 120px; height: 120px; background: white; border-radius: 20px; overflow: hidden; padding: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 0 auto 24px;">
-             <img src="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png" alt="bKash Logo" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <h4 class="fw-bold mb-1" style="font-size: 2.5rem; color: var(--bkash-pink); letter-spacing: -1px;">SHIFT FLOW</h4>
-        <p class="small opacity-75" style="font-size: 1.1rem; color: #64748b">Signing you out safely...</p>
-    </div>
-</div>
- 
-<script>
-function confirmProfessionalLogout(url) {
-    const overlay = document.getElementById('professionalLogoutOverlay');
-    document.body.classList.add('fade-out-app');
-    
-    overlay.style.display = 'flex';
-    
-    // Trigger transition
-    setTimeout(() => {
-        overlay.classList.add('active');
-    }, 10);
-    
-    // Smooth redirect
-    setTimeout(() => {
-        window.location.href = url;
-    }, 1600);
-}
-</script>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <script src="<?php echo ASSETS_URL; ?>/js/search.js"></script>

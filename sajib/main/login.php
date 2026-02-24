@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Shift Flow Portal</title>
+    <title>Login - Observation Tracker Portal</title>
     <link rel="icon" type="image/png" href="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
@@ -269,8 +269,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="brand-logo" style="background: white; border: 2px solid var(--bkash-pink); overflow: hidden; padding: 0;">
                 <img src="<?php echo ASSETS_URL; ?>/uploads/bkash_logo.png" alt="bKash Logo" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <h2>Shift Flow</h2>
-            <p class="subtitle">Operational Management Portal</p>
+            <h2>Observation Tracker</h2>
+            <p class="subtitle">Detailed L1 and L2 operational observations and insights</p>
 
             <?php if ($error): ?>
                 <div class="error-toast">
@@ -305,7 +305,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         
         <div class="text-center mt-4">
-            <p style="color: #64748b; font-size: 13px;">&copy; <?php echo date('Y'); ?> Shift Flow. All rights reserved.</p>
+            <p style="color: #64748b; font-size: 13px;">&copy; <?php echo date('Y'); ?> Observation Tracker. All rights reserved.</p>
         </div>
     </div>
 </body>
