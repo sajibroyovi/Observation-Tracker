@@ -232,11 +232,13 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                                 <div class='d-flex gap-2'>";
                                     
                                     if (!empty($row['l1_image'])) {
-                                        echo "<img src='" . ASSETS_URL . "/" . e($row['l1_image']) . "' class='img-thumbnail rounded-3 shadow-sm' style='width: 35px; height: 35px; object-fit: cover; cursor: pointer;' data-bs-toggle='modal' data-bs-target='#floatModal1_" . (int)$row['serial_no'] . "'>";
+                                        $l1_image_path = ASSETS_URL . '/' . ltrim($row['l1_image'], '/');
+                                        echo "<img src='" . e($l1_image_path) . "' class='img-thumbnail rounded-3 shadow-sm' style='width: 35px; height: 35px; object-fit: cover; cursor: pointer;' data-bs-toggle='modal' data-bs-target='#floatModal1_" . (int)$row['serial_no'] . "'>";
                                     }
                                     
                                     if (!empty($row['l1_image_2'])) {
-                                        echo "<img src='" . ASSETS_URL . "/" . e($row['l1_image_2']) . "' class='img-thumbnail rounded-3 shadow-sm' style='width: 35px; height: 35px; object-fit: cover; cursor: pointer;' data-bs-toggle='modal' data-bs-target='#floatModal2_" . (int)$row['serial_no'] . "'>";
+                                        $l1_image_2_path = ASSETS_URL . '/' . ltrim($row['l1_image_2'], '/');
+                                        echo "<img src='" . e($l1_image_2_path) . "' class='img-thumbnail rounded-3 shadow-sm' style='width: 35px; height: 35px; object-fit: cover; cursor: pointer;' data-bs-toggle='modal' data-bs-target='#floatModal2_" . (int)$row['serial_no'] . "'>";
                                     }
                                     
                                     if (empty($row['l1_image']) && empty($row['l1_image_2'])) {
@@ -407,10 +409,12 @@ function truncate_chars($text, $limit = 50, $default = "") {
                           <label class='small text-muted fw-bold text-uppercase d-block mb-3'>Evidence Images</label>
                           <div class='row g-2'>";
             if (!empty($row['l1_image'])) {
-                echo "<div class='col-6'><img src='" . ASSETS_URL . "/" . e($row['l1_image']) . "' class='img-fluid rounded border shadow-sm' style='cursor: pointer;' onclick='window.open(\"" . ASSETS_URL . "/" . e($row['l1_image']) . "\", \"_blank\")'></div>";
+                $l1_img = ASSETS_URL . '/' . ltrim($row['l1_image'], '/');
+                echo "<div class='col-6'><img src='" . e($l1_img) . "' class='img-fluid rounded border shadow-sm' style='cursor: pointer;' onclick='window.open(\"" . e($l1_img) . "\", \"_blank\")'></div>";
             }
             if (!empty($row['l1_image_2'])) {
-                echo "<div class='col-6'><img src='" . ASSETS_URL . "/" . e($row['l1_image_2']) . "' class='img-fluid rounded border shadow-sm' style='cursor: pointer;' onclick='window.open(\"" . ASSETS_URL . "/" . e($row['l1_image_2']) . "\", \"_blank\")'></div>";
+                $l1_img2 = ASSETS_URL . '/' . ltrim($row['l1_image_2'], '/');
+                echo "<div class='col-6'><img src='" . e($l1_img2) . "' class='img-fluid rounded border shadow-sm' style='cursor: pointer;' onclick='window.open(\"" . e($l1_img2) . "\", \"_blank\")'></div>";
             }
             if (empty($row['l1_image']) && empty($row['l1_image_2'])) {
                 echo "<div class='col-12 text-center py-4 bg-light rounded text-muted'><i class='fa-solid fa-image-slash d-block h3 mb-2 opacity-25'></i>No Evidence Provided</div>";
@@ -438,7 +442,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                            </div>
                            <div class='modal-body text-center p-3'>
-                               <img src='" . ASSETS_URL . "/" . e($row['l1_image']) . "' class='img-fluid rounded shadow-lg'>
+                               <img src='" . e(ASSETS_URL . "/" . ltrim($row['l1_image'], "/")) . "' class='img-fluid rounded shadow-lg'>
                            </div>
                        </div>
                    </div>
@@ -454,7 +458,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                            </div>
                            <div class='modal-body text-center p-3'>
-                               <img src='" . ASSETS_URL . "/" . e($row['l1_image_2']) . "' class='img-fluid rounded shadow-lg'>
+                               <img src='" . e(ASSETS_URL . "/" . ltrim($row['l1_image_2'], "/")) . "' class='img-fluid rounded shadow-lg'>
                            </div>
                        </div>
                    </div>

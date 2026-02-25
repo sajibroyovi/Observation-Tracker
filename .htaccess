@@ -1,5 +1,31 @@
+# Consolidated .htaccess - Observation Tracker
+Options -Indexes
+DirectoryIndex index.php
+
 <IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteCond %{REQUEST_URI} !^/sajib/main/
-    RewriteRule ^(.*)$ /sajib/main/$1 [L]
+    RewriteEngine On
+    
+    # Set the base to the project root
+    RewriteBase /sajib/
+
+    # 1. External Redirect: Remove .php from URLs (Clean URLs)
+    # Applied to requests that explicitly include .php
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/sajib/sajib/([^.]+)\.php [NC]
+    RewriteRule ^sajib/([^.]+)\.php$ sajib/$1 [R=301,L]
+
+    # 2. External Redirect: Redirect root and /sajib/ to the main module
+    RewriteRule ^$ sajib/main/ [R=301,L]
+    RewriteRule ^sajib/$ sajib/main/ [R=301,L]
+
+    # 3. Internal Rewrite: Handle Extensionless PHP files
+    # If the requested name doesn't exist as a file or dir, but exists as .php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+)$ $1.php [L,QSA]
+
+    # Fallback for deep-linked paths in the main module
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^sajib/main/([A-Za-z0-9_-]+)$ sajib/main/$1.php [L,QSA]
+
 </IfModule>

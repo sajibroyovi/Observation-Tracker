@@ -361,7 +361,7 @@ mysqli_close($conn);
                                                 <?php for($i=1; $i<=2; $i++): $img_key = ($i==1) ? 'l1_image' : 'l1_image_2'; ?>
                                                     <?php if (!empty($row[$img_key])): ?>
                                                         <div class="image-preview-slot" id="container_image_<?php echo $i; ?>">
-                                                            <img src="<?= ASSETS_URL ?>/<?php echo htmlspecialchars($row[$img_key]); ?>" alt="Evidence <?php echo $i; ?>">
+                                                            <img src="<?= e(ASSETS_URL . '/' . ltrim($row[$img_key], '/')) ?>" alt="Evidence <?php echo $i; ?>">
                                                             <?php if (canEditL1()): ?>
                                                                 <div class="overlay-btn">
                                                                     <button type="button" class="btn btn-danger btn-sm rounded-circle px-2" onclick="toggleRemove(<?php echo $i; ?>)" id="remove_btn_<?php echo $i; ?>">
