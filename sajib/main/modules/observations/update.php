@@ -406,8 +406,8 @@ mysqli_close($conn);
 
                                     <?php if (canEditL2()): ?>
                                         <div class="col-12">
-                                            <label class="form-label small fw-bold text-muted text-uppercase">L2 Recommendation / Validation</label>
-                                            <textarea class="form-control border-info bg-info bg-opacity-5 p-3" name="l2_observation" rows="4" placeholder="Enter L2 analyst feedback here..."><?php echo htmlspecialchars($row['l2_observation'] ?? ''); ?></textarea>
+                                            
+                                            <textarea class="form-control border-info bg-opacity-5 p-3" name="l2_observation" rows="4" placeholder="Enter L2 analyst feedback here..."><?php echo htmlspecialchars($row['l2_observation'] ?? ''); ?></textarea>
                                         </div>
                                         <input type="hidden" name="existing_l2_by" value="<?php echo htmlspecialchars($row['l2_observations_by'] ?? ''); ?>">
                                     <?php else: ?>
