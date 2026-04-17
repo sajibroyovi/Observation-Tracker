@@ -35,6 +35,18 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+// Fetch L2 users for technician assignment
+$l2_users_sql = "SELECT username FROM users WHERE role = 'l2' ORDER BY username ASC";
+$l2_users_stmt = executePreparedStatement($conn, $l2_users_sql);
+$l2_users_result = $l2_users_stmt ? mysqli_stmt_get_result($l2_users_stmt) : false;
+$l2_users = [];
+if ($l2_users_result) {
+    while ($u = mysqli_fetch_assoc($l2_users_result)) {
+        $l2_users[] = $u['username'];
+    }
+}
+if ($l2_users_stmt) mysqli_stmt_close($l2_users_stmt);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
     if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
@@ -54,10 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $team_names = isset($_POST['team_name']) ? implode(', ', $_POST['team_name']) : '';
         $team_name = cleanInput($team_names);
         $start_date = cleanInput($_POST['start_date']);
+        $technician_name = cleanInput($_POST['technician_name']);
         $l1_observation = cleanInput($_POST['l1_observation']);
 
         $fields[] = "observation_names = ?";
         $params[] = $observation_names;
+        $types .= "s";
+
+        $fields[] = "technician_name = ?";
+        $params[] = $technician_name;
         $types .= "s";
 
         $fields[] = "team_name = ?";
@@ -190,7 +207,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -275,8 +291,8 @@ mysqli_close($conn);
                                     </div>
 
                                     <div class="row g-4">
-                                        <div class="col-md-5">
-                                            <label class="form-label small fw-bold text-muted text-uppercase">Observation Category / Name</label>
+                                        <div class="col-md-7">
+                                            <label class="form-label small fw-bold text-muted text-uppercase">Observation Name</label>
                                             <?php if (canEditL1()): ?>
                                                 <input type="text" class="form-control bg-light border-0 p-3" name="observation_names" 
                                                     value="<?php echo htmlspecialchars($row['observation_names']); ?>" required>
@@ -284,9 +300,22 @@ mysqli_close($conn);
                                                 <div class="p-3 bg-light border-0 rounded-3 text-dark"><?php echo htmlspecialchars($row['observation_names']); ?></div>
                                             <?php endif; ?>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label small fw-bold text-muted text-uppercase">Team Name</label>
+                                        <div class="col-md-5">
+                                            <label class="form-label small fw-bold text-muted text-uppercase">Timestamp</label>
                                             <?php if (canEditL1()): ?>
+                                                <input type="datetime-local" class="form-control bg-light border-0 p-3" name="start_date" 
+                                                    value="<?php echo date('Y-m-d\TH:i', strtotime($row['start_date'])); ?>" required>
+                                            <?php else: ?>
+                                                <div class="p-3 bg-light border-0 rounded-3 text-dark"><?php echo date('d M, Y H:i', strtotime($row['start_date'])); ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-4 mt-2">
+                                        <div class="col-md-12">
+                                            <label class="form-label small fw-bold text-muted text-uppercase">Impacted Teams</label>
+                                            <?php if (canEditL1()): ?>
+                                                <!-- Team selection code remains here -->
                                                 <div class="dropdown custom-team-dropdown">
                                                     <button class="btn btn-white border w-100 text-start d-flex justify-content-between align-items-center py-3 px-3 rounded-3 shadow-sm dropdown-toggle" type="button" id="teamDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                                         <span id="teamDropdownLabel">Select Teams</span>
@@ -337,6 +366,48 @@ mysqli_close($conn);
                                                 </div>
                                             <?php endif; ?>
                                         </div>
+                                        
+                                        <!-- Assigned Technician Below Teams -->
+                                        <div class="col-12 mt-3">
+                                            <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-user-gear me-1"></i> Assigned Technician (L2)</label>
+                                            <?php if (canEditL1()): ?>
+                                                <div class="dropdown custom-technician-dropdown">
+                                                    <button class="btn btn-white border w-100 text-start d-flex justify-content-between align-items-center py-3 px-3 rounded-3 shadow-none dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: #f8f9fa;">
+                                                        <span class="tech-dropdown-label"><?= !empty($row['technician_name']) ? e($row['technician_name']) : 'Select Technician from L2 Roster' ?></span>
+                                                    </button>
+                                                    <div class="dropdown-menu w-100 p-2 shadow-lg border-0 rounded-4 mt-2" style="max-height: 350px; overflow-y: auto; background: rgba(255,255,255,0.98); backdrop-filter: blur(15px);">
+                                                        <div class="px-3 py-2 border-bottom mb-2">
+                                                            <input type="text" class="form-control form-control-sm border-0 bg-light rounded-pill px-3 tech-search-field" placeholder="Search by name..." autocomplete="off">
+                                                        </div>
+                                                        <div class="tech-list-container">
+                                                            <?php if (empty($l2_users)): ?>
+                                                                <div class="dropdown-item p-3 text-muted small italic text-center">No L2 Analyst found</div>
+                                                            <?php else: ?>
+                                                                <?php foreach ($l2_users as $uname): ?>
+                                                                    <?php $isSelected = ($row['technician_name'] === $uname); ?>
+                                                                    <div class="dropdown-item p-3 rounded transition-all tech-item d-flex justify-content-between align-items-center mb-1 <?= $isSelected ? 'bg-primary-soft text-primary' : '' ?>" style="cursor: pointer;" data-value="<?= e($uname) ?>">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="avatar-sm bg-primary-soft text-primary rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; font-size: 10px;">
+                                                                                <i class="fa-solid fa-user"></i>
+                                                                            </div>
+                                                                            <span class="small fw-medium"><?= e($uname) ?></span>
+                                                                        </div>
+                                                                        <i class="fa-solid fa-circle-check check-icon text-success <?= $isSelected ? '' : 'opacity-0' ?>"></i>
+                                                                    </div>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="technician_name" class="selected-tech-input" value="<?= e($row['technician_name'] ?? '') ?>">
+                                                </div>
+                                            <?php else: ?>
+                                                <div class="p-3 bg-info bg-opacity-5 border border-info border-opacity-10 rounded-3 text-dark">
+                                                    <i class="fa-solid fa-user-tie me-2 text-info"></i>
+                                                    <span class="fw-bold"><?php echo htmlspecialchars($row['technician_name'] ?: 'Not Assigned'); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                         <div class="col-md-3">
                                             <label class="form-label small fw-bold text-muted text-uppercase">Timestamp</label>
                                             <?php if (canEditL1()): ?>

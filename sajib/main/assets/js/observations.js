@@ -108,6 +108,85 @@ function initializeTeamSelection() {
 }
 
 // ============================================================================
+// TECHNICIAN SELECTION FUNCTIONALITY
+// ============================================================================
+
+/**
+ * Initialize the technician selection dropdown with search filtering
+ * Handles single selection UI and search functionality
+ */
+function initializeTechnicianSelection() {
+    // Handle both Add Modal and Update Page by using class-based lookups
+    const dropdownContainers = document.querySelectorAll('.custom-technician-dropdown');
+    
+    dropdownContainers.forEach(container => {
+        const searchInput = container.querySelector('.tech-search-field');
+        const listContainer = container.querySelector('.tech-list-container');
+        const techItems = container.querySelectorAll('.tech-item');
+        const label = container.querySelector('.tech-dropdown-label');
+        const hiddenInput = container.querySelector('.selected-tech-input');
+        
+        if (!techItems.length) return;
+
+        // Search logic
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                e.stopPropagation();
+                const query = this.value.toLowerCase().trim();
+                
+                techItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.setProperty('display', 'flex', 'important');
+                    } else {
+                        item.style.setProperty('display', 'none', 'important');
+                    }
+                });
+            });
+            // Stop search clicks from closing dropdown
+            searchInput.addEventListener('click', e => e.stopPropagation());
+        }
+
+        // Selection logic
+        techItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const value = this.getAttribute('data-value');
+                const displayName = this.querySelector('span') ? this.querySelector('span').textContent : value;
+                
+                // Clear state ONLY for this dropdown container
+                techItems.forEach(ti => {
+                    ti.classList.remove('bg-primary-soft', 'text-primary');
+                    const icon = ti.querySelector('.check-icon');
+                    if (icon) icon.classList.add('opacity-0');
+                });
+                
+                // Active selection
+                this.classList.add('bg-primary-soft', 'text-primary');
+                const icon = this.querySelector('.check-icon');
+                if (icon) icon.classList.remove('opacity-0');
+                
+                // Set data
+                if (label) label.textContent = displayName;
+                if (hiddenInput) {
+                    hiddenInput.value = value;
+                    hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+
+                // Close dropdown
+                const toggle = container.querySelector('[data-bs-toggle="dropdown"]');
+                if (toggle && typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+                    const bsDropdown = bootstrap.Dropdown.getInstance(toggle) || new bootstrap.Dropdown(toggle);
+                    bsDropdown.hide();
+                }
+            });
+        });
+    });
+}
+
+// ============================================================================
 // IMAGE UPLOAD VALIDATION
 // ============================================================================
 
@@ -169,8 +248,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.team-item')) {
         initializeTeamSelection();
     }
+    // Initialize technician selection if elements exist
+    if (document.querySelector('.tech-item')) {
+        initializeTechnicianSelection();
+    }
 });
 
 // Export functions for global access
 window.validateImageCount = validateImageCount;
 window.initializeTeamSelection = initializeTeamSelection;
+window.initializeTechnicianSelection = initializeTechnicianSelection;

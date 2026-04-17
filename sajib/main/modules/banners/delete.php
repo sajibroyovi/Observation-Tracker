@@ -18,6 +18,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'promo_banner', 'serial_no', $id, 'Promo Banners');
+
     $sql = "DELETE FROM promo_banner WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

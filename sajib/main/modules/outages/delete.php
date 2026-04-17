@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'service_outage', 'serial_no', $id, 'Service Outages');
+
     $sql = "DELETE FROM service_outage WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

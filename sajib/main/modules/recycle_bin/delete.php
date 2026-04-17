@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
 
-
+// Only Super Admins can hard delete
 if (!isSuperAdmin()) {
     header("Location: view?error=unauthorized");
     exit;
@@ -12,15 +12,12 @@ if (isset($_GET['id'])) {
     
     // CSRF check
     if (isset($_GET['csrf_token']) && !validateCsrfToken($_GET['csrf_token'])) {
-        log_error("CSRF token validation failed for delete attempt on enable_disable", ['id' => $id]);
+        log_error("CSRF token validation failed for delete attempt on recycle bin", ['id' => $id]);
         header("Location: view?error=csrf");
         exit;
     }
 
-    // Move to Recycle Bin before deleting
-    moveToRecycleBin($conn, 'enable_disable', 'serial_no', $id, 'ED Dashboard');
-
-    $sql = "DELETE FROM enable_disable WHERE serial_no = ?";
+    $sql = "DELETE FROM recycle_bin WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     
     if ($stmt) {
@@ -28,12 +25,12 @@ if (isset($_GET['id'])) {
         if (mysqli_stmt_execute($stmt)) {
             header("Location: view?msg=deleted");
         } else {
-            log_error("Failed to delete record from enable_disable", ['id' => $id, 'error' => mysqli_stmt_error($stmt)]);
+            log_error("Failed to delete record from recycle_bin", ['id' => $id, 'error' => mysqli_stmt_error($stmt)]);
             header("Location: view?msg=error");
         }
         mysqli_stmt_close($stmt);
     } else {
-        log_error("Failed to prepare delete statement for enable_disable", ['error' => mysqli_error($conn)]);
+        log_error("Failed to prepare delete statement for recycle_bin", ['error' => mysqli_error($conn)]);
         header("Location: view?msg=error");
     }
 } else {
@@ -42,5 +39,3 @@ if (isset($_GET['id'])) {
 
 mysqli_close($conn);
 exit;
-
-

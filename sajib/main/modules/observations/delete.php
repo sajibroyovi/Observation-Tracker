@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'observations', 'serial_no', $id, 'Observations');
+
     $sql = "DELETE FROM observations WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

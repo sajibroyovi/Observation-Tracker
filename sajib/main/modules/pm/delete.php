@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'pending_mail', 'serial_no', $id, 'Pending Mails');
+
     $sql = "DELETE FROM pending_mail WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

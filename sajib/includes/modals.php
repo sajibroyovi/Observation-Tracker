@@ -351,6 +351,18 @@
     </div>
 
     <!-- Operational Observation Modal -->
+    <?php
+    $l2_users_sql = "SELECT username FROM users WHERE role = 'l2' ORDER BY username ASC";
+    $l2_users_stmt = executePreparedStatement($conn, $l2_users_sql);
+    $l2_users_result = $l2_users_stmt ? mysqli_stmt_get_result($l2_users_stmt) : false;
+    $l2_users = [];
+    if ($l2_users_result) {
+        while ($u = mysqli_fetch_assoc($l2_users_result)) {
+            $l2_users[] = $u['username'];
+        }
+    }
+    if ($l2_users_stmt) mysqli_stmt_close($l2_users_stmt);
+    ?>
     <div class="modal fade" id="staticBackdrop_observations" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-2xl rounded-4 overflow-hidden">
@@ -376,8 +388,8 @@
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-md-7">
-                                        <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-signature me-1"></i> Observation Name / Category</label>
-                                        <input type="text" class="form-control border-0 bg-light p-3 rounded-3" name="observation_names" placeholder="e.g. Server Room Health Check" required>
+                                        <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-signature me-1"></i> Observation Name</label>
+                                        <input type="text" class="form-control border-0 bg-light p-3 rounded-3" name="observation_names" placeholder="e.g. Health Check" required>
                                     </div>
                                     <div class="col-md-5">
                                         <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-calendar-alt me-1"></i> Date & Time</label>
@@ -432,6 +444,38 @@
                                     <div id="selectedTeamsContainer" class="d-flex flex-wrap gap-2 mt-3">
                                         <!-- Badges will be injected here -->
                                         <span class="text-muted small italic opacity-50" id="noTeamsPlaceholder">No teams assigned yet.</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <label class="form-label small fw-bold text-muted text-uppercase mb-2"><i class="fa-solid fa-user-gear me-1"></i> Assigned Technician (L2)</label>
+                                    <div class="dropdown custom-technician-dropdown">
+                                        <button class="btn btn-white border w-100 text-start d-flex justify-content-between align-items-center py-3 px-3 rounded-3 shadow-none dropdown-toggle" type="button" id="techDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: #f8f9fa;">
+                                            <span id="techDropdownLabel" class="tech-dropdown-label">Select Technician from L2 Roster</span>
+                                        </button>
+                                        <div class="dropdown-menu w-100 p-2 shadow-lg border-0 rounded-4 mt-2" aria-labelledby="techDropdown" style="max-height: 350px; overflow-y: auto; background: rgba(255,255,255,0.98); backdrop-filter: blur(15px);">
+                                            <div class="px-3 py-2 border-bottom mb-2">
+                                                <input type="text" class="form-control form-control-sm border-0 bg-light rounded-pill px-3 tech-search-field" placeholder="Search by name..." autocomplete="off">
+                                            </div>
+                                            <div class="tech-list-container">
+                                                <?php if (empty($l2_users)): ?>
+                                                    <div class="dropdown-item p-3 text-muted small italic text-center">No L2 Analyst registered</div>
+                                                <?php else: ?>
+                                                    <?php foreach ($l2_users as $uname): ?>
+                                                        <div class="dropdown-item p-3 rounded transition-all tech-item d-flex justify-content-between align-items-center mb-1" style="cursor: pointer;" data-value="<?= e($uname) ?>">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar-sm bg-primary-soft text-primary rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; font-size: 10px;">
+                                                                    <i class="fa-solid fa-user"></i>
+                                                                </div>
+                                                                <span class="small fw-medium"><?= e($uname) ?></span>
+                                                            </div>
+                                                            <i class="fa-solid fa-circle-check check-icon opacity-0 text-success"></i>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="technician_name" id="selectedTechnician" class="selected-tech-input" value="">
                                     </div>
                                 </div>
                             </div>

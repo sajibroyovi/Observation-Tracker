@@ -576,3 +576,61 @@ function generateUniqueFilename($original_name) {
     $unique = uniqid() . '_' . time();
     return $filename . '_' . $unique . '.' . $extension;
 }
+
+/**
+ * Safely move a record to the recycle bin before deletion
+ * 
+ * @param mysqli $conn Database connection
+ * @param string $table_name Source table name
+ * @param string $id_column Primary key column name
+ * @param int|string $id_value Primary key value
+ * @param string $module_name Human readable module name
+ * @return bool True if successful, false otherwise
+ */
+function moveToRecycleBin($conn, $table_name, $id_column, $id_value, $module_name) {
+    if (!$conn) return false;
+
+    // 1. Fetch the existing record
+    $fetch_sql = "SELECT * FROM `$table_name` WHERE `$id_column` = ?";
+    $stmt = mysqli_prepare($conn, $fetch_sql);
+    
+    if (!$stmt) {
+        log_error("Recycle Bin Error: Failed to prepare fetch statement", ["table" => $table_name, "error" => mysqli_error($conn)]);
+        return false;
+    }
+    
+    $type = is_numeric($id_value) ? "i" : "s";
+    mysqli_stmt_bind_param($stmt, $type, $id_value);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if (!$result || mysqli_num_rows($result) === 0) {
+        log_error("Recycle Bin Error: Record not found to backup", ["table" => $table_name, "id" => $id_value]);
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+    $data_payload = json_encode($row);
+    mysqli_stmt_close($stmt);
+    
+    // 2. Insert into recycle_bin
+    $deleted_by = $_SESSION['username'] ?? 'System';
+    $insert_sql = "INSERT INTO recycle_bin (module_name, table_name, original_id, data_payload, deleted_by) VALUES (?, ?, ?, ?, ?)";
+    $insert_stmt = mysqli_prepare($conn, $insert_sql);
+    
+    if (!$insert_stmt) {
+        log_error("Recycle Bin Error: Failed to prepare insert statement", ["error" => mysqli_error($conn)]);
+        return false;
+    }
+    
+    mysqli_stmt_bind_param($insert_stmt, "ssiss", $module_name, $table_name, $id_value, $data_payload, $deleted_by);
+    $success = mysqli_stmt_execute($insert_stmt);
+    
+    if (!$success) {
+        log_error("Recycle Bin Error: Failed to insert backup", ["error" => mysqli_stmt_error($insert_stmt)]);
+    }
+    
+    mysqli_stmt_close($insert_stmt);
+    return $success;
+}

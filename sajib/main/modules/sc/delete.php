@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'security_mail', 'serial_no', $id, 'Security Tasks');
+
     $sql = "DELETE FROM security_mail WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

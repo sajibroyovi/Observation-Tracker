@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'campaign', 'serial_no', $id, 'Campaigns');
+
     $sql = "DELETE FROM campaign WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

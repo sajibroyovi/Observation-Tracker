@@ -29,6 +29,7 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
         $team_names = isset($_POST['team_name']) ? implode(', ', $_POST['team_name']) : '';
         $team_name = cleanInput($team_names);
         $start_date = cleanInput($_POST['start_date']);
+        $technician_name = cleanInput($_POST['technician_name']);
         $l1_observation = cleanInput($_POST['l1_observation']);
 
         // Automate L1 By
@@ -94,14 +95,15 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
 
         // Insert into observations table using prepared statements
         $created_by = $_SESSION['username'];
-        $sql = "INSERT INTO observations (observation_names, team_name, start_date, l1_observation, l1_image, l1_image_2, l1_observations_by, l2_observation, l2_observations_by, created_by) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO observations (observation_names, team_name, technician_name, start_date, l1_observation, l1_image, l1_image_2, l1_observations_by, l2_observation, l2_observations_by, created_by) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssssssssss", 
+            mysqli_stmt_bind_param($stmt, "sssssssssss", 
                 $observation_names, 
                 $team_name, 
+                $technician_name,
                 $start_date, 
                 $l1_observation, 
                 $l1_image_path, 

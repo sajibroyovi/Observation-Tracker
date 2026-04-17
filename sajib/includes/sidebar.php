@@ -123,6 +123,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <i class="fa-solid fa-users-cog"></i> <span>Manage Users</span>
                 </a>
             </li>
+            <li>
+                <a href="<?php echo BASE_URL; ?>/modules/recycle_bin/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/recycle_bin/view.php') !== false) ? 'active' : ''; ?>">
+                    <i class="fa-solid fa-trash-can-arrow-up text-danger"></i> <span>Recycle Bin</span>
+                </a>
+            </li>
         <?php endif; ?>
     </ul>
 

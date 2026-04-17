@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'cr_list', 'serial_no', $id, 'Change Requests');
+
     $sql = "DELETE FROM cr_list WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

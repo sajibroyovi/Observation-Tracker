@@ -32,14 +32,15 @@ if (!empty($_GET['status'])) {
 
 if (!empty($_GET['search'])) {
     $searchTerm = "%" . $_GET['search'] . "%";
-    $where .= " AND (observation_names LIKE ? OR team_name LIKE ? OR l1_observation LIKE ? OR l2_observation LIKE ? OR l1_observations_by LIKE ? OR l2_observations_by LIKE ?)";
+    $where .= " AND (observation_names LIKE ? OR team_name LIKE ? OR technician_name LIKE ? OR l1_observation LIKE ? OR l2_observation LIKE ? OR l1_observations_by LIKE ? OR l2_observations_by LIKE ?)";
     $filter_params[] = $searchTerm;
     $filter_params[] = $searchTerm;
     $filter_params[] = $searchTerm;
     $filter_params[] = $searchTerm;
     $filter_params[] = $searchTerm;
     $filter_params[] = $searchTerm;
-    $filter_types .= "ssssss";
+    $filter_params[] = $searchTerm;
+    $filter_types .= "sssssss";
 }
 
 // Count total records with filters
@@ -174,6 +175,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                 <tr>
                                     <th class="ps-4">#</th>
                                     <th style="width: 200px;">Observation</th>
+                                    <th>Technician</th>
                                     <th>Team</th>
                                     <th>L1 Observation</th>
                                     <th>L2 Observation</th>
@@ -214,6 +216,9 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                             <td>
                                                 <div class='fw-bold' title='" . e($row["observation_names"] ?? "") . "'>" . e(truncate_chars($row["observation_names"] ?? "", 30, "N/A")) . "</div>
                                                 <div class='text-muted' style='font-size: 0.7rem;'><i class='fa-solid fa-calendar-days me-1 scale-80'></i> " . ($row["start_date"] ? date('d M, Y h:i A', strtotime($row['start_date'])) : 'N/A') . "</div>
+                                            </td>
+                                            <td>
+                                                <div class='text-dark fw-medium small'><i class='fa-solid fa-user-gear me-1 text-muted'></i> " . e($row['technician_name'] ?: 'N/A') . "</div>
                                             </td>
                                             <td>
                                                 <div class='d-flex flex-column gap-1'>
@@ -338,8 +343,6 @@ function truncate_chars($text, $limit = 50, $default = "") {
 
                 echo '</ul></nav>';
             }
-
-            mysqli_close($conn);
             ?>
             </div>
         </div>
@@ -390,8 +393,11 @@ function truncate_chars($text, $limit = 50, $default = "") {
                             <div class='text-muted small'><i class='fa-solid fa-calendar me-1'></i> " . ($row['start_date'] ? date('d M, Y h:i A', strtotime($row['start_date'])) : 'N/A') . "</div>
                           </div>
                           <div class='mb-4'>
-                            <label class='small text-muted fw-bold text-uppercase d-block mb-1'>Assigned Teams</label>
-                            <div class='d-flex flex-wrap gap-2 mt-1'>" . $team_badges_html . "</div>
+                            <label class='small text-muted fw-bold text-uppercase d-block mb-1'>Assigned Details</label>
+                            <div class='d-flex flex-wrap gap-2 mt-1'>
+                                <span class='badge bg-light text-dark border px-3 py-2 rounded-pill'><i class='fa-solid fa-user-gear me-1 text-primary'></i> Technician: " . e($row['technician_name'] ?: 'None') . "</span>
+                                " . $team_badges_html . "
+                            </div>
                           </div>
                           <div class='mb-4'>
                             <div class='p-3 rounded bg-light border-start border-4 border-primary'>

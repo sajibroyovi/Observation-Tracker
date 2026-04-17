@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         exit;
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'ssl_certificate', 'serial_no', $id, 'SSL Certificates');
+
     $sql = "DELETE FROM ssl_certificate WHERE serial_no = ?";
     $stmt = mysqli_prepare($conn, $sql);
     

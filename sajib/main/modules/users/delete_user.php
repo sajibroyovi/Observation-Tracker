@@ -30,6 +30,9 @@ if (isset($_GET['id'])) {
         exit();
     }
 
+    // Move to Recycle Bin before deleting
+    moveToRecycleBin($conn, 'users', 'id', $id, 'System Users');
+
     $stmt_delete = mysqli_prepare($conn, "DELETE FROM users WHERE id = ?");
     mysqli_stmt_bind_param($stmt_delete, "i", $id);
 
