@@ -1,11 +1,13 @@
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
+<?php
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer-6.8.0/src/Exception.php';
-require 'PHPMailer-6.8.0/src/PHPMailer.php';
-require 'PHPMailer-6.8.0/src/SMTP.php';
+require_once ROOT_PATH . '/vendor/PHPMailer-6.8.0/src/Exception.php';
+require_once ROOT_PATH . '/vendor/PHPMailer-6.8.0/src/PHPMailer.php';
+require_once ROOT_PATH . '/vendor/PHPMailer-6.8.0/src/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
@@ -59,29 +61,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_table) {
             $result = mysqli_stmt_get_result($stmt_table);
 
-        if ($result && mysqli_num_rows($result) > 0) {
-            $message .= "<table><thead><tr>";
-            foreach ($info['headers'] as $header) {
-                $message .= "<th>" . e($header) . "</th>";
-            }
-            $message .= "</tr></thead><tbody>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                $message .= "<tr>";
-                foreach ($info['fields'] as $field) {
-                    $value = isset($row[$field]) ? $row[$field] : 'N/A';
-                    $message .= "<td>" . e($value) . "</td>";
+            if ($result && mysqli_num_rows($result) > 0) {
+                $message .= "<table><thead><tr>";
+                foreach ($info['headers'] as $header) {
+                    $message .= "<th>" . e($header) . "</th>";
                 }
-                $message .= "</tr>";
+                $message .= "</tr></thead><tbody>";
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $message .= "<tr>";
+                    foreach ($info['fields'] as $field) {
+                        $value = isset($row[$field]) ? $row[$field] : 'N/A';
+                        $message .= "<td>" . e($value) . "</td>";
+                    }
+                    $message .= "</tr>";
+                }
+                $message .= "</tbody></table>";
+            } else {
+                $message .= "<p>No records found for " . e($table) . "</p>";
             }
-            $message .= "</tbody></table>";
-        } else {
-            $message .= "<p>No records found for " . e($table) . "</p>";
-        }
-        if (isset($stmt_table)) {
-            mysqli_stmt_close($stmt_table);
-            unset($stmt_table);
-        }
-    }
+            if (isset($stmt_table)) {
+                mysqli_stmt_close($stmt_table);
+                unset($stmt_table);
+            }
+        } // End if($stmt_table)
+    } // End foreach
 
     $message .= "</body></html>";
 
@@ -101,14 +104,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'impsajibroy@gmail.com'; // Replace with your Gmail address
-        $mail->Password = 'mbxs mvsy fkkg hagm'; // Replace with your Gmail app password
+        $mail->Username = 'impsajibroy@gmail.com'; 
+        $mail->Password = 'mbxs mvsy fkkg hagm'; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('impsajibroy@gmail.com', 'Shift Handover System'); // Replace with your Gmail
-        $mail->addAddress('impsajibroy@gmail.com'); // Recipient
+        $mail->setFrom('impsajibroy@gmail.com', 'Shift Handover System'); 
+        $mail->addAddress('impsajibroy@gmail.com');
 
         // Content
         $mail->isHTML(true);
@@ -122,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         log_error("PHPMailer Error", ['error' => $mail->ErrorInfo]);
         echo "<script>alert('Critical Error: Failed to dispatch shift report.'); window.location.href='../../';</script>";
     }
-}
+} // End if($_SERVER)
 
 mysqli_close($conn);
 ?>

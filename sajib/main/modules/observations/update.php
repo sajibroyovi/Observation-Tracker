@@ -190,6 +190,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, $types, ...$params);
             if (mysqli_stmt_execute($stmt)) {
+                // Send email assignment if technician changed
+                if (isset($technician_name) && !empty($technician_name) && $technician_name !== $row['technician_name']) {
+                    sendAssignmentEmail($conn, $technician_name, $observation_names ?? $row['observation_names'], $team_name ?? $row['team_name']);
+                }
                 echo "<script>alert('Record updated successfully'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
             } else {
                 log_error("Update Error for observations", ['id' => $id, 'error' => mysqli_stmt_error($stmt)]);

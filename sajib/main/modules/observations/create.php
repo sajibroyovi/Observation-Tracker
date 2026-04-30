@@ -115,6 +115,10 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
             );
 
             if (mysqli_stmt_execute($stmt)) {
+                // Send email assignment
+                if (!empty($technician_name)) {
+                    sendAssignmentEmail($conn, $technician_name, $observation_names, $team_name);
+                }
                 header('Location: ' . BASE_URL . '/modules/observations/view?status=success&msg=' . urlencode("Observation record inserted successfully"));
             } else {
                 log_error("Failed to insert observation record", ['error' => mysqli_stmt_error($stmt)]);

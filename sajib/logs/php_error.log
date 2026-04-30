@@ -84,3 +84,458 @@ Stack trace:
 #2 C:\xampp\htdocs\sajib\sajib\main\modules\ssl\view.php(286): include('C:\\xampp\\htdocs...')
 #3 {main}
   thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:17 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:20 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:22 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:25 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:27 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:29 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:32 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:36 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:38 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:40 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:44 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:46 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:49 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:51 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:53 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:55 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:57:58 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:00 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:01 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:04 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:08 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:10 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:13 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:14 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\change_requests\view.php(258): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:17 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\change_requests\view.php(258): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:19 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\change_requests\view.php(258): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:21 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\change_requests\view.php(258): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:23 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:24 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:27 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:29 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:32 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:34 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:36 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\outages\view.php(267): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:37 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:40 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:42 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:44 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:46 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:48 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:51 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:54 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:55 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:58:57 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:00 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:01 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:04 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:06 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:08 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:11 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:13 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:16 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\pm\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:18 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:21 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:23 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:26 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:28 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:30 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:32 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:34 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:37 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:39 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\sc\view.php(281): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:40 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ssl\view.php(286): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 09:59:42 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ssl\view.php(286): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 10:01:28 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157

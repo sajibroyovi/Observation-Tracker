@@ -89,6 +89,7 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                                                     </div>
                                                     <div>
                                                         <div class='fw-bold text-dark'>" . e($row['username']) . "</div>
+                                                        <div class='text-muted' style='font-size: 11px;'><i class='fa-regular fa-envelope me-1'></i>" . (!empty($row['email']) ? e($row['email']) : 'No Email Assigned') . "</div>
                                                         <div class='text-muted' style='font-size: 11px;'>ID: #USR-" . str_pad((int)$row['id'], 3, '0', STR_PAD_LEFT) . "</div>
                                                     </div>
                                                 </div>

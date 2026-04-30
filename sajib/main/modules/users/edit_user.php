@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $username = cleanInput($_POST['username']);
+    $email = cleanInput($_POST['email']);
     $role = cleanInput($_POST['role']);
     $allowed_modules = isset($_POST['modules']) ? implode(',', $_POST['modules']) : '';
     $password = $_POST['password'];
@@ -49,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_close($stmt_check);
     } else {
         mysqli_stmt_close($stmt_check);
-        $fields = ["username = ?", "role = ?", "allowed_modules = ?", "edited_by = ?", "edited_at = NOW()"];
-        $params = [$username, $role, $allowed_modules, $edited_by];
-        $types = "ssss";
+        $fields = ["username = ?", "email = ?", "role = ?", "allowed_modules = ?", "edited_by = ?", "edited_at = NOW()"];
+        $params = [$username, $email, $role, $allowed_modules, $edited_by];
+        $types = "sssss";
 
     if (!empty($password)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -128,6 +129,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="input-group-modern">
                                         <input type="text" name="username" class="form-control bg-light border-0 shadow-sm p-3" 
                                             value="<?php echo htmlspecialchars($user['username']); ?>" required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted text-uppercase">Organization Email</label>
+                                    <div class="input-group-modern">
+                                        <input type="email" name="email" class="form-control bg-light border-0 shadow-sm p-3" 
+                                            value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" placeholder="e.g. j.doe@bkash.com" required>
                                     </div>
                                 </div>
                                 <div class="mb-4">

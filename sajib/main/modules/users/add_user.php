@@ -14,15 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Security Validation Failed: CSRF Token Mismatch.");
     }
     $username = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $role = $_POST['role'] ?? '';
     $allowed_modules = isset($_POST['modules']) ? implode(',', $_POST['modules']) : '';
-    // The following line was redundant and has been removed as per instruction to cleanup.
-    // $password = $_POST['password'] ?? ''; 
 
     // Validations
-    if (empty($username) || empty($password)) {
-        $error = "Username and Password are required.";
+    if (empty($username) || empty($password) || empty($email)) {
+        $error = "Username, Email, and Password are required.";
     } else {
         // Check if username exists using prepared statement
         $stmt_check = mysqli_prepare($conn, "SELECT id FROM users WHERE username = ?");
@@ -36,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $created_by = $_SESSION['username'];
             
-            $stmt_insert = mysqli_prepare($conn, "INSERT INTO users (username, password, role, allowed_modules, created_by) VALUES (?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt_insert, "sssss", $username, $hashed_password, $role, $allowed_modules, $created_by);
+            $stmt_insert = mysqli_prepare($conn, "INSERT INTO users (username, email, password, role, allowed_modules, created_by) VALUES (?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt_insert, "ssssss", $username, $email, $hashed_password, $role, $allowed_modules, $created_by);
 
             if (mysqli_stmt_execute($stmt_insert)) {
                 mysqli_stmt_close($stmt_insert);
@@ -98,6 +97,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="input-group-modern">
                                         <input type="text" name="username" class="form-control bg-light border-0 shadow-sm p-3" 
                                             placeholder="e.g. j.doe" required autofocus>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted text-uppercase">Organization Email</label>
+                                    <div class="input-group-modern">
+                                        <input type="email" name="email" class="form-control bg-light border-0 shadow-sm p-3" 
+                                            placeholder="e.g. j.doe@bkash.com" required>
                                     </div>
                                 </div>
                                 <div class="mb-4">
