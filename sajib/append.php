@@ -49,7 +49,7 @@ function sendAssignmentEmail(\$conn, \$technician_username, \$observation_name) 
         \$mail->Port = 587;
 
         // Recipients
-        \$mail->setFrom('impsajibroy@gmail.com', 'Shift Handover System');
+        \$mail->setFrom('impsajibroy@gmail.com', 'Observation Tracker');
         \$mail->addAddress(\$email);
 
         // Content
@@ -70,7 +70,7 @@ function sendAssignmentEmail(\$conn, \$technician_username, \$observation_name) 
         \$message .= "<li><strong>Observation:</strong> " . htmlspecialchars(\$observation_name) . "</li>";
         \$message .= "<li><strong>Assigned At:</strong> " . date('Y-m-d H:i') . "</li>";
         \$message .= "</ul>";
-        \$message .= "<p>Please log in to the Shift Handover System to review the details and provide an update.</p>";
+        \$message .= "<p>Please log in to the Observation Tracker to review the details and provide an update.</p>";
         \$message .= "<a href='" . BASE_URL . "/modules/observations/view' class='button'>View Observations</a>";
         \$message .= "<p style='margin-top: 30px; font-size: 11px; color: #777;'>This is an automated notification. Please do not reply directly to this email.</p>";
         \$message .= "</div></body></html>";

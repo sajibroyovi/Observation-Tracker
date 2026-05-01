@@ -65,7 +65,11 @@ $result = mysqli_query($conn, $sql);
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                    <?php 
+                                    $modals = [];
+                                    while ($row = mysqli_fetch_assoc($result)): 
+                                        $modals[] = $row;
+                                    ?>
                                         <tr>
                                             <td class="ps-4 fw-bold">#<?= htmlspecialchars($row['original_id']) ?></td>
                                             <td><span class="badge bg-primary bg-opacity-10 text-primary px-2 py-1"><?= htmlspecialchars($row['module_name']) ?></span></td>
@@ -74,34 +78,12 @@ $result = mysqli_query($conn, $sql);
                                             <td class="small text-muted"><i class="fa-regular fa-clock me-1"></i> <?= date('d M, Y h:i A', strtotime($row['deleted_at'])) ?></td>
                                             <td class="text-end pe-4">
                                                 <div class="btn-group shadow-sm rounded">
-                                                    <button class="btn btn-white btn-sm border-end text-success" title="View Payload" data-bs-toggle="modal" data-bs-target="#viewModal_<?= $row['id'] ?>"><i class="fa-solid fa-eye"></i></button>
+                                                    <button class="btn btn-white btn-sm border-end text-success" title="View Details" data-bs-toggle="modal" data-bs-target="#viewModal_<?= $row['id'] ?>"><i class="fa-solid fa-eye"></i></button>
                                                     <a href="restore?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>" class="btn btn-white btn-sm border-end text-info" title="Restore Record" onclick="return confirm('Restore this record to its original module?');"><i class="fa-solid fa-rotate-left"></i></a>
                                                     <a href="delete?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>" class="btn btn-white btn-sm text-danger" title="Permanently Delete" onclick="return confirm('WARNING: This will permanently eradicate the record. Continue?');"><i class="fa-solid fa-eraser"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
-
-                                        <!-- View Payload Modal -->
-                                        <div class="modal fade" id="viewModal_<?= $row['id'] ?>" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                <div class="modal-content border-0 shadow-lg">
-                                                    <div class="modal-header bg-danger text-white py-3">
-                                                        <h5 class="modal-title fw-bold"><i class="fa-solid fa-file-code me-2"></i> Raw Data Payload</h5>
-                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body p-4 bg-light">
-                                                        <?php
-                                                            $payloadDecoded = json_decode($row['data_payload'], true);
-                                                            $prettyPayload = $payloadDecoded ? json_encode($payloadDecoded, JSON_PRETTY_PRINT) : $row['data_payload'];
-                                                        ?>
-                                                        <pre class="bg-dark text-success p-3 rounded font-monospace" style="max-height: 400px; overflow-y: auto; font-size: 0.8rem;"><?= htmlspecialchars($prettyPayload) ?></pre>
-                                                    </div>
-                                                    <div class="modal-footer border-0">
-                                                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <?php endwhile; ?>
                                 </tbody>
                             </table>
@@ -124,11 +106,61 @@ $result = mysqli_query($conn, $sql);
                     }
                     echo '</ul></nav>';
                 }
-                mysqli_close($conn);
                 ?>
             </div>
         </div>
     </div>
+
+    <!-- Modals defined at end to avoid backdrop issues -->
+    <?php foreach ($modals as $row): ?>
+        <div class="modal fade" id="viewModal_<?= $row['id'] ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg">
+                    <div class="modal-header bg-white border-bottom py-3">
+                        <h5 class="modal-title fw-bold text-dark"><i class="fa-solid fa-database text-primary me-2"></i> Record Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped mb-0">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th class="ps-4 py-2 small text-uppercase opacity-50" style="width: 30%">Field</th>
+                                        <th class="py-2 small text-uppercase opacity-50">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $payload = json_decode($row['data_payload'], true) ?: [];
+                                        foreach ($payload as $key => $val):
+                                            $displayVal = $val;
+                                            // Format dates if key contains 'date' or 'at'
+                                            if ($val && (strpos($key, 'date') !== false || strpos($key, 'at') !== false) && strtotime($val)) {
+                                                $displayVal = '<span class="text-primary fw-bold">' . date('d M, Y h:i A', strtotime($val)) . '</span>';
+                                            }
+                                            // Truncate long text
+                                            if (is_string($val) && strlen($val) > 100) {
+                                                $displayVal = '<div class="small" style="max-height: 100px; overflow-y: auto;">' . htmlspecialchars($val) . '</div>';
+                                            }
+                                    ?>
+                                        <tr>
+                                            <td class="ps-4 py-2 fw-bold text-muted small"><?= htmlspecialchars(str_replace('_', ' ', strtoupper($key))) ?></td>
+                                            <td class="py-2 small"><?= is_array($val) ? '<pre class="m-0">'.json_encode($val, JSON_PRETTY_PRINT).'</pre>' : (strpos($displayVal, '<') !== false ? $displayVal : htmlspecialchars($val)) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-0">
+                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <?php mysqli_close($conn); ?>
 </body>
 </html>

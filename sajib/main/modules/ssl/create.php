@@ -16,19 +16,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $renewal_status = cleanInput($_POST['renewal_status']);
     $issues = cleanInput($_POST['issues']);
     $created_by = $_SESSION['username'];
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
 
     // Insert into ssl_certificate table using prepared statements
-    $sql = "INSERT INTO ssl_certificate (certificate_name, expiration_date, renewal_status, issues, created_by) 
-            VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO ssl_certificate (certificate_name, expiration_date, renewal_status, issues, created_by, handed_over_to, handover_date) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = mysqli_prepare($conn, $sql);
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssss", $certificate_name, $expiration_date, $renewal_status, $issues, $created_by);
+        mysqli_stmt_bind_param($stmt, "sssssss", $certificate_name, $expiration_date, $renewal_status, $issues, $created_by, $handed_over_to, $handover_date);
         if (mysqli_stmt_execute($stmt)) {
-            header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('SSL Certificate record inserted successfully'));
+            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+            header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode('SSL Certificate record inserted successfully'));
         } else {
             log_error("Failed to insert SSL certificate record", ['error' => mysqli_stmt_error($stmt)]);
-            header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+            header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode("Critical Error: Failed to save record."));
         }
         mysqli_stmt_close($stmt);
     } else {

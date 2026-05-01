@@ -79,6 +79,10 @@ if ($result === false) {
     die("Critical Error: Internal Server Error.");
 }
 
+// Module Stats
+$_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total, SUM(l2_observation IS NULL OR l2_observation = '') as pending, SUM(l2_observation IS NOT NULL AND l2_observation != '') as complete FROM observations")) ?: [];
+$_progress = ($_stats['total'] > 0) ? round(($_stats['complete'] / $_stats['total']) * 100) : 0;
+
 // Truncate words function
 function truncate_words($text, $limit = 100) {
     if (empty($text)) return "No notes";
@@ -134,6 +138,29 @@ function truncate_chars($text, $limit = 50, $default = "") {
                         <?php endif; ?>
                         <a href="<?= BASE_URL ?>/modules/export/export?module=observations&<?= e(http_build_query($_GET)) ?>" class="btn btn-outline-success btn-sm rounded-pill shadow-sm px-3 bg-white border-0 btn-export-view"><i class="fa-solid fa-file-export me-1"></i> Export</a>
                         <a href="<?= BASE_URL ?>/" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-3 border-0 bg-white btn-dashboard-view"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Stats Strip -->
+                <div class="glass-card mb-4 p-3">
+                    <div class="d-flex align-items-center gap-4 flex-wrap">
+                        <i class="fa-solid fa-magnifying-glass-chart fa-lg text-primary opacity-50"></i>
+                        <div class="text-center border-end pe-4">
+                            <div class="text-muted fw-bold text-uppercase" style="font-size:.6rem;letter-spacing:1.5px">PENDING</div>
+                            <div class="fw-bold text-danger" style="font-size:1.3rem;line-height:1.2"><?= (int)($_stats['pending'] ?? 0) ?></div>
+                        </div>
+                        <div class="text-center border-end pe-4">
+                            <div class="text-muted fw-bold text-uppercase" style="font-size:.6rem;letter-spacing:1.5px">COMPLETE</div>
+                            <div class="fw-bold text-success" style="font-size:1.3rem;line-height:1.2"><?= (int)($_stats['complete'] ?? 0) ?></div>
+                        </div>
+                        <div class="text-center border-end pe-4">
+                            <div class="text-muted fw-bold text-uppercase" style="font-size:.6rem;letter-spacing:1.5px">TOTAL</div>
+                            <div class="fw-bold" style="font-size:1.3rem;line-height:1.2"><?= (int)($_stats['total'] ?? 0) ?></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-muted fw-bold text-uppercase" style="font-size:.6rem;letter-spacing:1.5px">PROG</div>
+                            <div class="fw-bold text-primary" style="font-size:1.3rem;line-height:1.2"><?= $_progress ?>%</div>
+                        </div>
                     </div>
                 </div>
 

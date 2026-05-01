@@ -18,19 +18,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $downtime = cleanInput($_POST['downtime']);
     $cr_meeting_attended = cleanInput($_POST['cr_meeting_attended']);
     $created_by = $_SESSION['username'];
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
 
     // Insert into cr_list table using prepared statement
-    $sql = "INSERT INTO cr_list (cr_subject, impacted_area, cr_start_time, cr_end_time, downtime, cr_meeting_attended, created_by) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO cr_list (cr_subject, impacted_area, cr_start_time, cr_end_time, downtime, cr_meeting_attended, created_by, handed_over_to, handover_date) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = mysqli_prepare($conn, $sql);
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssssss", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $created_by);
+        mysqli_stmt_bind_param($stmt, "sssssssss", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $created_by, $handed_over_to, $handover_date);
         if (mysqli_stmt_execute($stmt)) {
-            header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('Change Request record inserted successfully'));
+            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+            header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode('Change Request record inserted successfully'));
         } else {
             log_error("Failed to insert change request record", ['error' => mysqli_stmt_error($stmt)]);
-            header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+            header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode("Critical Error: Failed to save record."));
         }
         mysqli_stmt_close($stmt);
     } else {

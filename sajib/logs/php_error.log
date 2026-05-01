@@ -539,3 +539,83 @@ Stack trace:
 #2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
 #3 {main}
   thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:32:01 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:32:13 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:32:19 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\campaigns\view.php(259): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:32:30 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:37:17 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 22:37:23 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 23:14:55 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php(270): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 23:21:05 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[30-Apr-2026 23:22:00 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\sajib\sajib\includes\functions.php:157
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(157): mysqli_prepare(Object(mysqli), 'SELECT username...')
+#1 C:\xampp\htdocs\sajib\sajib\includes\modals.php(356): executePreparedStatement(Object(mysqli), 'SELECT username...')
+#2 C:\xampp\htdocs\sajib\sajib\main\modules\banners\view.php(262): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 157
+[01-May-2026 11:50:37 Asia/Dhaka] PHP Warning:  Undefined array key "handover_date" in C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php on line 206
+[01-May-2026 11:51:39 Asia/Dhaka] PHP Warning:  Undefined array key "handover_date" in C:\xampp\htdocs\sajib\sajib\main\modules\ed\view.php on line 206
+[01-May-2026 12:00:19 Asia/Dhaka] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php:57
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php(57): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssssssi', 'desco', '2026-05-01T11:5...', '1', 'Sajib Roy', 'Disable pallibi...', 'Evening', '2026-05-01', 'superadmin', 15)
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php on line 57
+[01-May-2026 12:00:39 Asia/Dhaka] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php:57
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php(57): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssssssi', 'desco', '2026-05-01T11:5...', '3', 'Sajib Roy', 'Disable pallibi...', 'Evening', '2026-05-01', 'superadmin', 15)
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php on line 57
+[01-May-2026 12:03:06 Asia/Dhaka] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php:57
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php(57): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssssssi', 'desco', '2026-05-01T11:5...', '1', 'Sajib Roy', 'Disable pallibi...', 'Evening', '2026-05-01', 'superadmin', 15)
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php on line 57

@@ -52,6 +52,10 @@ if (!empty($filter_params)) {
 }
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
+
+// Module Stats
+$_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total, SUM(status='live') as live, SUM(status='scheduled') as scheduled, SUM(status='draft') as draft FROM promo_banner")) ?: [];
+$_progress = ($_stats['total'] > 0) ? round(($_stats['live'] / $_stats['total']) * 100) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +96,46 @@ $result = mysqli_stmt_get_result($stmt);
                         <?php endif; ?>
                         <a href="<?= BASE_URL ?>/modules/export/export?module=promo_banner&<?= e(http_build_query($_GET)) ?>" class="btn btn-outline-success btn-sm rounded-pill shadow-sm px-3 bg-white border-0 btn-export-view"><i class="fa-solid fa-file-export me-1"></i> Export</a>
                         <a href="<?= BASE_URL ?>/" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-3 border-0 bg-white btn-dashboard-view"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Stats Strip -->
+                <div class="glass-card mb-4 p-4 shadow-sm border-0">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center gap-4 flex-wrap">
+                                <div class="stat-icon-wrapper bg-purple bg-opacity-10 text-purple rounded d-flex align-items-center justify-content-center shadow-sm" style="width: 48px; height: 48px;">
+                                    <i class="fa-solid fa-image fa-xl"></i>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Live</div>
+                                    <div class="h4 fw-bold mb-0 text-success"><?= (int)($_stats['live'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Scheduled</div>
+                                    <div class="h4 fw-bold mb-0 text-primary"><?= (int)($_stats['scheduled'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Draft</div>
+                                    <div class="h4 fw-bold mb-0 text-warning"><?= (int)($_stats['draft'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item pe-4">
+                                    <div class="small-caps text-muted mb-1">Total Banners</div>
+                                    <div class="h4 fw-bold mb-0 text-dark"><?= (int)($_stats['total'] ?? 0) ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center justify-content-end gap-3">
+                                <div class="text-end">
+                                    <div class="small-caps text-muted mb-1">Live Rate</div>
+                                    <div class="h5 fw-bold mb-0 text-primary"><?= $_progress ?>%</div>
+                                </div>
+                                <div class="progress flex-grow-1 shadow-sm" style="height: 10px; border-radius: 10px; background: rgba(0,0,0,0.05); min-width: 120px; max-width: 150px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: <?= $_progress ?>%;" aria-valuenow="<?= $_progress ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -137,6 +181,7 @@ $result = mysqli_stmt_get_result($stmt);
                                     <th>Banner Title</th>
                                     <th>Status</th>
                                     <th>Start Date</th>
+                                    <th>Handover</th>
                                     <th>Audit History</th>
                                     <?php if (canEditGlobal()): ?>
                                     <th class="text-end pe-4">Actions</th>
@@ -166,6 +211,10 @@ $result = mysqli_stmt_get_result($stmt);
                                             <td>
                                                 <div class='small fw-bold'>" . ($row["start_time"] ? date('d M, Y', strtotime($row['start_time'])) : 'N/A') . "</div>
                                                 <div class='text-muted' style='font-size: 0.75rem;'>" . ($row["start_time"] ? date('g:i A', strtotime($row['start_time'])) : '') . "</div>
+                                            </td>
+                                            <td>
+                                                <div class='small fw-bold'>" . e($row['handed_over_to'] ?? '-') . "</div>
+                                                <div class='text-muted' style='font-size: 0.75rem;'>" . ($row['handover_date'] ? date('d M, Y', strtotime($row['handover_date'])) : '-') . "</div>
                                             </td>
                                             <td>
                                                 <div class='audit-stack'>
@@ -257,7 +306,6 @@ $result = mysqli_stmt_get_result($stmt);
                 echo '</ul></nav>';
             }
 
-            mysqli_close($conn);
             ?>
             <?php include INCLUDES_PATH . '/modals.php'; ?>
         </div> <!-- End main-content -->

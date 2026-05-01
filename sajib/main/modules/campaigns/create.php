@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = cleanInput($_POST['status']);
     $description = cleanInput($_POST['description']);
     $created_by = $_SESSION['username'];
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
 
     // Split campaign names by newline
     $names = explode("\n", $campaign_names);
@@ -23,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inserted_count = 0;
     
     // Prepare statement once for bulk insert
-    $sql = "INSERT INTO campaign (campaign_name, start_date, status, description, created_by) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO campaign (campaign_name, start_date, status, description, created_by, handed_over_to, handover_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     
     if ($stmt) {
@@ -31,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = trim($name);
             if(!empty($name)) {
                 $name_cleaned = cleanInput($name);
-                mysqli_stmt_bind_param($stmt, "sssss", $name_cleaned, $start_date, $status, $description, $created_by);
+                mysqli_stmt_bind_param($stmt, "sssssss", $name_cleaned, $start_date, $status, $description, $created_by, $handed_over_to, $handover_date);
                 if (mysqli_stmt_execute($stmt)) {
                     $inserted_count++;
                 } else {
@@ -45,9 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($inserted_count > 0) {
-        header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode("$inserted_count Campaign record(s) inserted successfully"));
+        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+        header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode("$inserted_count Campaign record(s) inserted successfully"));
     } else {
-        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode('Failed to insert any records.'));
+        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+        header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode('Failed to insert any records.'));
     }
 
     mysqli_close($conn);

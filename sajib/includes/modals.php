@@ -38,6 +38,20 @@
                                 <input class="form-control" type="text" name="reference" placeholder="Ticket/Ref #" required>
                             </div>
                         </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
                         <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm">Save Record</button>
@@ -80,6 +94,20 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
                         <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm" style="background: var(--accent-pink); border: none;">Save Communication</button>
@@ -119,6 +147,20 @@
                                     <option value="pending">Pending</option>
                                     <option value="follow_up">Follow Up</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
                             </div>
                         </div>
                     </div>
@@ -171,6 +213,18 @@
                                 <label class="form-label small fw-bold text-muted text-uppercase">Meeting Attended By</label>
                                 <input class="form-control" type="text" name="cr_meeting_attended" placeholder="Attendee Name">
                             </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
@@ -209,6 +263,20 @@
                                     <option value="draft">Draft</option>
                                     <option value="inactive">Inactive</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
                             </div>
                         </div>
                     </div>
@@ -256,6 +324,18 @@
                                 <label class="form-label small fw-bold text-muted text-uppercase">Assigned Technician</label>
                                 <input class="form-control" type="text" name="technician" placeholder="Name" required>
                             </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
@@ -295,9 +375,23 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-0">
+                        <div class="mb-4">
                             <label class="form-label small fw-bold text-muted text-uppercase">Known Issues</label>
                             <textarea class="form-control" name="issues" rows="2" placeholder="Any issues during renewal?"></textarea>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
@@ -337,9 +431,23 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-0">
+                        <div class="mb-4">
                             <label class="form-label small fw-bold text-muted text-uppercase">Campaign Description</label>
                             <textarea class="form-control" name="description" rows="3" placeholder="Briefly describe the campaign goals..." required></textarea>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                <select class="form-select" name="handed_over_to" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                <input class="form-control" type="date" name="handover_date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">

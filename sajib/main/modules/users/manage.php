@@ -7,10 +7,23 @@ if (!isSuperAdmin()) {
     exit();
 }
 
-// Fetch all users
-// Fetch all users using secure utility
-$sql = "SELECT * FROM users ORDER BY created_at DESC";
-$stmt = executePreparedStatement($conn, $sql);
+// Handle Search
+$search = isset($_GET['search']) ? cleanInput($_GET['search']) : '';
+
+// Fetch users with optional search
+$sql = "SELECT * FROM users";
+$params = [];
+$types = "";
+
+if (!empty($search)) {
+    $sql .= " WHERE username LIKE ? OR email LIKE ? OR role LIKE ?";
+    $searchTerm = "%$search%";
+    $params = [$searchTerm, $searchTerm, $searchTerm];
+    $types = "sss";
+}
+
+$sql .= " ORDER BY created_at DESC";
+$stmt = executePreparedStatement($conn, $sql, $types, $params);
 $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
 ?>
 
@@ -44,6 +57,33 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                     </div>
                 </div>
 
+                <!-- Search Bar -->
+                <div class="glass-card mb-4 p-4 shadow-sm border-0">
+                    <form method="GET" action="" class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label class="small text-muted fw-bold text-uppercase mb-2 d-block">Search Users</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                                <input type="text" name="search" class="form-control border-0 bg-light shadow-none" 
+                                       placeholder="Username, Email, or Role..." 
+                                       value="<?php echo htmlspecialchars($search); ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 w-100 fw-bold shadow-sm">
+                                <i class="fa-solid fa-filter me-1"></i> Search
+                            </button>
+                        </div>
+                        <?php if (!empty($search)): ?>
+                        <div class="col-md-2">
+                            <a href="manage" class="btn btn-outline-secondary rounded-pill px-4 w-100 fw-bold">
+                                <i class="fa-solid fa-rotate-left me-1"></i> Clear
+                            </a>
+                        </div>
+                        <?php endif; ?>
+                    </form>
+                </div>
+
                 <div class="glass-card shadow-lg border-0">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0 dashboard-table">
@@ -59,7 +99,9 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                             </thead>
                             <tbody>
                                 <?php
+                                $user_found = false;
                                 while ($result && $row = mysqli_fetch_assoc($result)) {
+                                    $user_found = true;
                                     $role_badge = '';
                                     switch ($row['role']) {
                                         case 'super_admin':
@@ -120,6 +162,11 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                                             </td>
                                           </tr>";
                                 }
+                                
+                                if (!$user_found) {
+                                    echo "<tr><td colspan='6' class='text-center py-5 text-muted'><i class='fa-solid fa-user-slash d-block mb-2' style='font-size: 2rem;'></i> No users matching your search criteria.</td></tr>";
+                                }
+
                                 if ($stmt) mysqli_stmt_close($stmt);
                                 ?>
                             </tbody>

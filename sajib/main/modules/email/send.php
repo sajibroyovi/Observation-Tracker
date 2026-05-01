@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('impsajibroy@gmail.com', 'Shift Handover System'); 
+        $mail->setFrom('impsajibroy@gmail.com', 'Observation Tracker'); 
         $mail->addAddress('impsajibroy@gmail.com');
 
         // Content

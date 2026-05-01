@@ -36,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $problem_ticket = cleanInput($_POST['problem_ticket']);
     $status = cleanInput($_POST['status']);
     $technician = cleanInput($_POST['technician']);
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
     $edited_by = $_SESSION['username'];
 
     $sql = "UPDATE service_outage SET 
@@ -44,16 +46,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             problem_ticket = ?, 
             status = ?, 
             technician = ?,
+            handed_over_to = ?,
+            handover_date = ?,
             edited_by = ?,
             edited_at = NOW() 
             WHERE serial_no = ?";
 
     $stmt_update = mysqli_prepare($conn, $sql);
     if ($stmt_update) {
-        mysqli_stmt_bind_param($stmt_update, "ssssssi", $details, $incident_id, $problem_ticket, $status, $technician, $edited_by, $id);
+        mysqli_stmt_bind_param($stmt_update, "ssssssssi", $details, $incident_id, $problem_ticket, $status, $technician, $handed_over_to, $handover_date, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            header('Location: view?msg=updated');
+            $redirect = $_SERVER['HTTP_REFERER'] ?? 'view?msg=updated';
+            if (strpos($redirect, 'update') !== false) $redirect = 'view?msg=updated';
+            header("Location: $redirect");
             exit;
         } else {
             log_error("Update Error for service_outage", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
@@ -138,6 +144,23 @@ mysqli_close($conn);
                                             <option value="in_progress" <?php if ($row['status'] == 'in_progress') echo 'selected'; ?>>In Progress</option>
                                             <option value="pending" <?php if ($row['status'] == 'pending') echo 'selected'; ?>>Pending</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="row g-4 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="handed_over_to" class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                        <select class="form-select bg-light border-0 shadow-sm p-3" name="handed_over_to" id="handed_over_to" required>
+                                            <option value="Morning" <?php if ($row['handed_over_to'] == 'Morning') echo 'selected'; ?>>Morning</option>
+                                            <option value="Evening" <?php if ($row['handed_over_to'] == 'Evening') echo 'selected'; ?>>Evening</option>
+                                            <option value="Night" <?php if ($row['handed_over_to'] == 'Night') echo 'selected'; ?>>Night</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="handover_date" class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                        <input type="date" class="form-control bg-light border-0 shadow-sm p-3" name="handover_date" id="handover_date"
+                                            value="<?php echo htmlspecialchars($row['handover_date'] ?? date('Y-m-d')); ?>" required>
                                     </div>
                                 </div>
 

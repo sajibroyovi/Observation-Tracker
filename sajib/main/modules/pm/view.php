@@ -57,6 +57,10 @@ if (!empty($filter_params)) {
 }
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
+
+// Module Stats
+$_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total, SUM(status='Pending') as pending, SUM(status='Answered') as answered, SUM(status='Follow_up') as follow_up FROM pending_mail")) ?: [];
+$_progress = ($_stats['total'] > 0) ? round(($_stats['answered'] / $_stats['total']) * 100) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +101,46 @@ $result = mysqli_stmt_get_result($stmt);
                         <?php endif; ?>
                         <a href="<?= BASE_URL ?>/modules/export/export?module=pending_mail&<?= e(http_build_query($_GET)) ?>" class="btn btn-outline-success btn-sm rounded-pill shadow-sm px-3 bg-white border-0 btn-export-view"><i class="fa-solid fa-file-export me-1"></i> Export</a>
                         <a href="<?= BASE_URL ?>/" class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-3 border-0 bg-white btn-dashboard-view"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Stats Strip -->
+                <div class="glass-card mb-4 p-4 shadow-sm border-0">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center gap-4 flex-wrap">
+                                <div class="stat-icon-wrapper bg-pink bg-opacity-10 text-pink rounded d-flex align-items-center justify-content-center shadow-sm" style="width: 48px; height: 48px;">
+                                    <i class="fa-solid fa-envelope fa-xl"></i>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Pending</div>
+                                    <div class="h4 fw-bold mb-0 text-danger"><?= (int)($_stats['pending'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Answered</div>
+                                    <div class="h4 fw-bold mb-0 text-success"><?= (int)($_stats['answered'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item border-end pe-4">
+                                    <div class="small-caps text-muted mb-1">Follow Up</div>
+                                    <div class="h4 fw-bold mb-0 text-info"><?= (int)($_stats['follow_up'] ?? 0) ?></div>
+                                </div>
+                                <div class="stat-item pe-4">
+                                    <div class="small-caps text-muted mb-1">Total Mails</div>
+                                    <div class="h4 fw-bold mb-0 text-dark"><?= (int)($_stats['total'] ?? 0) ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center justify-content-end gap-3">
+                                <div class="text-end">
+                                    <div class="small-caps text-muted mb-1">Resolution</div>
+                                    <div class="h5 fw-bold mb-0 text-primary"><?= $_progress ?>%</div>
+                                </div>
+                                <div class="progress flex-grow-1 shadow-sm" style="height: 10px; border-radius: 10px; background: rgba(0,0,0,0.05); min-width: 120px; max-width: 150px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: <?= $_progress ?>%;" aria-valuenow="<?= $_progress ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -150,6 +194,7 @@ $result = mysqli_stmt_get_result($stmt);
                                     <th>Subject Line</th>
                                     <th>Priority</th>
                                     <th>Status</th>
+                                    <th>Handover</th>
                                     <th>Audit History</th>
                                     <?php if (canEditGlobal()): ?>
                                     <th class="text-end pe-4">Actions</th>
@@ -185,6 +230,10 @@ $result = mysqli_stmt_get_result($stmt);
                                             <td class='fw-bold' style='max-width: 300px;'>" . e($row["subject_line"] ?? "N/A") . "</td>
                                             <td>" . $priority_badge . "</td>
                                             <td>" . $status_badge . "</td>
+                                            <td>
+                                                <div class='small fw-bold'>" . e($row['handed_over_to'] ?? '-') . "</div>
+                                                <div class='text-muted' style='font-size: 0.75rem;'>" . ($row['handover_date'] ? date('d M, Y', strtotime($row['handover_date'])) : '-') . "</div>
+                                            </td>
                                             <td>
                                                 <div class='audit-stack'>
                                                     <div class='small text-muted mb-1' title='Created'>
@@ -276,7 +325,6 @@ $result = mysqli_stmt_get_result($stmt);
                 echo '</ul></nav>';
             }
 
-            mysqli_close($conn);
             ?>
             <?php include INCLUDES_PATH . '/modals.php'; ?>
         </div> <!-- End main-content -->

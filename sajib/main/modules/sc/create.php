@@ -13,18 +13,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $priority = cleanInput($_POST['priority']);
         $status = cleanInput($_POST['status']);
         $created_by = $_SESSION['username'];
+        $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+        $handover_date = cleanInput($_POST['handover_date'] ?? null);
 
         // Insert into security_mail using prepared statements
-        $sql = "INSERT INTO security_mail (subject_line, priority, status, created_by) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO security_mail (subject_line, priority, status, created_by, handed_over_to, handover_date) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssss", $subject_line, $priority, $status, $created_by);
+            mysqli_stmt_bind_param($stmt, "ssssss", $subject_line, $priority, $status, $created_by, $handed_over_to, $handover_date);
             if (mysqli_stmt_execute($stmt)) { 
-                header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('Security Record inserted successfully'));
+                $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+                header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode('Security Record inserted successfully'));
             } else { 
                 log_error("Failed to insert security mail record", ['error' => mysqli_stmt_error($stmt)]);
-                header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+                $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+                header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode("Critical Error: Failed to save record."));
             }
             mysqli_stmt_close($stmt);
         } else {

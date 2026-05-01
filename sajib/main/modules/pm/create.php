@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $priority = cleanInput($_POST['priority']);
     $status = cleanInput($_POST['status']);
     $created_by = $_SESSION['username'];
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
 
     // Split subject lines by newline
     $lines = explode("\n", $subject_lines);
@@ -22,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inserted_count = 0;
     
     // Prepare statement once for bulk insert
-    $sql = "INSERT INTO pending_mail (subject_line, priority, status, created_by) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO pending_mail (subject_line, priority, status, created_by, handed_over_to, handover_date) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     
     if ($stmt) {
@@ -30,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $line = trim($line);
             if(!empty($line)) {
                 $line_cleaned = cleanInput($line);
-                mysqli_stmt_bind_param($stmt, "ssss", $line_cleaned, $priority, $status, $created_by);
+                mysqli_stmt_bind_param($stmt, "ssssss", $line_cleaned, $priority, $status, $created_by, $handed_over_to, $handover_date);
                 if (mysqli_stmt_execute($stmt)) {
                     $inserted_count++;
                 } else {
@@ -44,9 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($inserted_count > 0) {
-        header('Location: ' . BASE_URL . '/?status=success&msg=' . urlencode('Pending Mail record(s) inserted successfully'));
+        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+        header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode('Pending Mail record(s) inserted successfully'));
     } else {
-        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode('Failed to insert any records.'));
+        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
+        header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode('Failed to insert any records.'));
     }
 
     mysqli_close($conn);

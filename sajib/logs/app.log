@@ -15,3 +15,8 @@
 [2026-04-30 10:56:22] [User: 1] File upload error {"code":4}
 [2026-04-30 13:28:27] [User: 1] File upload error {"code":4}
 [2026-04-30 13:30:45] [User: 1] File upload error {"code":4}
+[2026-05-01 11:51:31] [User: 1] Failed to prepare statement for service enable/disable {"error":"Unknown column 'handed_over_to' in 'field list'"}
+[2026-05-01 11:52:13] [User: 1] Failed to prepare statement for pending mail {"error":"Unknown column 'handed_over_to' in 'field list'"}
+[2026-05-01 21:17:20] [User: 1] File upload error {"code":4}
+[2026-05-01 21:21:40] [User: 1] File upload error {"code":4}
+[2026-05-01 21:25:07] [User: 1] File upload error {"code":4}

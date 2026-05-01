@@ -37,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cr_end_time = cleanInput($_POST['cr_end_time']);
     $downtime = cleanInput($_POST['downtime']);
     $cr_meeting_attended = cleanInput($_POST['cr_meeting_attended']);
+    $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
+    $handover_date = cleanInput($_POST['handover_date'] ?? null);
     $edited_by = $_SESSION['username'];
 
     $sql = "UPDATE cr_list SET 
@@ -46,16 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cr_end_time = ?, 
             downtime = ?, 
             cr_meeting_attended = ?,
+            handed_over_to = ?,
+            handover_date = ?,
             edited_by = ?,
             edited_at = NOW() 
             WHERE serial_no = ?";
 
     $stmt_update = mysqli_prepare($conn, $sql);
     if ($stmt_update) {
-        mysqli_stmt_bind_param($stmt_update, "sssssssi", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $edited_by, $id);
+        mysqli_stmt_bind_param($stmt_update, "sssssssssi", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $handed_over_to, $handover_date, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            header("Location: view?msg=updated");
+            $redirect = $_SERVER['HTTP_REFERER'] ?? 'view?msg=updated';
+            if (strpos($redirect, 'update') !== false) $redirect = 'view?msg=updated';
+            header("Location: $redirect");
             exit;
         } else {
             log_error("Update Error for cr_list", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
@@ -146,6 +152,23 @@ mysqli_close($conn);
                                         <label for="cr_meeting_attended" class="form-label small fw-bold text-muted text-uppercase">Stakeholder Attendee</label>
                                         <input type="text" class="form-control bg-light border-0 shadow-sm p-3" name="cr_meeting_attended" id="cr_meeting_attended"
                                             value="<?php echo htmlspecialchars($row['cr_meeting_attended']); ?>" placeholder="Name of attendee">
+                                    </div>
+                                </div>
+
+                                <div class="row g-4 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="handed_over_to" class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
+                                        <select class="form-select bg-light border-0 shadow-sm p-3" name="handed_over_to" id="handed_over_to" required>
+                                            <option value="Morning" <?php if ($row['handed_over_to'] == 'Morning') echo 'selected'; ?>>Morning</option>
+                                            <option value="Evening" <?php if ($row['handed_over_to'] == 'Evening') echo 'selected'; ?>>Evening</option>
+                                            <option value="Night" <?php if ($row['handed_over_to'] == 'Night') echo 'selected'; ?>>Night</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="handover_date" class="form-label small fw-bold text-muted text-uppercase">Handover Date</label>
+                                        <input type="date" class="form-control bg-light border-0 shadow-sm p-3" name="handover_date" id="handover_date"
+                                            value="<?php echo htmlspecialchars($row['handover_date'] ?? date('Y-m-d')); ?>" required>
                                     </div>
                                 </div>
 

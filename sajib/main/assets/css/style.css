@@ -100,6 +100,33 @@
   background-color: rgba(13, 202, 240, 0.1) !important;
 }
 
+/* Professional Stat Bar Utilities */
+.small-caps {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.stat-icon-wrapper {
+  transition: var(--transition);
+}
+.stat-icon-wrapper:hover {
+  transform: scale(1.1);
+}
+.max-w-200 {
+  max-width: 200px;
+}
+.max-w-150 {
+  max-width: 150px;
+}
+.progress-bar-animated {
+  animation: progress-bar-stripes 1s linear infinite;
+}
+.stat-item {
+  min-width: 100px;
+}
+
 .bg-primary.bg-opacity-10 {
   background-color: rgba(13, 110, 253, 0.1) !important;
 }
