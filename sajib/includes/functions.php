@@ -497,6 +497,18 @@ function isSafeUrl($url) {
 }
 
 /**
+ * Get a safe redirect URL from untrusted input
+ * 
+ * @param string|null $input The untrusted input URL (e.g. from $_GET['return_url'])
+ * @param string $default The default URL to use if input is unsafe or empty
+ * @return string A safe URL
+ */
+function getSafeRedirectUrl($input, $default) {
+    if (empty($input)) return $default;
+    return isSafeUrl($input) ? $input : $default;
+}
+
+/**
  * Redirect to a URL safely
  * 
  * @param string $url URL to redirect to
@@ -508,6 +520,9 @@ function redirectTo($url) {
         log_error("Open Redirect Attempt Blocked", ["target" => $url]);
         $url = BASE_URL . '/';
     }
+    
+    // Additional security: prevent CRLF injection in headers
+    $url = str_replace(["\r", "\n"], '', $url);
     
     // Write session data and release file lock before redirecting to prevent race conditions
     // where the browser requests the next page before the session is saved.

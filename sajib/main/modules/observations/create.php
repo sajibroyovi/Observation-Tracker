@@ -115,14 +115,7 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
             );
 
             if (mysqli_stmt_execute($stmt)) {
-                // Send email/WhatsApp assignment - DISABLED TEMPORARILY
-                /*
-                if (!empty($technician_name)) {
-                    sendAssignmentEmail($conn, $technician_name, $observation_names, $team_name);
-                    sendAssignmentWhatsApp($conn, $technician_name, $observation_names);
-                }
-                */
-                $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/modules/observations/view');
+                $redirect = getSafeRedirectUrl($_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, BASE_URL . '/modules/observations/view');
                 showSuccess("Observation record inserted successfully");
                 redirectTo($redirect);
             } else {

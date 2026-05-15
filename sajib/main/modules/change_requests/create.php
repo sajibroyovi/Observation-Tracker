@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
@@ -29,14 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "sssssssss", $cr_subject, $impacted_area, $cr_start_time, $cr_end_time, $downtime, $cr_meeting_attended, $created_by, $handed_over_to, $handover_date);
         if (mysqli_stmt_execute($stmt)) {
-            $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-                showSuccess('Change Request record inserted successfully');
-                redirectTo($redirect);
+            $redirect = getSafeRedirectUrl($_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, BASE_URL . '/');
+            showSuccess('Change Request record inserted successfully');
+            redirectTo($redirect);
         } else {
             log_error("Failed to insert change request record", ['error' => mysqli_stmt_error($stmt)]);
-            $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-                showError("Critical Error: Failed to save record.");
-                redirectTo($redirect);
+            $redirect = getSafeRedirectUrl($_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, BASE_URL . '/');
+            showError("Critical Error: Failed to save record.");
+            redirectTo($redirect);
         }
         mysqli_stmt_close($stmt);
     } else {

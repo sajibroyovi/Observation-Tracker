@@ -13,8 +13,7 @@ if (isset($_GET['id'])) {
     // CSRF check
     if (isset($_GET['csrf_token']) && !validateCsrfToken($_GET['csrf_token'])) {
         log_error("CSRF token validation failed for delete attempt on user", ['id' => $id]);
-        header("Location: manage?error=csrf");
-        exit;
+        redirectTo("manage?error=csrf");
     }
 
     // Prevent self-deletion
@@ -38,16 +37,16 @@ if (isset($_GET['id'])) {
 
     if (mysqli_stmt_execute($stmt_delete)) {
         mysqli_stmt_close($stmt_delete);
-        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'manage';
+        $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'manage');
         showSuccess('User deleted successfully');
         redirectTo($redirect);
     } else {
         log_error("Failed to delete user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_delete)]);
         mysqli_stmt_close($stmt_delete);
-        echo "Error deleting record. Please check logs.";
+        showError("Error deleting record. Please check logs.");
+        redirectTo('manage');
     }
 } else {
-    header("Location: manage");
-    exit();
+    redirectTo("manage");
 }
 ?>

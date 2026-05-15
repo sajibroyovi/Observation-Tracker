@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
@@ -47,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($inserted_count > 0) {
-        $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-                showSuccess('$inserted_count Campaign record(s) inserted successfully');
-                redirectTo($redirect);
+        $redirect = getSafeRedirectUrl($_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, BASE_URL . '/');
+        showSuccess($inserted_count . ' Campaign record(s) inserted successfully');
+        redirectTo($redirect);
     } else {
-        $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-                showError("Failed to insert any records.");
-                redirectTo($redirect);
+        $redirect = getSafeRedirectUrl($_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, BASE_URL . '/');
+        showError("Failed to insert any records.");
+        redirectTo($redirect);
     }
 
     mysqli_close($conn);

@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 // Only Super Admins can restore
 if (!isSuperAdmin()) {
-    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+    $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
     showError('Unauthorized access.');
     redirectTo($redirect);
-    exit;
 }
 
 if (isset($_GET['id'])) {
@@ -15,10 +15,9 @@ if (isset($_GET['id'])) {
     // CSRF check
     if (isset($_GET['csrf_token']) && !validateCsrfToken($_GET['csrf_token'])) {
         log_error("CSRF token validation failed for restore attempt on recycle bin", ['id' => $id]);
-        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+        $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
         showError('Security Validation Failed: CSRF Token Mismatch.');
         redirectTo($redirect);
-        exit;
     }
 
     // 1. Fetch the record from recycle bin
@@ -60,44 +59,45 @@ if (isset($_GET['id'])) {
                             mysqli_stmt_execute($del_stmt);
                             mysqli_stmt_close($del_stmt);
                         }
-                        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                        $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
                         showSuccess('Record successfully restored to ' . htmlspecialchars($table_name));
                         redirectTo($redirect);
                     } else {
                         log_error("Failed to restore record in target table", ['table' => $table_name, 'error' => mysqli_stmt_error($insert_stmt)]);
-                        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                        $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
                         showError('Failed to restore record.');
                         redirectTo($redirect);
                     }
                     mysqli_stmt_close($insert_stmt);
                 } else {
                     log_error("Failed to prepare restore query", ['table' => $table_name, 'error' => mysqli_error($conn)]);
-                    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                    $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
                     showError('Internal Server Error.');
                     redirectTo($redirect);
                 }
             } else {
                 log_error("Failed to decode JSON payload for restore", ['id' => $id]);
-                $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
                 showError('Data corruption: Failed to decode payload.');
                 redirectTo($redirect);
             }
         } else {
-            $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+            $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
             showError('Record not found.');
             if ($stmt) mysqli_stmt_close($stmt);
             redirectTo($redirect);
         }
     } else {
-        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+        $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
         showError('Internal Server Error.');
         redirectTo($redirect);
     }
 } else {
-    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+    $redirect = getSafeRedirectUrl($_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? null, 'view');
     showError('Invalid Record ID.');
     redirectTo($redirect);
 }
 
 mysqli_close($conn);
 exit;
+?>
