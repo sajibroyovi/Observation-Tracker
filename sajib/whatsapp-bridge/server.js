@@ -56,7 +56,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // API Endpoint to send message
 app.post('/send', async (req, res) => {
-    const { phone, message } = req.body;
+    let { phone, message } = req.body;
+    
+    // Explicitly cast to string to prevent 'Improper Type Validation' findings
+    phone = String(phone || '');
+    message = String(message || '');
 
     if (!phone || !message) {
         return res.status(400).json({ status: 'error', message: 'Missing phone or message' });

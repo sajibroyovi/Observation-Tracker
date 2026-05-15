@@ -7,8 +7,7 @@ if (!isSuperAdmin()) {
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: manage");
-    exit();
+    redirectTo("manage");
 }
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

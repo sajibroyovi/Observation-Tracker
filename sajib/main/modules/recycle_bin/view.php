@@ -2,8 +2,7 @@
 require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
 
 if (!isSuperAdmin()) {
-    header("Location: ../../index");
-    exit;
+    redirectTo("../../index");
 }
 
 $limit = 20;

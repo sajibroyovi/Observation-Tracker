@@ -2,24 +2,9 @@
 require_once __DIR__ . '/../../../config/app.php'; 
 include_once INCLUDES_PATH . '/auth_check.php';
 
-$user_id = $_SESSION['user_id'];
-$username = $_SESSION['username'];
-$user_role = $_SESSION['role'];
-
-// Fetch user data from database to be sure
-$stmt = mysqli_prepare($conn, "SELECT username, role, allowed_modules FROM users WHERE id = ?");
-mysqli_stmt_bind_param($stmt, "i", $user_id);
-mysqli_stmt_execute($stmt = mysqli_prepare($conn, "SELECT username, role, allowed_modules FROM users WHERE id = ?")); // Fixed redundant line below
-// I noticed a mistake in my thought process above, let me rewrite this properly.
-?>
-<?php
-require_once __DIR__ . '/../../../config/app.php'; 
-include_once INCLUDES_PATH . '/auth_check.php';
-
 $user_id = $_SESSION['user_id'] ?? 0;
 if (!$user_id) {
-    header("Location: " . BASE_URL . "/login");
-    exit();
+    redirectTo(BASE_URL . "/login");
 }
 
 $stmt_fetch = mysqli_prepare($conn, "SELECT * FROM users WHERE id = ?");
