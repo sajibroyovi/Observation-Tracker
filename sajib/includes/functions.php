@@ -466,22 +466,49 @@ function getTimestamp() {
 }
 
 /**
- * Redirect to a URL
+ * Check if a URL is safe for redirection (relative path or same domain)
+ * 
+ * @param string $url URL to check
+ * @return bool True if safe, false otherwise
+ */
+function isSafeUrl($url) {
+    if (empty($url)) return false;
+    
+    // Allow relative paths starting with / but not //
+    if (preg_match('/^\/[^\/\\]/', $url)) {
+        return true;
+    }
+    
+    // Allow relative paths not starting with / (e.g. 'view', 'manage')
+    if (!preg_match('/^(https?:)?\/\//', $url)) {
+        // If it doesn't contain a protocol or start with //, it's likely a relative page name
+        return true;
+    }
+    
+    // For absolute URLs, check the host
+    $parsed_url = parse_url($url);
+    $parsed_base = parse_url(BASE_URL);
+    
+    if (isset($parsed_url['host']) && isset($parsed_base['host'])) {
+        return $parsed_url['host'] === $parsed_base['host'];
+    }
+    
+    return false;
+}
+
+/**
+ * Redirect to a URL safely
  * 
  * @param string $url URL to redirect to
  * @return void
  */
 function redirectTo($url) {
-    // Basic Open Redirect prevention: ensure URL is relative or matches app domain
-    if (strpos($url, 'http') === 0) {
-        $url_host = parse_url($url, PHP_URL_HOST);
-        $app_host = parse_url(BASE_URL, PHP_URL_HOST);
-        
-        if ($url_host !== $app_host) {
-            log_error("Open Redirect Attempt Blocked", ["target" => $url]);
-            $url = BASE_URL . '/';
-        }
+    // Strict Open Redirect prevention
+    if (!isSafeUrl($url)) {
+        log_error("Open Redirect Attempt Blocked", ["target" => $url]);
+        $url = BASE_URL . '/';
     }
+    
     // Write session data and release file lock before redirecting to prevent race conditions
     // where the browser requests the next page before the session is saved.
     session_write_close();

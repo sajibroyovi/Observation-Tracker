@@ -173,11 +173,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         ];
                                         $current_modules = !empty($user['allowed_modules']) ? explode(',', $user['allowed_modules']) : [];
                                         
-                                        foreach ($available_modules as $title => $icon): ?>
+                                        foreach ($available_modules as $title => $icon): 
+                                            $mod_id = str_replace([' ', '/', '&'], '_', strtolower($title));
+                                            ?>
                                             <div class="col-6">
                                                 <div class="form-check p-2 rounded bg-light bg-opacity-50 border border-white border-opacity-20 shadow-sm">
-                                                    <input class="form-check-input ms-0 me-2" type="checkbox" name="modules[]" value="<?php echo $title; ?>" id="mod_<?php echo md5($title); ?>" <?php echo in_array($title, $current_modules) ? 'checked' : ''; ?>>
-                                                    <label class="form-check-label small fw-medium" style="cursor: pointer;" for="mod_<?php echo md5($title); ?>">
+                                                    <input class="form-check-input ms-0 me-2" type="checkbox" name="modules[]" value="<?php echo $title; ?>" id="mod_<?php echo $mod_id; ?>" <?php echo in_array($title, $current_modules) ? 'checked' : ''; ?>>
+                                                    <label class="form-check-label small fw-medium" style="cursor: pointer;" for="mod_<?php echo $mod_id; ?>">
                                                         <i class="fa-solid <?php echo $icon; ?> me-1 opacity-75"></i> <?php echo $title; ?>
                                                     </label>
                                                 </div>

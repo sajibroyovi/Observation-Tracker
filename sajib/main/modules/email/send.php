@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = cleanInput($_POST['date']);
 
     // Compose email content as HTML
-    $subject = "Shift Handover Report - $shift Shift on $date";
+    $subject = "Shift Handover Report - " . e($shift) . " Shift on " . e($date);
     $message = "<html><head><style>
         body { font-family: Arial, sans-serif; }
         h1 { color: #D12053; text-align: center; }
@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         tr:nth-child(even) { background-color: #f2f2f2; }
     </style></head><body>";
     $message .= "<h1>Shift Handover Report</h1>";
-    $message .= "<p><strong>Shift:</strong> $shift</p>";
-    $message .= "<p><strong>Date:</strong> $date</p>";
+    $message .= "<p><strong>Shift:</strong> " . e($shift) . "</p>";
+    $message .= "<p><strong>Date:</strong> " . e($date) . "</p>";
 
     // Query each table
     $tables = [

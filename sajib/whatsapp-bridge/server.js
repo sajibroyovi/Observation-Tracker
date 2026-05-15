@@ -50,6 +50,7 @@ client.on('disconnected', (reason) => {
 client.initialize();
 
 // Express Middleware
+app.disable('x-powered-by');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

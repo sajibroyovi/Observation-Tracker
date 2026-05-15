@@ -146,10 +146,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             'Campaign' => 'fa-bullhorn',
                                             'Observations' => 'fa-clipboard-check'
                                         ];
-                                        foreach ($available_modules as $title => $icon): ?>
+                                        foreach ($available_modules as $title => $icon): 
+                                            $mod_id = str_replace([' ', '/', '&'], '_', strtolower($title));
+                                            ?>
                                             <div class="form-check p-2 px-3 rounded bg-light bg-opacity-50 border border-white border-opacity-20 shadow-sm d-flex align-items-center">
-                                                <input class="form-check-input ms-0 me-2" type="checkbox" name="modules[]" value="<?php echo $title; ?>" id="mod_<?php echo md5($title); ?>">
-                                                <label class="form-check-label small fw-medium text-nowrap" style="cursor: pointer;" for="mod_<?php echo md5($title); ?>">
+                                                <input class="form-check-input ms-0 me-2" type="checkbox" name="modules[]" value="<?php echo $title; ?>" id="mod_<?php echo $mod_id; ?>">
+                                                <label class="form-check-label small fw-medium text-nowrap" style="cursor: pointer;" for="mod_<?php echo $mod_id; ?>">
                                                     <i class="fa-solid <?php echo $icon; ?> me-1 opacity-75"></i> <?php echo $title; ?>
                                                 </label>
                                             </div>
