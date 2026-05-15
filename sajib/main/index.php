@@ -174,8 +174,8 @@ include INCLUDES_PATH . '/auth_check.php';
                                     <input type="date" name="date" id="date" class="form-control border-0 bg-light" required>
                                 </div>
                                 <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-primary w-100 py-1 fw-bold small">
-                                        <i class="fa-solid fa-envelope-circle-check me-1"></i> Send Handover
+                                    <button type="submit" class="btn btn-primary w-100 py-1 fw-bold small" disabled>
+                                        <i class="fa-solid fa-envelope-circle-check me-1"></i> Send Handover (Temporarily Disabled)
                                     </button>
                                 </div>
                             </div>

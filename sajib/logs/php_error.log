@@ -619,3 +619,35 @@ Stack trace:
 #0 C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php(57): mysqli_stmt_bind_param(Object(mysqli_stmt), 'sssssssssi', 'desco', '2026-05-01T11:5...', '1', 'Sajib Roy', 'Disable pallibi...', 'Evening', '2026-05-01', 'superadmin', 15)
 #1 {main}
   thrown in C:\xampp\htdocs\sajib\sajib\main\modules\ed\update.php on line 57
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 167
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 167
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 167
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 167
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:22 Asia/Dhaka] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 190
+[07-May-2026 14:30:27 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:31 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:35 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:39 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:43 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:47 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:51 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:55 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:30:59 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:03 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:07 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:11 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:15 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:19 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:31:58 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42
+[07-May-2026 14:33:53 Asia/Dhaka] PHP Warning:  mysqli_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 42

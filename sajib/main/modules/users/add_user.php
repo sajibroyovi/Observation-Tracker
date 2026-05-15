@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
+    $phone_number = $_POST['phone_number'] ?? '';
     $password = $_POST['password'] ?? '';
     $role = $_POST['role'] ?? '';
     $allowed_modules = isset($_POST['modules']) ? implode(',', $_POST['modules']) : '';
@@ -35,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $created_by = $_SESSION['username'];
             
-            $stmt_insert = mysqli_prepare($conn, "INSERT INTO users (username, email, password, role, allowed_modules, created_by) VALUES (?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt_insert, "ssssss", $username, $email, $hashed_password, $role, $allowed_modules, $created_by);
+            $stmt_insert = mysqli_prepare($conn, "INSERT INTO users (username, email, phone_number, password, role, allowed_modules, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt_insert, "sssssss", $username, $email, $phone_number, $hashed_password, $role, $allowed_modules, $created_by);
 
             if (mysqli_stmt_execute($stmt_insert)) {
                 mysqli_stmt_close($stmt_insert);
@@ -104,6 +105,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="input-group-modern">
                                         <input type="email" name="email" class="form-control bg-light border-0 shadow-sm p-3" 
                                             placeholder="e.g. j.doe@bkash.com" required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted text-uppercase">WhatsApp Number</label>
+                                    <div class="input-group-modern">
+                                        <input type="text" name="phone_number" class="form-control bg-light border-0 shadow-sm p-3" 
+                                            placeholder="e.g. 88017..." title="International format, e.g. 8801700000000">
                                     </div>
                                 </div>
                                 <div class="mb-4">

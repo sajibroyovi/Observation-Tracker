@@ -38,13 +38,17 @@ function getConnection() {
         $password   = $config['password'];
         $dbname     = $config['dbname'];
         
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Initialize mysqli and set a short timeout to prevent hanging
+        $conn = mysqli_init();
+        mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 5); // 5 seconds timeout
         
-        // Check connection
-        if (!$conn) {
+        // Suppress warnings and attempt connection
+        if (!@mysqli_real_connect($conn, $servername, $username, $password, $dbname)) {
             log_error("Critical Security Failure: Database connection failed.", ["context" => "Internal", "error" => mysqli_connect_error()]);
-            die("Service Temporarily Unavailable.");
+            die("<div style='font-family: sans-serif; text-align: center; margin-top: 100px;'>
+                    <h2 style='color: #d12053;'>Service Temporarily Unavailable</h2>
+                    <p>Could not connect to the database. Please ensure <strong>MySQL service is running</strong> in your XAMPP control panel.</p>
+                 </div>");
         }
     }
     return $conn;
@@ -742,4 +746,81 @@ function sendAssignmentEmail($conn, $technician_username, $observation_name, $te
         log_error("Failed to send assignment email", ['email' => $email, 'error' => $mail->ErrorInfo]);
         return false;
     }
+}
+
+/**
+ * Send a WhatsApp notification using Local Node.js Bridge
+ * 
+ * @param string $phone The phone number (e.g., 88017...)
+ * @param string $message The message text
+ * @return bool True if successful, false otherwise
+ */
+function sendWhatsAppNotification($phone, $message) {
+    if (empty($phone) || empty($message)) {
+        return false;
+    }
+
+    $url = "http://localhost:3000/send";
+    $data = [
+        'phone' => $phone,
+        'message' => $message
+    ];
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($http_code !== 200) {
+        log_error("Local WhatsApp Bridge Error", ['code' => $http_code, 'response' => $response]);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Fetch technician details and send WhatsApp notification
+ * 
+ * @param mysqli $conn Database connection
+ * @param string $technician_username The username of the assigned technician
+ * @param string $observation_name The title of the observation
+ * @return bool True if successful, false otherwise
+ */
+function sendAssignmentWhatsApp($conn, $technician_username, $observation_name) {
+    if (!$conn || empty($technician_username)) return false;
+
+    // 1. Fetch technician WhatsApp details
+    $stmt = mysqli_prepare($conn, "SELECT phone_number FROM users WHERE username = ?");
+    if (!$stmt) return false;
+    
+    mysqli_stmt_bind_param($stmt, "s", $technician_username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $phone = '';
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $phone = $row['phone_number'];
+    }
+    mysqli_stmt_close($stmt);
+
+    if (empty($phone)) {
+        return false; // Not configured for WhatsApp
+    }
+
+    // 2. Prepare message
+    $message = "🔔 *New Observation Assigned*\n\n";
+    $message .= "*Observation:* " . $observation_name . "\n";
+    $message .= "*Assigned At:* " . date('Y-m-d H:i') . "\n\n";
+    $message .= "Please log in to the Observation Tracker to review details.";
+
+    // 3. Send via Local Bridge
+    return sendWhatsAppNotification($phone, $message);
 }

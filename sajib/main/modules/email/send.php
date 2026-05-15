@@ -2,6 +2,9 @@
 require_once __DIR__ . '/../../../config/app.php'; 
 include_once INCLUDES_PATH . '/auth_check.php';
 
+// Temporarily disabled shift handover dispatch as requested
+die("Shift Handover Dispatch is temporarily disabled.");
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
