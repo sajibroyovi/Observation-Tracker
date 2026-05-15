@@ -661,3 +661,13 @@ Stack trace:
 [15-May-2026 14:34:15 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
 [15-May-2026 14:34:16 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
 [15-May-2026 14:34:16 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 19:49:33 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:49:45 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:49:53 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:50:07 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:50:07 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 19:50:07 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 19:50:16 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
+[15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
