@@ -208,8 +208,7 @@ function requireAuth($redirect_url = null) {
     }
     
     if (!isset($_SESSION['user_id'])) {
-        header('Location: ' . $redirect_url);
-        exit();
+        redirectTo($redirect_url);
     }
 }
 
@@ -250,8 +249,7 @@ function logout($redirect_url = null) {
         $redirect_url = BASE_URL . '/login';
     }
     
-    header('Location: ' . $redirect_url);
-    exit();
+    redirectTo($redirect_url);
 }
 
 /**
@@ -505,7 +503,39 @@ function isSafeUrl($url) {
  */
 function getSafeRedirectUrl($input, $default) {
     if (empty($input)) return $default;
-    return isSafeUrl($input) ? $input : $default;
+    
+    // Parse the input URL
+    $parsed = parse_url($input);
+    if (!$parsed) return $default;
+    
+    // Validate host if present
+    if (isset($parsed['host'])) {
+        $base_parsed = parse_url(BASE_URL);
+        $base_host = $base_parsed['host'] ?? '';
+        
+        // If host doesn't match base host, it's an external (and thus unsafe) redirect
+        if ($parsed['host'] !== $base_host) {
+            return $default;
+        }
+    }
+    
+    // Reconstruct the URL from trusted components to strip any hidden tricks (like CRLF or malformed paths)
+    $safe_path = isset($parsed['path']) ? $parsed['path'] : '';
+    $safe_query = isset($parsed['query']) ? '?' . $parsed['query'] : '';
+    $safe_fragment = isset($parsed['fragment']) ? '#' . $parsed['fragment'] : '';
+    
+    if (isset($parsed['host'])) {
+        $scheme = isset($parsed['scheme']) ? $parsed['scheme'] . '://' : '//';
+        $port = isset($parsed['port']) ? ':' . $parsed['port'] : '';
+        return $scheme . $parsed['host'] . $port . $safe_path . $safe_query . $safe_fragment;
+    }
+    
+    // If it's a relative path, ensure it doesn't start with // (which would be protocol-relative to another domain)
+    if (strpos($safe_path, '//') === 0) {
+        return $default;
+    }
+    
+    return $safe_path . $safe_query . $safe_fragment;
 }
 
 /**
@@ -515,19 +545,16 @@ function getSafeRedirectUrl($input, $default) {
  * @return void
  */
 function redirectTo($url) {
-    // Strict Open Redirect prevention
-    if (!isSafeUrl($url)) {
-        log_error("Open Redirect Attempt Blocked", ["target" => $url]);
-        $url = BASE_URL . '/';
+    // Final safety check: ensure the URL is safe before header call
+    $safe_url = BASE_URL . '/';
+    if (isSafeUrl($url)) {
+        // Sanitize for CRLF injection
+        $safe_url = str_replace(["\r", "\n"], '', $url);
     }
     
-    // Additional security: prevent CRLF injection in headers
-    $url = str_replace(["\r", "\n"], '', $url);
-    
-    // Write session data and release file lock before redirecting to prevent race conditions
-    // where the browser requests the next page before the session is saved.
+    // Write session data and release file lock
     session_write_close();
-    header('Location: ' . $url);
+    header('Location: ' . $safe_url);
     exit();
 }
 

@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Security Validation Failed: CSRF Token Mismatch.");
     }
 
-    $shift = cleanInput($_POST['shift']);
-    $date = cleanInput($_POST['date']);
+    $shift = str_replace(["\r", "\n"], '', cleanInput($_POST['shift'] ?? 'N/A'));
+    $date = str_replace(["\r", "\n"], '', cleanInput($_POST['date'] ?? date('Y-m-d')));
 
     // Compose email content as HTML
     $subject = "Shift Handover Report - " . e($shift) . " Shift on " . e($date);

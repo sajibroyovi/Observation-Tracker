@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once __DIR__ . '/../config/app.php';
+initSession();
 session_destroy();
-header('Location: login');
-exit();
+redirectTo('login');
+?>

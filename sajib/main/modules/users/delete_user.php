@@ -3,8 +3,7 @@ require_once __DIR__ . '/../../../config/app.php';
 include_once INCLUDES_PATH . '/auth_check.php';
 
 if (!isSuperAdmin()) {
-    header('Location: ' . BASE_URL . '/');
-    exit();
+    redirectTo(BASE_URL . '/');
 }
 
 if (isset($_GET['id'])) {

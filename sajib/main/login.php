@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['allowed_modules'] = !empty($user['allowed_modules']) ? explode(',', $user['allowed_modules']) : [];
 
-                    header('Location: ./');
-                    exit();
+                    redirectTo('./');
                 } else {
                     $error = 'Invalid username or password';
                 }
