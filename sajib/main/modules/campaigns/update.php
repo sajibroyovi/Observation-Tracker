@@ -55,13 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt_update, "sssssssi", $campaign_name, $start_date, $status, $description, $handed_over_to, $handover_date, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            $redirect = $_SERVER['HTTP_REFERER'] ?? 'view?msg=updated';
-            if (strpos($redirect, 'update') !== false) $redirect = 'view?msg=updated';
-            header("Location: $redirect");
-            exit;
+            showSuccess('Record updated successfully');
+            redirectTo(BASE_URL . '/modules/campaigns/view');
         } else {
             log_error("Update Error for campaign", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
-            echo "An error occurred while updating the record. Please try again.";
+            showError('An error occurred while updating the record. Please try again.');
+            redirectTo(BASE_URL . '/modules/campaigns/view');
         }
         mysqli_stmt_close($stmt_update);
     } else {

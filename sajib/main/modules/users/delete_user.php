@@ -26,8 +26,8 @@ if (isset($_GET['id'])) {
     mysqli_stmt_close($stmt_check);
 
     if ($user_to_delete && $user_to_delete['username'] === $_SESSION['username']) {
-        echo "<script>alert('You cannot delete your own account.'); window.location.href='manage';</script>";
-        exit();
+        showError('You cannot delete your own account.');
+        redirectTo('manage');
     }
 
     // Move to Recycle Bin before deleting
@@ -38,8 +38,9 @@ if (isset($_GET['id'])) {
 
     if (mysqli_stmt_execute($stmt_delete)) {
         mysqli_stmt_close($stmt_delete);
-        echo "<script>alert('User deleted successfully'); window.location.href='manage';</script>";
-        exit();
+        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'manage';
+        showSuccess('User deleted successfully');
+        redirectTo($redirect);
     } else {
         log_error("Failed to delete user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_delete)]);
         mysqli_stmt_close($stmt_delete);

@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
     if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
         log_error("CSRF token validation failed for service outage create attempt");
-        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
-        exit;
+        showError("Security Validation Failed: CSRF Token Mismatch.");
+        redirectTo(BASE_URL . '/');
     }
 
     // Get form data
@@ -27,19 +27,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ssssssss", $details, $incident_id, $problem_ticket, $status, $technician, $created_by, $handed_over_to, $handover_date);
         if (mysqli_stmt_execute($stmt)) {
-            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
-            header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode('Service Outage record inserted successfully'));
+            $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                showSuccess('Service Outage record inserted successfully');
+                redirectTo($redirect);
         } else {
             log_error("Failed to insert service outage record", ['error' => mysqli_stmt_error($stmt)]);
-            $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-            $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
-            header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+            $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                showError("Critical Error: Failed to save record.");
+                redirectTo($redirect);
         }
         mysqli_stmt_close($stmt);
     } else {
         log_error("Failed to prepare statement for service outage", ['error' => mysqli_error($conn)]);
-        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Critical Error: Internal Server Error."));
+        showError("Critical Error: Internal Server Error.");
+        redirectTo(BASE_URL . '/');
     }
 
     mysqli_close($conn);

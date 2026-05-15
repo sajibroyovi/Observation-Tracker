@@ -32,7 +32,6 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css">
     <script src="<?= ASSETS_URL ?>/js/script.js" defer></script>
-    <script src="<?= ASSETS_URL ?>/js/toast.js" defer></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -79,8 +78,8 @@ $result = mysqli_query($conn, $sql);
                                             <td class="text-end pe-4">
                                                 <div class="btn-group shadow-sm rounded">
                                                     <button class="btn btn-white btn-sm border-end text-success" title="View Details" data-bs-toggle="modal" data-bs-target="#viewModal_<?= $row['id'] ?>"><i class="fa-solid fa-eye"></i></button>
-                                                    <a href="restore?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>" class="btn btn-white btn-sm border-end text-info" title="Restore Record" onclick="return confirm('Restore this record to its original module?');"><i class="fa-solid fa-rotate-left"></i></a>
-                                                    <a href="delete?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>" class="btn btn-white btn-sm text-danger" title="Permanently Delete" onclick="return confirm('WARNING: This will permanently eradicate the record. Continue?');"><i class="fa-solid fa-eraser"></i></a>
+                                                    <a href="restore?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>&return_url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="btn btn-white btn-sm border-end text-info" title="Restore Record" onclick="return confirm('Restore this record to its original module?');"><i class="fa-solid fa-rotate-left"></i></a>
+                                                    <a href="delete?id=<?= $row['id'] ?>&csrf_token=<?= urlencode($_SESSION['csrf_token']) ?>&return_url=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="btn btn-white btn-sm text-danger" title="Permanently Delete" onclick="return confirm('WARNING: This will permanently eradicate the record. Continue?');"><i class="fa-solid fa-eraser"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

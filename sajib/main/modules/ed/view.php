@@ -244,7 +244,7 @@ $_progress = ($_stats['total'] > 0) ? round(($_stats['enabled'] / $_stats['total
                                                     <a href='update?id=" . (int)$row['serial_no'] . "' class='btn btn-white btn-sm border-end text-primary' title='Edit Record'><i class='fa-solid fa-pen-to-square'></i></a>";
                                         
                                         if (isSuperAdmin()) {
-                                            echo "<a href='delete?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-white btn-sm text-danger' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this record?\")'><i class='fa-solid fa-trash-can'></i></a>";
+                                            echo "<a href='delete?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "&return_url=" . urlencode($_SERVER['REQUEST_URI']) . "' class='btn btn-white btn-sm text-danger' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this record?\")'><i class='fa-solid fa-trash-can'></i></a>";
                                         }
                                         echo "</div></td>";
                                     }

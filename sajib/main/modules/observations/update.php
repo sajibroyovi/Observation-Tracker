@@ -194,18 +194,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($technician_name) && !empty($technician_name) && $technician_name !== $row['technician_name']) {
                     sendAssignmentEmail($conn, $technician_name, $observation_names ?? $row['observation_names'], $team_name ?? $row['team_name']);
                 }
-                echo "<script>alert('Record updated successfully'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
+                $redirect = BASE_URL . '/modules/observations/view';
+                showSuccess('Record updated successfully');
+                redirectTo($redirect);
             } else {
                 log_error("Update Error for observations", ['id' => $id, 'error' => mysqli_stmt_error($stmt)]);
-                echo "<script>alert('Critical Error: Failed to update record.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
+                $redirect = BASE_URL . '/modules/observations/view';
+                showError('Critical Error: Failed to update record.');
+                redirectTo($redirect);
             }
             mysqli_stmt_close($stmt);
         } else {
             log_error("Prepare Error for observations update", ['error' => mysqli_error($conn)]);
-            echo "<script>alert('Critical Error: Internal server error.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
+            $redirect = BASE_URL . '/modules/observations/view';
+            showError('Critical Error: Internal server error.');
+            redirectTo($redirect);
         }
     } else {
-        echo "<script>alert('No changes to save.'); window.location.href='" . BASE_URL . "/modules/observations/view';</script>";
+        $redirect = BASE_URL . '/modules/observations/view';
+        showSuccess('No changes to save.');
+        redirectTo($redirect);
     }
     mysqli_close($conn);
     exit;

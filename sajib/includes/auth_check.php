@@ -40,6 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT
 // Establish global database connection for backward compatibility
 $conn = getConnection();
 
+// Refresh user permissions from the database to ensure changes take effect immediately
+$stmt_auth = mysqli_prepare($conn, "SELECT role, allowed_modules FROM users WHERE id = ?");
+if ($stmt_auth) {
+    mysqli_stmt_bind_param($stmt_auth, "i", $_SESSION['user_id']);
+    mysqli_stmt_execute($stmt_auth);
+    $result_auth = mysqli_stmt_get_result($stmt_auth);
+    if ($row_auth = mysqli_fetch_assoc($result_auth)) {
+        $_SESSION['role'] = $row_auth['role'];
+        $_SESSION['allowed_modules'] = !empty($row_auth['allowed_modules']) ? explode(',', $row_auth['allowed_modules']) : [];
+    }
+    mysqli_stmt_close($stmt_auth);
+}
+
 // Store user info for easy access (backward compatibility)
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['username'];

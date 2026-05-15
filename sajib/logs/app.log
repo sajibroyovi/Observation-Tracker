@@ -51,3 +51,13 @@
 [2026-05-14 20:30:14] [User: 1] File upload error {"code":4}
 [2026-05-14 20:30:22] [User: 1] Local WhatsApp Bridge Error {"code":0,"response":false}
 [2026-05-14 20:52:34] [User: 1] File upload error {"code":4}
+[2026-05-15 09:26:27] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/banners\/view?msg=deleted"}
+[2026-05-15 09:39:20] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/"}
+[2026-05-15 09:39:32] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/pm\/view"}
+[2026-05-15 09:39:50] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/pm\/view"}
+[2026-05-15 09:40:29] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/ed\/view"}
+[2026-05-15 09:47:04] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/pm\/view"}
+[2026-05-15 09:47:14] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/pm\/view"}
+[2026-05-15 09:47:50] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/banners\/view"}
+[2026-05-15 09:56:54] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/recycle_bin\/view"}
+[2026-05-15 09:57:45] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/recycle_bin\/view"}

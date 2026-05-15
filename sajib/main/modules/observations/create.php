@@ -20,8 +20,8 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
         // CSRF Validation
         if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
             log_error("CSRF token validation failed for observation create attempt");
-            header('Location: ' . BASE_URL . '/modules/observations/view?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
-            exit;
+            showError("Security Validation Failed: CSRF Token Mismatch.");
+            redirectTo(BASE_URL . '/modules/observations/view');
         }
 
         // Get form data
@@ -63,8 +63,8 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
                         $max_size = 5 * 1024 * 1024; // 5MB
                         if ($_FILES["l1_images"]["size"][$i] > $max_size) {
                             log_error("File size exceeds limit", ['file' => $_FILES["l1_images"]["name"][$i], 'size' => $_FILES["l1_images"]["size"][$i]]);
-                            header('Location: ' . BASE_URL . '/modules/observations/view?status=error&msg=' . urlencode("Error: File " . $_FILES["l1_images"]["name"][$i] . " exceeds the 5MB limit."));
-                            exit;
+                            showError("Error: File " . $_FILES["l1_images"]["name"][$i] . " exceeds the 5MB limit.");
+                            redirectTo(BASE_URL . '/modules/observations/view');
                         }
                         $allowed_mimes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'];
                         if (in_array($check['mime'], $allowed_mimes)) {
@@ -122,15 +122,19 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
                     sendAssignmentWhatsApp($conn, $technician_name, $observation_names);
                 }
                 */
-                header('Location: ' . BASE_URL . '/modules/observations/view?status=success&msg=' . urlencode("Observation record inserted successfully"));
+                $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/modules/observations/view');
+                showSuccess("Observation record inserted successfully");
+                redirectTo($redirect);
             } else {
                 log_error("Failed to insert observation record", ['error' => mysqli_stmt_error($stmt)]);
-                header('Location: ' . BASE_URL . '/modules/observations/view?status=error&msg=' . urlencode("Critical Error: Failed to save record."));
+                showError("Critical Error: Failed to save record.");
+                redirectTo(BASE_URL . '/modules/observations/view');
             }
             mysqli_stmt_close($stmt);
         } else {
             log_error("Failed to prepare statement for observation", ['error' => mysqli_error($conn)]);
-            header('Location: ' . BASE_URL . '/modules/observations/view?status=error&msg=' . urlencode("Critical Error: Internal Server Error."));
+            showError("Critical Error: Internal Server Error.");
+            redirectTo(BASE_URL . '/modules/observations/view');
         }
 
         mysqli_close($conn);

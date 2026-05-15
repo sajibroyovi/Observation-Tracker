@@ -57,13 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt_update, "ssssssssi", $details, $incident_id, $problem_ticket, $status, $technician, $handed_over_to, $handover_date, $edited_by, $id);
         if (mysqli_stmt_execute($stmt_update)) {
             mysqli_stmt_close($stmt_update);
-            $redirect = $_SERVER['HTTP_REFERER'] ?? 'view?msg=updated';
-            if (strpos($redirect, 'update') !== false) $redirect = 'view?msg=updated';
-            header("Location: $redirect");
-            exit;
+            showSuccess('Record updated successfully');
+            redirectTo(BASE_URL . '/modules/outages/view');
         } else {
             log_error("Update Error for service_outage", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
-            echo "An error occurred while updating the record. Please try again.";
+            showError('An error occurred while updating the record. Please try again.');
+            redirectTo(BASE_URL . '/modules/outages/view');
         }
         mysqli_stmt_close($stmt_update);
     } else {

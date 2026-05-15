@@ -283,7 +283,9 @@ function getCsrfToken() {
  */
 function getCsrfField() {
     $token = getCsrfToken();
-    return '<input type="hidden" name="csrf_token" value="' . $token . '">';
+    $return_url = htmlspecialchars($_SERVER['REQUEST_URI'] ?? '', ENT_QUOTES, 'UTF-8');
+    return '<input type="hidden" name="csrf_token" value="' . $token . '">' . "\n" .
+           '<input type="hidden" name="return_url" value="' . $return_url . '">';
 }
 
 /**
@@ -480,6 +482,9 @@ function redirectTo($url) {
             $url = BASE_URL . '/';
         }
     }
+    // Write session data and release file lock before redirecting to prevent race conditions
+    // where the browser requests the next page before the session is saved.
+    session_write_close();
     header('Location: ' . $url);
     exit();
 }
@@ -649,6 +654,9 @@ function moveToRecycleBin($conn, $table_name, $id_column, $id_value, $module_nam
  * @return bool True if successful, false otherwise
  */
 function sendAssignmentEmail($conn, $technician_username, $observation_name, $team_name = "") {
+    // Temporarily disable email notifications as requested
+    return true;
+    
     if (!$conn || empty($technician_username)) return false;
 
     // 1. Fetch technician email

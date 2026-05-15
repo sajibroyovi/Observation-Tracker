@@ -6,8 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // CSRF Validation
     if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
         log_error("CSRF token validation failed for campaign create attempt");
-        header('Location: ' . BASE_URL . '/?status=error&msg=' . urlencode("Security Validation Failed: CSRF Token Mismatch."));
-        exit;
+        showError("Security Validation Failed: CSRF Token Mismatch.");
+        redirectTo(BASE_URL . '/');
     }
 
     // Get form data
@@ -47,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($inserted_count > 0) {
-        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
-        header('Location: ' . $redirect . $separator . 'status=success&msg=' . urlencode("$inserted_count Campaign record(s) inserted successfully"));
+        $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                showSuccess('$inserted_count Campaign record(s) inserted successfully');
+                redirectTo($redirect);
     } else {
-        $redirect = $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
-        $separator = (strpos($redirect, '?') !== false) ? '&' : '?';
-        header('Location: ' . $redirect . $separator . 'status=error&msg=' . urlencode('Failed to insert any records.'));
+        $redirect = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? (BASE_URL . '/');
+                showError("Failed to insert any records.");
+                redirectTo($redirect);
     }
 
     mysqli_close($conn);

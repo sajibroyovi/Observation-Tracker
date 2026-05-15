@@ -155,7 +155,7 @@ $result = $stmt ? mysqli_stmt_get_result($stmt) : false;
                                                     <a href='edit_user?id=" . (int)$row['id'] . "' class='btn btn-light btn-sm border-end' title='Edit User Profile'>
                                                         <i class='fa-solid fa-user-pen text-info'></i>
                                                     </a>
-                                                    <a href='delete_user?id=" . (int)$row['id'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-light btn-sm' onclick='return confirm(\"Security Alert: Proceed with account termination?\")' title='Revoke Access'>
+                                                    <a href='delete_user?id=" . (int)$row['id'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "&return_url=" . urlencode($_SERVER['REQUEST_URI']) . "' class='btn btn-light btn-sm' onclick='return confirm(\"Security Alert: Proceed with account termination?\")' title='Revoke Access'>
                                                         <i class='fa-solid fa-user-slash text-danger'></i>
                                                     </a>
                                                 </div>

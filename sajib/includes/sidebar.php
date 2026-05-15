@@ -54,56 +54,56 @@ $current_page = basename($_SERVER['PHP_SELF']);
         
         <li class="nav-section-title mt-3 mb-2 px-3 small text-uppercase opacity-50">Operational Modules</li>
         
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Promo Banner')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/banners/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/banners/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-image"></i> <span>Promo Banner</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Campaign')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/campaigns/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/campaigns/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-bullhorn"></i> <span>Campaign</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('CR List')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/change_requests/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/change_requests/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-file-invoice"></i> <span>CR List</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Enable/Disable')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/ed/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ed/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-toggle-on"></i> <span>Enable/Disable</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Service Outage')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/outages/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/outages/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-triangle-exclamation"></i> <span>Service Outage</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Pending Mail')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/pm/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/pm/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-envelope"></i> <span>Pending Mail</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('Security Mail')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/sc/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/sc/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-shield-halved"></i> <span>Security Mail</span>
             </a>
         </li>
         <?php endif; ?>
-        <?php if ($user_role !== 'l1' && $user_role !== 'l2'): ?>
+        <?php if (canViewModule('SSL Certificate')): ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/ssl/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/ssl/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-lock"></i> <span>SSL Certificate</span>
@@ -149,3 +149,30 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <script src="<?php echo ASSETS_URL; ?>/js/search.js"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/toast.js"></script>
+
+<?php 
+// Global Toast Notifications (Session-based)
+$success_msg = getSuccessMessage();
+$error_msg = getErrorMessage();
+
+if ($success_msg || $error_msg): 
+?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure the toast system is loaded
+    if (typeof toast !== 'undefined') {
+        <?php if ($success_msg): ?>
+            toast.show(<?php echo json_encode($success_msg); ?>, 'success');
+        <?php endif; ?>
+        <?php if ($error_msg): ?>
+            toast.show(<?php echo json_encode($error_msg); ?>, 'error');
+        <?php endif; ?>
+    } else {
+        // Fallback if toast.js fails to load
+        console.error('Toast system not loaded');
+        alert(<?php echo json_encode($success_msg ?: $error_msg); ?>);
+    }
+});
+</script>
+<?php endif; ?>

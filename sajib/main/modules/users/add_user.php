@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt_insert)) {
                 mysqli_stmt_close($stmt_insert);
-                echo "<script>alert('User created successfully'); window.location.href='manage';</script>";
-                exit();
+                showSuccess('User created successfully');
+                redirectTo('manage');
             } else {
                 log_error("Failed to insert new user", ['username' => $username, 'error' => mysqli_stmt_error($stmt_insert)]);
                 $error = "Error adding user. Please check logs.";

@@ -111,7 +111,6 @@ function truncate_chars($text, $limit = 50, $default = "") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css">
     <script src="<?= ASSETS_URL ?>/js/script.js" defer></script>
-    <script src="<?= ASSETS_URL ?>/js/toast.js" defer></script>
 
 </head>
 
@@ -300,7 +299,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                             echo "<a href='update?id=" . (int)$row['serial_no'] . "' class='btn btn-white btn-sm border-end text-primary' title='Edit Record'><i class='fa-solid fa-pen-to-square'></i></a>";
                                         }
                                         if (isSuperAdmin()) {
-                                            echo "<a href='delete?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "' class='btn btn-white btn-sm text-danger border-0' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this observation?\")'>
+                                            echo "<a href='delete?id=" . (int)$row['serial_no'] . "&csrf_token=" . urlencode($_SESSION['csrf_token']) . "&return_url=" . urlencode($_SERVER['REQUEST_URI']) . "' class='btn btn-white btn-sm text-danger border-0' title='Delete Record' onclick='return confirm(\"Are you sure you want to delete this observation?\")'>
 <i class='fa-solid fa-trash-can'></i></a>";
                                         }
                                         echo "</div>

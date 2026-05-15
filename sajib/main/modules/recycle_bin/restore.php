@@ -3,7 +3,9 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
 
 // Only Super Admins can restore
 if (!isSuperAdmin()) {
-    header("Location: view?error=unauthorized");
+    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+    showError('Unauthorized access.');
+    redirectTo($redirect);
     exit;
 }
 
@@ -13,7 +15,9 @@ if (isset($_GET['id'])) {
     // CSRF check
     if (isset($_GET['csrf_token']) && !validateCsrfToken($_GET['csrf_token'])) {
         log_error("CSRF token validation failed for restore attempt on recycle bin", ['id' => $id]);
-        header("Location: view?error=csrf");
+        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+        showError('Security Validation Failed: CSRF Token Mismatch.');
+        redirectTo($redirect);
         exit;
     }
 
@@ -56,29 +60,43 @@ if (isset($_GET['id'])) {
                             mysqli_stmt_execute($del_stmt);
                             mysqli_stmt_close($del_stmt);
                         }
-                        header("Location: view?msg=restored");
+                        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                        showSuccess('Record successfully restored to ' . htmlspecialchars($table_name));
+                        redirectTo($redirect);
                     } else {
                         log_error("Failed to restore record in target table", ['table' => $table_name, 'error' => mysqli_stmt_error($insert_stmt)]);
-                        header("Location: view?msg=error");
+                        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                        showError('Failed to restore record.');
+                        redirectTo($redirect);
                     }
                     mysqli_stmt_close($insert_stmt);
                 } else {
                     log_error("Failed to prepare restore query", ['table' => $table_name, 'error' => mysqli_error($conn)]);
-                    header("Location: view?msg=error");
+                    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                    showError('Internal Server Error.');
+                    redirectTo($redirect);
                 }
             } else {
                 log_error("Failed to decode JSON payload for restore", ['id' => $id]);
-                header("Location: view?msg=error");
+                $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+                showError('Data corruption: Failed to decode payload.');
+                redirectTo($redirect);
             }
         } else {
-            header("Location: view?msg=noid");
+            $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+            showError('Record not found.');
             if ($stmt) mysqli_stmt_close($stmt);
+            redirectTo($redirect);
         }
     } else {
-        header("Location: view?msg=error");
+        $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+        showError('Internal Server Error.');
+        redirectTo($redirect);
     }
 } else {
-    header("Location: view?msg=noid");
+    $redirect = $_GET['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? 'view';
+    showError('Invalid Record ID.');
+    redirectTo($redirect);
 }
 
 mysqli_close($conn);

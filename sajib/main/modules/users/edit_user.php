@@ -71,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt_update, $types, ...$params);
             if (mysqli_stmt_execute($stmt_update)) {
                 mysqli_stmt_close($stmt_update);
-                echo "<script>alert('User updated successfully'); window.location.href='manage';</script>";
-                exit();
+                showSuccess('User updated successfully');
+                redirectTo('manage');
             } else {
                 log_error("Update Error for user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
                 $error = "Error updating user. Please check logs.";
