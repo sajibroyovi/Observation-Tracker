@@ -657,3 +657,7 @@ Stack trace:
 [15-May-2026 10:51:30 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
 [15-May-2026 11:00:11 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
 [15-May-2026 11:00:11 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 14:34:15 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 14:34:15 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 14:34:16 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 14:34:16 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
