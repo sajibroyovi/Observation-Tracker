@@ -671,3 +671,292 @@ Stack trace:
 [15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  preg_match(): Compilation failed: missing terminating ] for character class at offset 9 in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 476
 [15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
 [15-May-2026 19:50:22 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 114
+[15-May-2026 22:07:50 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:07:50 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:07:53 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:07:53 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:08:40 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:08:40 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:09:01 Asia/Dhaka] PHP Warning:  Undefined variable $modals in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[15-May-2026 22:09:01 Asia/Dhaka] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\sajib\sajib\main\modules\recycle_bin\view.php on line 113
+[31-May-2026 09:13:49 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[31-May-2026 09:13:49 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php:3
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php(3): mysqli_query(NULL, 'DESCRIBE cr_lis...')
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[31-May-2026 09:14:01 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[31-May-2026 09:14:01 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php:3
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php(3): mysqli_query(NULL, 'DESCRIBE cr_lis...')
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[31-May-2026 09:14:09 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[31-May-2026 09:14:09 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php:3
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php(3): mysqli_query(NULL, 'DESCRIBE cr_lis...')
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\scratch\describe_db.php on line 3
+[01-Jun-2026 11:41:03 Asia/Dhaka] CSRF validation failed for user_id: 11 on page: /sajib/sajib/main/modules/agent/api
+[01-Jun-2026 11:41:15 Asia/Dhaka] CSRF validation failed for user_id: 11 on page: /sajib/sajib/main/modules/agent/api
+[01-Jun-2026 11:41:51 Asia/Dhaka] CSRF validation failed for user_id: 11 on page: /sajib/sajib/main/modules/agent/api
+[01-Jun-2026 11:42:11 Asia/Dhaka] CSRF validation failed for user_id: 11 on page: /sajib/sajib/main/modules/agent/api
+[01-Jun-2026 08:04:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:04:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:04:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:07:22 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:07:35 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:10:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:06 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:11:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:12:20 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:15:39 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 405
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:15:39 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 405
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:04 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:16:28 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:16:28 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:16:57 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 405
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:16:57 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:17:01 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:17:01 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:17:04 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:17:04 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:20:31 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 405
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:20:31 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 50
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 51
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 345
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 395
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 384
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 327
+[01-Jun-2026 08:25:13 Europe/Berlin] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 405
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 192
+[01-Jun-2026 12:25:13 Asia/Dhaka] PHP Warning:  Undefined array key "role" in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 374
+[01-Jun-2026 08:26:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9
+[01-Jun-2026 08:26:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\xampp\htdocs\sajib\sajib\includes\auth_check.php on line 9

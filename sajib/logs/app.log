@@ -61,3 +61,18 @@
 [2026-05-15 09:47:50] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/banners\/view"}
 [2026-05-15 09:56:54] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/recycle_bin\/view"}
 [2026-05-15 09:57:45] [User: 1] Open Redirect Attempt Blocked {"target":"http:\/\/localhost\/sajib\/sajib\/main\/modules\/recycle_bin\/view"}
+[2026-06-01 08:43:17] [User: 1] Agent API error {"error":"mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given"}
+[2026-06-01 08:43:30] [User: 1] Agent API error {"error":"mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given"}
+[2026-06-01 08:44:43] [User: 1] Agent API error {"error":"mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given"}
+[2026-06-01 08:44:51] [User: 1] Agent API error {"error":"mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT service_name, status, start_time, resolution_time FROM service_outage ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'service_name' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT subject, sender, status, received_date FROM pending_mail ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'subject' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT subject, sender, priority, status FROM security_mail ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'subject' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT campaign_name, start_date, end_date, status FROM campaign ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'end_date' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT banner_name, status, start_date, end_date FROM promo_banner ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'banner_name' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT COUNT(*) as total, SUM(status='Open') as open, SUM(status='In Progress') as in_progress, SUM(status='Closed') as closed FROM cr_list","error":"Unknown column 'status' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT cr_title, cr_type, status, planned_date FROM cr_list ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'cr_title' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT COUNT(*) as total, SUM(service_status='Enabled') as enabled, SUM(service_status='Disabled') as disabled FROM enable_disable","error":"Unknown column 'service_status' in 'field list'"}
+[2026-06-01 08:48:37] [User: 1] Agent SQL Query Failed {"query":"SELECT service_name, service_status, reason, updated_at FROM enable_disable WHERE service_status='Disabled' ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'service_status' in 'field list'"}
+[2026-06-01 08:48:51] [User: 1] Agent SQL Query Failed {"query":"SELECT service_name, status, start_time, resolution_time FROM service_outage ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'service_name' in 'field list'"}
+[2026-06-01 08:49:11] [User: 1] Agent SQL Query Failed {"query":"SELECT subject, sender, priority, status FROM security_mail ORDER BY serial_no DESC LIMIT 5","error":"Unknown column 'subject' in 'field list'"}

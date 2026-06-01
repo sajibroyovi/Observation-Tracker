@@ -151,6 +151,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <script src="<?php echo ASSETS_URL; ?>/js/search.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/toast.js"></script>
 
+<!-- ===== SHIFT INTELLIGENCE AGENT (Global Floating Bubble) ===== -->
+<script>
+    // Pass the dynamic BASE_URL to the agent widget
+    window.__AGENT_BASE_URL = <?php echo json_encode(BASE_URL); ?>;
+</script>
+<script src="<?php echo ASSETS_URL; ?>/js/agent.js?v=<?php echo filemtime(ASSETS_PATH . '/js/agent.js'); ?>"></script>
+
 <?php 
 // Global Toast Notifications (Session-based)
 $success_msg = getSuccessMessage();
