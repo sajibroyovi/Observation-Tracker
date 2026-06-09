@@ -105,7 +105,8 @@
     bottom: 100px;
     right: 28px;
     width: 400px;
-    max-height: 600px;
+    max-width: calc(100vw - 56px);
+    max-height: calc(100vh - 130px);
     display: flex;
     flex-direction: column;
     background: rgba(255,255,255,0.92);
@@ -176,7 +177,7 @@
     flex-direction: column;
     gap: 10px;
     min-height: 200px;
-    max-height: 380px;
+    /* height dynamically scales via flex up to window's max-height */
     scroll-behavior: smooth;
 }
 #agent-messages::-webkit-scrollbar { width: 4px; }
@@ -335,10 +336,60 @@
 #agent-welcome h3 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin: 0; }
 #agent-welcome p  { font-size: 12.5px; margin: 0; color: #777; }
 
+/* Dynamic action trigger button */
+.action-trigger-btn {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ef233c;
+    background: rgba(239, 35, 96, 0.08);
+    border: 1px solid rgba(239, 35, 96, 0.25);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 4px 4px 0 0;
+}
+.action-trigger-btn:hover {
+    color: #fff;
+    background: #ef233c;
+    border-color: #ef233c;
+}
+.action-trigger-btn.btn-answered {
+    color: #2a9d8f;
+    background: rgba(42, 157, 147, 0.08);
+    border-color: rgba(42, 157, 147, 0.25);
+}
+.action-trigger-btn.btn-answered:hover {
+    color: #fff;
+    background: #2a9d8f;
+    border-color: #2a9d8f;
+}
+
 /* Responsive */
+@media (max-width: 768px) {
+    #agent-window { 
+        right: 20px; 
+        bottom: 90px;
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 120px);
+    }
+    #agent-fab { right: 20px; bottom: 20px; }
+}
 @media (max-width: 480px) {
-    #agent-window { width:calc(100vw - 20px); right:10px; bottom:90px; }
-    #agent-fab    { bottom:16px; right:16px; }
+    #agent-window { 
+        width: calc(100vw - 32px); 
+        right: 16px; 
+        bottom: 85px; 
+        max-height: calc(100vh - 110px); 
+        border-radius: 20px;
+    }
+    #agent-fab { 
+        bottom: 16px; 
+        right: 16px; 
+        width: 56px; 
+        height: 56px; 
+    }
 }
         `;
         const style = document.createElement('style');
@@ -701,6 +752,18 @@
                 </div>`;
         });
 
+        // Delegate clicks on action trigger buttons in the chat
+        messagesEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('.action-trigger-btn');
+            if (btn) {
+                const action = btn.dataset.action;
+                if (action) {
+                    if (!isOpen) toggleWindow();
+                    handleSend(action);
+                }
+            }
+        });
+
         // Keyboard shortcut: Ctrl+Shift+A to toggle
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
@@ -709,14 +772,33 @@
             }
         });
 
-        // Auto-greet if first time
-        if (history.length === 0) {
-            setTimeout(() => {
-                if (!isOpen) {
+        // Proactive check / Auto-alert on login
+        async function runProactiveCheck() {
+            try {
+                const data = await sendToAgent('proactive_check');
+                if (data && data.has_alerts) {
+                    badge.textContent = data.alert_count;
                     badge.style.display = 'flex';
+                    
+                    // If history is empty, pre-populate the chat with this alert
+                    if (history.length === 0) {
+                        const botText = data.message;
+                        appendMessage(messagesEl, 'bot', botText);
+                        history.push({ role: 'bot', text: botText });
+                        saveHistory(history);
+                    }
+                } else {
+                    // Auto-greet if first time
+                    if (history.length === 0 && !isOpen) {
+                        badge.style.display = 'flex';
+                    }
                 }
-            }, 2000);
+            } catch (err) {
+                console.warn("Proactive check failed", err);
+            }
         }
+
+        setTimeout(runProactiveCheck, 1500);
     }
 
     // Run on DOM ready
