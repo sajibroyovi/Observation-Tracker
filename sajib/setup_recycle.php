@@ -13,10 +13,14 @@ CREATE TABLE IF NOT EXISTS recycle_bin (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ";
 
+$conn = getConnection();
+
 if (mysqli_query($conn, $sql)) {
     echo "Table created successfully.";
 } else {
-    echo "Error creating table: " . mysqli_error($conn);
+    // Prevent Information Exposure by using a generic error message and logging the actual error
+    log_error("Error creating recycle_bin table", ['error' => mysqli_error($conn)]);
+    echo "Error creating table. Please check system logs.";
 }
 
 mysqli_close($conn);

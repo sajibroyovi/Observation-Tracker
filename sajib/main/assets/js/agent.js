@@ -523,7 +523,37 @@
         // Newlines to <br> (but not inside HTML tags)
         html = html.replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>');
 
-        return html;
+        // Prevent DOM XSS by sanitizing the final HTML
+        return sanitizeHTML(html);
+    }
+
+    function sanitizeHTML(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        // Whitelist of safe HTML tags
+        const allowedTags = ['DIV', 'SPAN', 'BUTTON', 'A', 'I', 'B', 'STRONG', 'EM', 'TABLE', 'TR', 'TD', 'TH', 'BR', 'HR', 'H2', 'H3', 'UL', 'LI', 'P', 'CODE', 'THEAD', 'TBODY'];
+        
+        function clean(node) {
+            const children = Array.from(node.childNodes);
+            for (let child of children) {
+                if (child.nodeType === 1) { // Element node
+                    if (!allowedTags.includes(child.nodeName)) {
+                        child.remove();
+                        continue;
+                    }
+                    // Clean attributes: remove anything starting with "on" or containing "javascript:"
+                    const attrs = Array.from(child.attributes);
+                    for (let attr of attrs) {
+                        if (attr.name.startsWith('on') || attr.value.toLowerCase().includes('javascript:')) {
+                            child.removeAttribute(attr.name);
+                        }
+                    }
+                    clean(child);
+                }
+            }
+        }
+        clean(doc.body);
+        return doc.body.innerHTML;
     }
 
     // --------------------------------------------------------
