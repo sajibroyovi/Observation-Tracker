@@ -235,6 +235,30 @@
         </div>
     </div>
 
+    <!-- L1 Instructions Modal -->
+    <div class="modal fade" id="staticBackdrop_l1_instructions" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark">
+                <form action="<?php echo BASE_URL; ?>/modules/l1_instructions/create" method="POST">
+                    <?php echo getCsrfField(); ?>
+                    <div class="modal-header border-0 bg-danger" style="background-color: #d90429 !important;">
+                        <h5 class="modal-title fw-bold text-white"><i class="fa-solid fa-bullhorn me-2"></i> L1 Instruction Entry</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Instruction Text</label>
+                            <textarea class="form-control" name="instruction_text" rows="3" placeholder="Enter the instruction to display on the global marquee..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="submit" class="btn w-100 py-3 rounded-pill fw-bold text-white shadow-sm" style="background: #d90429; border: none;">Publish Instruction</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Promo Banner Modal -->
     <div class="modal fade" id="staticBackdrop_herobanner" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

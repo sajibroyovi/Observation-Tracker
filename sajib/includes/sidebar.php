@@ -183,3 +183,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php endif; ?>
+
+<!-- ===== GLOBAL L1 INSTRUCTIONS MARQUEE ===== -->
+<?php
+$conn_mq = getConnection();
+$mq_res = mysqli_query($conn_mq, "SELECT instruction_text FROM l1_instructions ORDER BY id DESC");
+$instructions = [];
+if ($mq_res) {
+    while($r = mysqli_fetch_assoc($mq_res)) {
+        $instructions[] = htmlspecialchars($r['instruction_text']);
+    }
+}
+if (!empty($instructions)):
+?>
+<div class="fixed-bottom global-marquee-container" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 10px 0; z-index: 9999; border-top: 2px solid #ff9f1c; box-shadow: 0 -4px 15px rgba(0,0,0,0.15);">
+    <marquee behavior="scroll" direction="left" scrollamount="15" onmouseover="this.stop();" onmouseout="this.start();" style="font-size: 14px; font-weight: 500; letter-spacing: 0.5px;">
+        <i class="fa-solid fa-bullhorn text-warning me-2"></i>
+        <?php echo implode(' <span class="mx-4 text-warning opacity-50">|</span> <i class="fa-solid fa-circle-info text-info me-2"></i> ', $instructions); ?>
+    </marquee>
+</div>
+<style>
+    body { padding-bottom: 45px !important; }
+</style>
+<?php endif; ?>

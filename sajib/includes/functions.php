@@ -333,6 +333,10 @@ function canViewModule($module_title) {
         $allowed = explode(',', $allowed);
     }
     
+    if ($module_title === 'L1 Instructions' && in_array($_SESSION['role'] ?? '', ['l1', 'super_admin'])) {
+        return true;
+    }
+
     return in_array($module_title, $allowed);
 }
 
