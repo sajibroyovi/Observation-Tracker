@@ -130,7 +130,6 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
             redirectTo(BASE_URL . '/modules/observations/view');
         }
 
-        mysqli_close($conn);
         exit();
     }
     ?>

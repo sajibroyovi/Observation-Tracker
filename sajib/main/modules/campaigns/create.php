@@ -56,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectTo($redirect);
     }
 
-    mysqli_close($conn);
     exit();
 }
 ?>

@@ -72,11 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Critical Error: Internal Server Error.";
     }
 
-    mysqli_close($conn);
     exit;
 }
 
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -140,10 +138,10 @@ mysqli_close($conn);
                                     <div class="col-md-6">
                                         <label for="downtime" class="form-label small fw-bold text-muted text-uppercase">Downtime Nature</label>
                                         <select class="form-select bg-light border-0 shadow-sm p-3" name="downtime" id="downtime" required>
-                                            <option value="1" <?php if ($row['downtime'] == '1') echo 'selected'; ?>>No Downtime</option>
-                                            <option value="0" <?php if ($row['downtime'] == '0') echo 'selected'; ?>>Service Downtime</option>
-                                            <option value="2" <?php if ($row['downtime'] == '2') echo 'selected'; ?>>Service Fluctuation</option>
-                                            <option value="3" <?php if ($row['downtime'] == '3') echo 'selected'; ?>>Not Applicable</option>
+                                            <option value="1" <?php if ($row['downtime'] == '1') echo 'selected'; ?>>No</option>
+                                            <option value="0" <?php if ($row['downtime'] == '0') echo 'selected'; ?>>Yes</option>
+                                            <option value="2" <?php if ($row['downtime'] == '2') echo 'selected'; ?>>Fluctuation</option>
+                                            <option value="3" <?php if ($row['downtime'] == '3') echo 'selected'; ?>>N/A</option>
                                         </select>
                                     </div>
 

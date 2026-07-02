@@ -70,11 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Critical Error: Internal Server Error.";
     }
 
-    mysqli_close($conn);
     exit;
 }
 
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

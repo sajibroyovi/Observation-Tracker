@@ -50,6 +50,5 @@ if (isset($_GET['id'])) {
     redirectTo($redirect);
 }
 
-mysqli_close($conn);
 exit;
 ?>

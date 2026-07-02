@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 fclose($output);
-mysqli_close($conn);
+
 exit;
 ?>
 

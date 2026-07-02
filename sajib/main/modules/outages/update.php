@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . '/auth_check.php';
-
+require_once __DIR__ . '/../../../config/app.php'; 
+include_once INCLUDES_PATH . '/auth_check.php';
 
 if (isset($_GET['id'])) {
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
     $details = cleanInput($_POST['details']);
     $incident_id = cleanInput($_POST['incident_id']);
-    $problem_ticket = cleanInput($_POST['problem_ticket']);
+    $problem_ticket = !empty($_POST['problem_ticket']) ? cleanInput($_POST['problem_ticket']) : null;
     $status = cleanInput($_POST['status']);
     $technician = cleanInput($_POST['technician']);
     $handed_over_to = cleanInput($_POST['handed_over_to'] ?? '');
@@ -70,11 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Critical Error: Internal Server Error.";
     }
 
-    mysqli_close($conn);
     exit;
 }
-
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +124,7 @@ mysqli_close($conn);
                                     <div class="col-md-6">
                                         <label for="problem_ticket" class="form-label small fw-bold text-muted text-uppercase">Problem Ticket</label>
                                         <input type="text" class="form-control bg-light border-0 shadow-sm p-3" name="problem_ticket" id="problem_ticket"
-                                            value="<?php echo htmlspecialchars($row['problem_ticket']); ?>" placeholder="PRB0000456">
+                                            value="<?php echo htmlspecialchars($row['problem_ticket'] ?? ''); ?>" placeholder="PRB0000456">
                                     </div>
 
                                     <div class="col-md-6">
@@ -137,16 +134,13 @@ mysqli_close($conn);
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="status" class="form-label small fw-bold text-muted text-uppercase">Resolution Status</label>
+                                        <label for="status" class="form-label small fw-bold text-muted text-uppercase">Status</label>
                                         <select class="form-select bg-light border-0 shadow-sm p-3" name="status" id="status" required>
-                                            <option value="resolved" <?php if ($row['status'] == 'resolved') echo 'selected'; ?>>Resolved</option>
-                                            <option value="in_progress" <?php if ($row['status'] == 'in_progress') echo 'selected'; ?>>In Progress</option>
-                                            <option value="pending" <?php if ($row['status'] == 'pending') echo 'selected'; ?>>Pending</option>
+                                            <option value="Ongoing" <?php if ($row['status'] == 'Ongoing' || $row['status'] == 'in_progress' || $row['status'] == 'pending') echo 'selected'; ?>>Ongoing</option>
+                                            <option value="Resolved" <?php if ($row['status'] == 'Resolved' || $row['status'] == 'resolved') echo 'selected'; ?>>Resolved</option>
                                         </select>
                                     </div>
-                                </div>
 
-                                <div class="row g-4 mb-4">
                                     <div class="col-md-6">
                                         <label for="handed_over_to" class="form-label small fw-bold text-muted text-uppercase">Handed over to</label>
                                         <select class="form-select bg-light border-0 shadow-sm p-3" name="handed_over_to" id="handed_over_to" required>
@@ -184,6 +178,3 @@ mysqli_close($conn);
 </body>
 
 </html>
-
-
-

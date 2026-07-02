@@ -132,5 +132,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } // End if($_SERVER)
 
-mysqli_close($conn);
 ?>

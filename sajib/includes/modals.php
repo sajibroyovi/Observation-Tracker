@@ -337,11 +337,10 @@
                                 <input class="form-control" type="text" name="problem_ticket" placeholder="PRB0000456">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted text-uppercase">Resolution Status</label>
+                                <label class="form-label small fw-bold text-muted text-uppercase">Status</label>
                                 <select class="form-select" name="status" required>
-                                    <option value="in_progress" selected>In Progress</option>
-                                    <option value="resolved">Resolved</option>
-                                    <option value="pending">Pending</option>
+                                    <option value="Ongoing" selected>Ongoing</option>
+                                    <option value="Resolved">Resolved</option>
                                 </select>
                             </div>
                             <div class="col-md-6">

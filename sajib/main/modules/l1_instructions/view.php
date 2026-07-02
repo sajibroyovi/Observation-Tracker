@@ -121,6 +121,7 @@ $_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM 
                                     <th>Instruction Text</th>
                                     <th>Created By</th>
                                     <th>Date</th>
+                                    <th>Last Updated Log</th>
                                     <th class="text-end pe-4">Actions</th>
                                 </tr>
                             </thead>
@@ -139,7 +140,16 @@ $_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM 
                                             <td>
                                                 <span class='ms-1 opacity-75' style='font-size: 0.85rem;'>" . (!empty($row['created_at']) ? date('d M, Y - h:i A', strtotime($row['created_at'])) : '-') . "</span>
                                             </td>
+                                            <td>
+                                                " . (!empty($row['updated_by']) ? "
+                                                <div class='small text-muted mb-1'>
+                                                    <i class='fa-solid fa-user-pen text-info me-1 scale-80'></i> <b>" . e($row['updated_by']) . "</b>
+                                                </div>
+                                                <span class='ms-1 opacity-75' style='font-size: 0.85rem;'>" . (!empty($row['updated_at']) ? date('d M, Y - h:i A', strtotime($row['updated_at'])) : '-') . "</span>
+                                                " : "<span class='text-muted small fst-italic'>Not updated yet</span>") . "
+                                            </td>
                                             <td class='text-end pe-4'>
+                                                <a href='update.php?id=" . (int)$row['id'] . "' class='btn btn-white btn-sm text-primary shadow-sm border me-1' title='Edit Record'><i class='fa-solid fa-pen'></i></a>
                                                 <form action='delete' method='POST' style='display:inline;'>
                                                     " . getCsrfField() . "
                                                     <input type='hidden' name='id' value='" . (int)$row['id'] . "'>

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $details = cleanInput($_POST['details']);
     $incident_id = cleanInput($_POST['incident_id']);
-    $problem_ticket = cleanInput($_POST['problem_ticket']);
+    $problem_ticket = !empty($_POST['problem_ticket']) ? cleanInput($_POST['problem_ticket']) : null;
     $status = cleanInput($_POST['status']);
     $technician = cleanInput($_POST['technician']);
     $created_by = $_SESSION['username'];
@@ -44,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectTo(BASE_URL . '/');
     }
 
-    mysqli_close($conn);
     exit();
 }
 ?>

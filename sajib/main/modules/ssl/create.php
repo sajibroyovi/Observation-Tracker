@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectTo(BASE_URL . '/');
     }
 
-    mysqli_close($conn);
     exit();
 }
 ?>

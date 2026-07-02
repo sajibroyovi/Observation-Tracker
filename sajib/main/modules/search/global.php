@@ -142,5 +142,4 @@ echo json_encode([
     'query' => $query
 ]);
 
-mysqli_close($conn);
 ?>

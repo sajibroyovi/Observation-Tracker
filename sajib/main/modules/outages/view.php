@@ -57,7 +57,7 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 // Module Stats
-$_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total, SUM(status='Pending') as pending, SUM(status='In_progress') as in_progress, SUM(status='Resolved') as resolved FROM service_outage")) ?: [];
+$_stats = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total, SUM(status='Ongoing') as ongoing, SUM(status='Resolved') as resolved FROM service_outage")) ?: [];
 $_progress = ($_stats['total'] > 0) ? round(($_stats['resolved'] / $_stats['total']) * 100) : 0;
 ?>
 
@@ -158,8 +158,7 @@ $_progress = ($_stats['total'] > 0) ? round(($_stats['resolved'] / $_stats['tota
                             <select name="status_filter" class="form-select form-select-sm border-0 bg-light">
                                 <option value="">All Status</option>
                                 <option value="Resolved" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] === 'Resolved') ? 'selected' : ''; ?>>Resolved</option>
-                                <option value="In_progress" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] === 'In_progress') ? 'selected' : ''; ?>>In Progress</option>
-                                <option value="Pending" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                                <option value="Ongoing" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] === 'Ongoing') ? 'selected' : ''; ?>>Ongoing</option>
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -195,14 +194,13 @@ $_progress = ($_stats['total'] > 0) ? round(($_stats['resolved'] / $_stats['tota
                                 <?php
                                 $count = $offset + 1;
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    $status = strtolower(trim($row["status"] ?? ""));
+                                    $status = trim($row["status"] ?? "");
+                                    $status_lower = strtolower($status);
                                     $status_badge = '<span class="status-badge bg-secondary bg-opacity-10 text-secondary fw-bold p-2 px-3 rounded-pill">' . htmlspecialchars($status ?: "N/A") . '</span>';
-                                    if ($status == 'resolved') {
+                                    if ($status_lower == 'resolved') {
                                         $status_badge = '<span class="status-badge bg-success bg-opacity-10 text-success fw-bold p-2 px-3 rounded-pill"><i class="fa-solid fa-circle-check me-1"></i> Resolved</span>';
-                                    } else if ($status == 'in_progress') {
-                                        $status_badge = '<span class="status-badge bg-warning bg-opacity-10 text-warning fw-bold p-2 px-3 rounded-pill"><i class="fa-solid fa-spinner fa-spin-pulse me-1"></i> In Progress</span>';
-                                    } else if ($status == 'pending') {
-                                        $status_badge = '<span class="status-badge bg-danger bg-opacity-10 text-danger fw-bold p-2 px-3 rounded-pill"><i class="fa-solid fa-clock-rotate-left me-1"></i> Pending</span>';
+                                    } else if ($status_lower == 'ongoing' || $status_lower == 'in_progress' || $status_lower == 'pending') {
+                                        $status_badge = '<span class="status-badge bg-warning bg-opacity-10 text-warning fw-bold p-2 px-3 rounded-pill"><i class="fa-solid fa-spinner fa-spin-pulse me-1"></i> Ongoing</span>';
                                     }
 
                                     echo "<tr>

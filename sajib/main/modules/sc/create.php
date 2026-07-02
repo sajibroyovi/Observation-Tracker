@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         showError("Critical Error: Internal Server Error.");
         redirectTo(BASE_URL . '/');
     }
-    mysqli_close($conn);
+
     exit();
 }
 ?>

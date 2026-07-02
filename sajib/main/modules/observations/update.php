@@ -214,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         showSuccess('No changes to save.');
         redirectTo($redirect);
     }
-    mysqli_close($conn);
+
     exit;
 }
 

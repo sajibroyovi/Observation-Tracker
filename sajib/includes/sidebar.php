@@ -110,6 +110,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <?php endif; ?>
+        <?php if (canViewModule('L1 Instructions')): ?>
+        <li>
+            <a href="<?php echo BASE_URL; ?>/modules/l1_instructions/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/l1_instructions/view.php') !== false) ? 'active' : ''; ?>">
+                <i class="fa-solid fa-clipboard-list"></i> <span>L1 Instructions</span>
+            </a>
+        </li>
+        <?php endif; ?>
         <li>
             <a href="<?php echo BASE_URL; ?>/modules/observations/view" class="<?php echo (strpos($_SERVER['PHP_SELF'], '/observations/view.php') !== false) ? 'active' : ''; ?>">
                 <i class="fa-solid fa-clipboard-check"></i> <span>Observations</span>

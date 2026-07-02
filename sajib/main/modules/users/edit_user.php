@@ -7,7 +7,7 @@ if (!isSuperAdmin()) {
 }
 
 if (!isset($_GET['id'])) {
-    redirectTo("manage");
+    redirectTo(BASE_URL . "/modules/users/manage");
 }
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_stmt_execute($stmt_update)) {
                 mysqli_stmt_close($stmt_update);
                 showSuccess('User updated successfully');
-                redirectTo('manage');
+                redirectTo(BASE_URL . '/modules/users/manage');
             } else {
                 log_error("Update Error for user", ['id' => $id, 'error' => mysqli_stmt_error($stmt_update)]);
                 $error = "Error updating user. Please check logs.";

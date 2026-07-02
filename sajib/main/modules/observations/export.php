@@ -93,5 +93,4 @@ echo '</tbody>';
 echo '</table>';
 echo '</body></html>';
 
-mysqli_close($conn);
 ?>
