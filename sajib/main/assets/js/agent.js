@@ -475,8 +475,11 @@
     // --------------------------------------------------------
     // MARKDOWN RENDERER (lightweight)
     // --------------------------------------------------------
-    function renderMarkdown(text) {
-        if (!text) return '';
+    function renderMarkdownInto(container, text) {
+        if (!text) {
+            container.textContent = '';
+            return;
+        }
         let html = text
             // Headers
             .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -497,9 +500,7 @@
                 return '<tr>' + cells.map(c => `<th>${c}</th>`).join('') + '</tr>';
             })
             // Table separator rows (---|---)
-            .replace(/<tr>(<th>[-:\s]+<\/th>)+<\/tr>/g, '')
-            // Wrap table rows in table
-            ;
+            .replace(/<tr>(<th>[-:\s]+<\/th>)+<\/tr>/g, '');
 
         // Wrap consecutive <tr> in <table>
         html = html.replace(/(<tr>.*?<\/tr>\s*)+/gs, m => `<table>${m}</table>`);
@@ -523,37 +524,40 @@
         // Newlines to <br> (but not inside HTML tags)
         html = html.replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>');
 
-        // Prevent DOM XSS by sanitizing the final HTML
-        return sanitizeHTML(html);
-    }
-
-    function sanitizeHTML(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-        // Whitelist of safe HTML tags
-        const allowedTags = ['DIV', 'SPAN', 'BUTTON', 'A', 'I', 'B', 'STRONG', 'EM', 'TABLE', 'TR', 'TD', 'TH', 'BR', 'HR', 'H2', 'H3', 'UL', 'LI', 'P', 'CODE', 'THEAD', 'TBODY'];
+        const allowedTags = new Set(['DIV', 'SPAN', 'BUTTON', 'A', 'I', 'B', 'STRONG', 'EM', 'TABLE', 'TR', 'TD', 'TH', 'BR', 'HR', 'H2', 'H3', 'UL', 'LI', 'P', 'CODE', 'THEAD', 'TBODY']);
         
-        function clean(node) {
+        function sanitizeNode(node) {
             const children = Array.from(node.childNodes);
-            for (let child of children) {
-                if (child.nodeType === 1) { // Element node
-                    if (!allowedTags.includes(child.nodeName)) {
-                        child.remove();
+            for (const child of children) {
+                if (child.nodeType === Node.ELEMENT_NODE) {
+                    if (!allowedTags.has(child.tagName)) {
+                        child.replaceWith(...Array.from(child.childNodes));
                         continue;
                     }
-                    // Clean attributes: remove anything starting with "on" or containing "javascript:"
                     const attrs = Array.from(child.attributes);
-                    for (let attr of attrs) {
-                        if (attr.name.startsWith('on') || attr.value.toLowerCase().includes('javascript:')) {
+                    for (const attr of attrs) {
+                        const name = attr.name.toLowerCase();
+                        const val = attr.value.toLowerCase().trim();
+                        if (name.startsWith('on') || val.startsWith('javascript:') || val.startsWith('data:') || val.startsWith('vbscript:')) {
                             child.removeAttribute(attr.name);
                         }
                     }
-                    clean(child);
+                    if (child.tagName === 'A') {
+                        child.setAttribute('target', '_blank');
+                        child.setAttribute('rel', 'noopener noreferrer');
+                    }
+                    sanitizeNode(child);
                 }
             }
         }
-        clean(doc.body);
-        return doc.body.innerHTML;
+
+        sanitizeNode(doc.body);
+        container.textContent = '';
+        while (doc.body.firstChild) {
+            container.appendChild(doc.body.firstChild);
+        }
     }
 
     // --------------------------------------------------------
@@ -586,7 +590,7 @@
         bubble.className = 'msg-bubble';
 
         if (role === 'bot') {
-            bubble.innerHTML = renderMarkdown(text);
+            renderMarkdownInto(bubble, text);
         } else {
             bubble.textContent = text;
         }

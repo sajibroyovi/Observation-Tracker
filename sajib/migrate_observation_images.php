@@ -5,6 +5,15 @@
  */
 require_once __DIR__ . '/config/app.php';
 
+// Prevent access by unauthorized users (if run in browser)
+if (php_sapi_name() !== 'cli') {
+    include_once INCLUDES_PATH . '/auth_check.php';
+    if (!isSuperAdmin()) {
+        http_response_code(403);
+        die("Unauthorized: Super Admin privilege required.");
+    }
+}
+
 echo "<h2>Observation Image Column Migration</h2>";
 echo "<pre>";
 
@@ -20,7 +29,8 @@ if (!colExists($conn, 'observations', 'l1_image')) {
     if (mysqli_query($conn, "ALTER TABLE `observations` ADD COLUMN `l1_image` VARCHAR(255) DEFAULT NULL")) {
         echo "✔ Added column: l1_image\n";
     } else {
-        echo "✘ Failed to add l1_image: " . mysqli_error($conn) . "\n";
+        log_error("Failed to add l1_image", ['error' => mysqli_error($conn)]);
+        echo "✘ Failed to add l1_image (check logs)\n";
     }
 } else {
     echo "✓ Column l1_image already exists.\n";
@@ -31,7 +41,8 @@ if (!colExists($conn, 'observations', 'l1_image_2')) {
     if (mysqli_query($conn, "ALTER TABLE `observations` ADD COLUMN `l1_image_2` VARCHAR(255) DEFAULT NULL")) {
         echo "✔ Added column: l1_image_2\n";
     } else {
-        echo "✘ Failed to add l1_image_2: " . mysqli_error($conn) . "\n";
+        log_error("Failed to add l1_image_2", ['error' => mysqli_error($conn)]);
+        echo "✘ Failed to add l1_image_2 (check logs)\n";
     }
 } else {
     echo "✓ Column l1_image_2 already exists.\n";

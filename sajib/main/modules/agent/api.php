@@ -1352,7 +1352,7 @@ try {
         'trace' => $e->getTraceAsString()
     ]);
     $response = [
-        'message' => "⚠️ PHP Error: " . $e->getMessage() . " in **" . basename($e->getFile()) . "** on line **" . $e->getLine() . "**",
+        'message' => "⚠️ An error occurred while processing your request. Please check system logs.",
         'type' => 'error'
     ];
 }

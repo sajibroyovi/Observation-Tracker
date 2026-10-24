@@ -18,6 +18,15 @@ if (!file_exists($appConfigPath)) {
 
 require_once $appConfigPath;
 
+// Prevent access by unauthorized users (if run in browser)
+if (php_sapi_name() !== 'cli') {
+    include_once INCLUDES_PATH . '/auth_check.php';
+    if (!isSuperAdmin()) {
+        http_response_code(403);
+        die("Unauthorized: Super Admin privilege required.");
+    }
+}
+
 $conn = getConnection();
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);

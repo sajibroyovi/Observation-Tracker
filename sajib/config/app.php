@@ -8,6 +8,13 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', ROOT_PATH . '/logs/php_error.log');
 
+// Set fundamental HTTP security headers
+if (!headers_sent()) {
+    header('X-Content-Type-Options: nosniff');
+    header('X-XSS-Protection: 1; mode=block');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+}
+
 // Define major directory paths
 define('CONFIG_PATH', ROOT_PATH . '/config');
 define('INCLUDES_PATH', ROOT_PATH . '/includes');

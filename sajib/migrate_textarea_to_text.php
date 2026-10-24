@@ -4,8 +4,9 @@ require_once __DIR__ . '/config/app.php';
 // Prevent access by unauthorized users (if run in browser)
 if (php_sapi_name() !== 'cli') {
     include_once INCLUDES_PATH . '/auth_check.php';
-    if (isset($_SESSION['role']) && $_SESSION['role'] !== 'super_admin') {
-        die("Unauthorized: Admin privilege required.");
+    if (!isSuperAdmin()) {
+        http_response_code(403);
+        die("Unauthorized: Super Admin privilege required.");
     }
 }
 
@@ -98,7 +99,8 @@ foreach ($migrations as $m) {
         echo "SUCCESS." . $br;
         $success_count++;
     } else {
-        echo "ERROR: " . mysqli_error($conn) . $br;
+        log_error("Failed to alter column", ['table' => $table, 'column' => $column, 'error' => mysqli_error($conn)]);
+        echo "ERROR: Alteration failed (check logs)." . $br;
         $error_count++;
     }
 }

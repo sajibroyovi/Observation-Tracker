@@ -107,10 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label small fw-bold text-muted text-uppercase">WhatsApp Number</label>
+                                    <label class="form-label small fw-bold text-muted text-uppercase">Phone Number</label>
                                     <div class="input-group-modern">
                                         <input type="text" name="phone_number" class="form-control bg-light border-0 shadow-sm p-3" 
-                                            placeholder="e.g. 88017..." title="International format, e.g. 8801700000000">
+                                            placeholder="e.g. 017..." title="Phone Number">
                                     </div>
                                 </div>
                                 <div class="mb-4">

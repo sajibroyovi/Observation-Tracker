@@ -1,6 +1,15 @@
 <?php
 require_once __DIR__ . '/config/app.php';
 
+// Prevent access by unauthorized users (if run in browser)
+if (php_sapi_name() !== 'cli') {
+    include_once INCLUDES_PATH . '/auth_check.php';
+    if (!isSuperAdmin()) {
+        http_response_code(403);
+        die("Unauthorized: Super Admin privilege required.");
+    }
+}
+
 $tables = [
     'enable_disable',
     'pending_mail',
@@ -22,7 +31,8 @@ foreach ($tables as $table) {
         if (mysqli_query($conn, $sql1)) {
             echo "added handed_over_to. ";
         } else {
-            echo "error adding handed_over_to: " . mysqli_error($conn) . ". ";
+            log_error("Migration error adding handed_over_to", ['table' => $table, 'error' => mysqli_error($conn)]);
+            echo "error adding handed_over_to (check logs). ";
         }
     } else {
         echo "handed_over_to exists. ";
@@ -34,7 +44,8 @@ foreach ($tables as $table) {
         if (mysqli_query($conn, $sql2)) {
             echo "added handover_date. ";
         } else {
-            echo "error adding handover_date: " . mysqli_error($conn) . ". ";
+            log_error("Migration error adding handover_date", ['table' => $table, 'error' => mysqli_error($conn)]);
+            echo "error adding handover_date (check logs). ";
         }
     } else {
         echo "handover_date exists. ";

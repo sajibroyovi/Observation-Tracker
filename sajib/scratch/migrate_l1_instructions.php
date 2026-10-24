@@ -13,6 +13,7 @@ $sql = "CREATE TABLE IF NOT EXISTS l1_instructions (
 if (mysqli_query($conn, $sql)) {
     echo "Table created successfully.\n";
 } else {
-    echo "Error: " . mysqli_error($conn) . "\n";
+    log_error("Error creating l1_instructions table", ['error' => mysqli_error($conn)]);
+    echo "Error creating table. Check logs.\n";
 }
 ?>

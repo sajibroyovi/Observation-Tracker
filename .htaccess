@@ -2,11 +2,37 @@
 Options -Indexes
 DirectoryIndex index.php
 
+# Security Headers (if mod_headers is loaded)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
     # Set the base to the project root
     RewriteBase /sajib/
+
+    # Security: Block PHP-CGI Argument Injection (CVE-2024-4577) & RCE attempts on Windows
+    RewriteCond %{QUERY_STRING} ^(%2d|-)[^=] [NC,OR]
+    RewriteCond %{QUERY_STRING} ^(%ad|%af)[^=] [NC,OR]
+    RewriteCond %{QUERY_STRING} (%2d|-)(d|s|u) [NC,OR]
+    RewriteCond %{QUERY_STRING} (auto_prepend_file|auto_append_file|allow_url_include|disable_functions) [NC]
+    RewriteRule .* - [F,L]
+
+    # Security: Block access to hidden files and directories (.git, .env, etc.)
+    RewriteRule "(^|/)\.(?!well-known)" - [F,L]
+
+    # Security: Block direct access to sensitive directories
+    RewriteRule ^sajib/(logs|config|includes|docs|vendor|scratch)(\/|$) - [F,L,NC]
+
+    # Security: Block direct access to sensitive file extensions
+    <FilesMatch "\.(log|env|ini|sql|bak|swp|zip|tar|gz|sh|md)$">
+        Require all denied
+    </FilesMatch>
 
     # 1. External Redirect: Remove .php from URLs (Clean URLs)
     # Applied to requests that explicitly include .php

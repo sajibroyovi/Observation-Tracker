@@ -189,6 +189,17 @@ function executePreparedStatement($conn, $sql, $types = "", $params = []) {
 function initSession() {
     if (session_status() === PHP_SESSION_NONE) {
         date_default_timezone_set('Asia/Dhaka');
+        ini_set('session.use_strict_mode', '1');
+        ini_set('session.cookie_httponly', '1');
+        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+        session_set_cookie_params([
+            'lifetime' => 0,
+            'path' => '/',
+            'domain' => '',
+            'secure' => $isSecure,
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
         session_start();
     }
 }
@@ -793,14 +804,14 @@ function sendAssignmentEmail($conn, $technician_username, $observation_name, $te
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        // Sending from the original system sender
-        $mail->Username = 'impsajibroy@gmail.com'; 
-        $mail->Password = 'mbxs mvsy fkkg hagm'; 
+        // Sending from configured SMTP credentials
+        $mail->Username = getenv('SMTP_USER') ?: 'impsajibroy@gmail.com'; 
+        $mail->Password = getenv('SMTP_PASS') ?: ''; 
         $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = (int)(getenv('SMTP_PORT') ?: 587);
 
         // Recipients
-        $mail->setFrom('impsajibroy@gmail.com', 'Observation Tracker');
+        $mail->setFrom(getenv('SMTP_FROM') ?: 'impsajibroy@gmail.com', 'Observation Tracker');
         $mail->addAddress($email);
 
         // Add Team Group Mail as CC
@@ -856,83 +867,5 @@ function sendAssignmentEmail($conn, $technician_username, $observation_name, $te
         return true;
     } catch (\Exception $e) {
         log_error("Failed to send assignment email", ['email' => $email, 'error' => $mail->ErrorInfo]);
-        return false;
     }
-}
-
-/**
- * Send a WhatsApp notification using Local Node.js Bridge
- * 
- * @param string $phone The phone number (e.g., 88017...)
- * @param string $message The message text
- * @return bool True if successful, false otherwise
- */
-function sendWhatsAppNotification($phone, $message) {
-    if (empty($phone) || empty($message)) {
-        return false;
-    }
-
-    $url = "http://localhost:3000/send";
-    $data = [
-        'phone' => $phone,
-        'message' => $message
-    ];
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-    
-    $response = curl_exec($ch);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($http_code !== 200) {
-        log_error("Local WhatsApp Bridge Error", ['code' => $http_code, 'response' => $response]);
-        return false;
-    }
-
-    return true;
-}
-
-/**
- * Fetch technician details and send WhatsApp notification
- * 
- * @param mysqli $conn Database connection
- * @param string $technician_username The username of the assigned technician
- * @param string $observation_name The title of the observation
- * @return bool True if successful, false otherwise
- */
-function sendAssignmentWhatsApp($conn, $technician_username, $observation_name) {
-    if (!$conn || empty($technician_username)) return false;
-
-    // 1. Fetch technician WhatsApp details
-    $stmt = mysqli_prepare($conn, "SELECT phone_number FROM users WHERE username = ?");
-    if (!$stmt) return false;
-    
-    mysqli_stmt_bind_param($stmt, "s", $technician_username);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    
-    $phone = '';
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $phone = $row['phone_number'];
-    }
-    mysqli_stmt_close($stmt);
-
-    if (empty($phone)) {
-        return false; // Not configured for WhatsApp
-    }
-
-    // 2. Prepare message
-    $message = "🔔 *New Observation Assigned*\n\n";
-    $message .= "*Observation:* " . $observation_name . "\n";
-    $message .= "*Assigned At:* " . date('Y-m-d H:i') . "\n\n";
-    $message .= "Please log in to the Observation Tracker to review details.";
-
-    // 3. Send via Local Bridge
-    return sendWhatsAppNotification($phone, $message);
 }

@@ -1,5 +1,14 @@
 <?php
-require_once 'c:/xampp/htdocs/sajib/sajib/config/app.php';
+require_once __DIR__ . '/config/app.php';
+
+// Prevent access by unauthorized users (if run in browser)
+if (php_sapi_name() !== 'cli') {
+    include_once INCLUDES_PATH . '/auth_check.php';
+    if (!isSuperAdmin()) {
+        http_response_code(403);
+        die("Unauthorized: Super Admin privilege required.");
+    }
+}
 
 $sql = "
 CREATE TABLE IF NOT EXISTS recycle_bin (

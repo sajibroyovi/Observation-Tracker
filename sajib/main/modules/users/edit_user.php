@@ -138,10 +138,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label small fw-bold text-muted text-uppercase">WhatsApp Number</label>
+                                    <label class="form-label small fw-bold text-muted text-uppercase">Phone Number</label>
                                     <div class="input-group-modern">
                                         <input type="text" name="phone_number" class="form-control bg-light border-0 shadow-sm p-3" 
-                                            value="<?php echo htmlspecialchars($user['phone_number'] ?? ''); ?>" placeholder="88017...">
+                                            value="<?php echo htmlspecialchars($user['phone_number'] ?? ''); ?>" placeholder="017...">
                                     </div>
                                 </div>
                                 <div class="mb-4">
