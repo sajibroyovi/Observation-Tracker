@@ -230,6 +230,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                                             case 'Data Center Operations': $badge_class = 'bg-teal'; break;
                                             case 'Server Storage & Backup Management': $badge_class = 'bg-purple'; break;
                                             case 'Incident & Performance Management': $badge_class = 'bg-pink'; break;
+                                            case 'Platform Management': $badge_class = 'bg-green'; break;
                                             case 'Database Management': $badge_class = 'bg-indigo'; break;
                                             default: $badge_class = 'bg-secondary';
                                         }
@@ -394,6 +395,7 @@ function truncate_chars($text, $limit = 50, $default = "") {
                     case 'Data Center Operations': $badge_class = 'bg-teal'; break;
                     case 'Server Storage & Backup Management': $badge_class = 'bg-purple'; break;
                     case 'Incident & Performance Management': $badge_class = 'bg-pink'; break;
+                    case 'Platform Management': $badge_class = 'bg-green'; break;
                     case 'Database Management': $badge_class = 'bg-indigo'; break;
                     default: $badge_class = 'bg-secondary';
                 }

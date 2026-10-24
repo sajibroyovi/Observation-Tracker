@@ -342,7 +342,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                             'Tech Service Delivery', 
                                                             'Central Monitoring Center', 
                                                             'Network Operations', 
-                                                            'Data Center Operations', 
+                                                            'Data Center Operations',
+                                                            'Platform Management', 
                                                             'Server Storage & Backup Management', 
                                                             'Incident & Performance Management', 
                                                             'Database Management'

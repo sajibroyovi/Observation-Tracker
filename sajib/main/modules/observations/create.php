@@ -47,7 +47,7 @@ require_once __DIR__ . '/../../../config/app.php'; include_once INCLUDES_PATH . 
         $l1_image_path = "";
         $l1_image_2_path = "";
 
-        if (isset($_FILES['l1_images'])) {
+        if (!empty($_FILES['l1_images']['name'][0])) {
             $total_files = count($_FILES['l1_images']['name']);
             $target_dir = ASSETS_PATH . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
             if (!is_dir($target_dir)) {

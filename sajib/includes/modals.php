@@ -557,6 +557,7 @@
                                                 "Central Monitoring Center",
                                                 "Network Operations",
                                                 "Data Center Operations",
+                                                "Platform Management",
                                                 "Server Storage & Backup Management",
                                                 "Incident & Performance Management",
                                                 "Database Management"

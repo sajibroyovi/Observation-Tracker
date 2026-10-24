@@ -984,3 +984,21 @@ Stack trace:
 #1 C:\xampp\htdocs\sajib\sajib\main\modules\change_requests\update.php(97): include('C:\\xampp\\htdocs...')
 #2 {main}
   thrown in C:\xampp\htdocs\sajib\sajib\includes\sidebar.php on line 197
+[31-Aug-2026 06:20:13 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php on line 60
+[31-Aug-2026 06:20:13 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php:60
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php(60): mysqli_query(NULL, 'SHOW COLUMNS FR...')
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php on line 60
+[31-Aug-2026 06:20:43 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php on line 60
+[31-Aug-2026 06:20:43 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php:60
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php(60): mysqli_query(NULL, 'SHOW COLUMNS FR...')
+#1 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\migrate_textarea_to_text.php on line 60
+[24-Oct-2026 09:54:31 Asia/Dhaka] PHP Fatal error:  Uncaught mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\sajib\sajib\includes\functions.php:46
+Stack trace:
+#0 C:\xampp\htdocs\sajib\sajib\includes\functions.php(46): mysqli_real_connect(Object(mysqli), 'localhost', 'root', Object(SensitiveParameterValue), 'shift_hand_over')
+#1 C:\xampp\htdocs\sajib\sajib\main\login.php(4): getConnection()
+#2 {main}
+  thrown in C:\xampp\htdocs\sajib\sajib\includes\functions.php on line 46
